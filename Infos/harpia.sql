@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Máquina: 127.0.0.1
--- Data de Criação: 26-Nov-2014 às 19:54
--- Versão do servidor: 5.5.32
--- versão do PHP: 5.4.19
+-- Host: 127.0.0.1
+-- Generation Time: 26-Nov-2014 às 19:19
+-- Versão do servidor: 5.6.21
+-- PHP Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,10 +17,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de Dados: `harpia`
+-- Database: `harpia`
 --
-CREATE DATABASE IF NOT EXISTS `harpia` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `harpia`;
 
 -- --------------------------------------------------------
 
@@ -29,10 +27,9 @@ USE `harpia`;
 --
 
 CREATE TABLE IF NOT EXISTS `wp_cntctfrm_field` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` char(100) NOT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+`id` int(11) NOT NULL,
+  `name` char(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `wp_cntctfrm_field`
@@ -60,14 +57,11 @@ INSERT INTO `wp_cntctfrm_field` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `wp_commentmeta` (
-  `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+`meta_id` bigint(20) unsigned NOT NULL,
   `comment_id` bigint(20) unsigned NOT NULL DEFAULT '0',
   `meta_key` varchar(255) DEFAULT NULL,
-  `meta_value` longtext,
-  PRIMARY KEY (`meta_id`),
-  KEY `comment_id` (`comment_id`),
-  KEY `meta_key` (`meta_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `meta_value` longtext
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -76,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `wp_commentmeta` (
 --
 
 CREATE TABLE IF NOT EXISTS `wp_comments` (
-  `comment_ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+`comment_ID` bigint(20) unsigned NOT NULL,
   `comment_post_ID` bigint(20) unsigned NOT NULL DEFAULT '0',
   `comment_author` tinytext NOT NULL,
   `comment_author_email` varchar(100) NOT NULL DEFAULT '',
@@ -90,14 +84,8 @@ CREATE TABLE IF NOT EXISTS `wp_comments` (
   `comment_agent` varchar(255) NOT NULL DEFAULT '',
   `comment_type` varchar(20) NOT NULL DEFAULT '',
   `comment_parent` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `user_id` bigint(20) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`comment_ID`),
-  KEY `comment_post_ID` (`comment_post_ID`),
-  KEY `comment_approved_date_gmt` (`comment_approved`,`comment_date_gmt`),
-  KEY `comment_date_gmt` (`comment_date_gmt`),
-  KEY `comment_parent` (`comment_parent`),
-  KEY `comment_author_email` (`comment_author_email`(10))
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `user_id` bigint(20) unsigned NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `wp_comments`
@@ -113,7 +101,7 @@ INSERT INTO `wp_comments` (`comment_ID`, `comment_post_ID`, `comment_author`, `c
 --
 
 CREATE TABLE IF NOT EXISTS `wp_create_map` (
-  `map_id` int(11) NOT NULL AUTO_INCREMENT,
+`map_id` int(11) NOT NULL,
   `map_title` varchar(255) DEFAULT NULL,
   `map_width` varchar(255) DEFAULT NULL,
   `map_height` varchar(255) DEFAULT NULL,
@@ -132,9 +120,8 @@ CREATE TABLE IF NOT EXISTS `wp_create_map` (
   `map_polygon_setting` text,
   `map_polyline_setting` text,
   `map_cluster_setting` text,
-  `map_overlay_setting` text,
-  PRIMARY KEY (`map_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `map_overlay_setting` text
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `wp_create_map`
@@ -150,12 +137,11 @@ INSERT INTO `wp_create_map` (`map_id`, `map_title`, `map_width`, `map_height`, `
 --
 
 CREATE TABLE IF NOT EXISTS `wp_group_map` (
-  `group_map_id` int(11) NOT NULL AUTO_INCREMENT,
+`group_map_id` int(11) NOT NULL,
   `group_map_title` varchar(255) DEFAULT NULL,
   `group_marker` text,
-  `group_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`group_map_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `group_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -164,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `wp_group_map` (
 --
 
 CREATE TABLE IF NOT EXISTS `wp_links` (
-  `link_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+`link_id` bigint(20) unsigned NOT NULL,
   `link_url` varchar(255) NOT NULL DEFAULT '',
   `link_name` varchar(255) NOT NULL DEFAULT '',
   `link_image` varchar(255) NOT NULL DEFAULT '',
@@ -176,10 +162,8 @@ CREATE TABLE IF NOT EXISTS `wp_links` (
   `link_updated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `link_rel` varchar(255) NOT NULL DEFAULT '',
   `link_notes` mediumtext NOT NULL,
-  `link_rss` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`link_id`),
-  KEY `link_visible` (`link_visible`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `link_rss` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -188,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `wp_links` (
 --
 
 CREATE TABLE IF NOT EXISTS `wp_map_locations` (
-  `location_id` int(11) NOT NULL AUTO_INCREMENT,
+`location_id` int(11) NOT NULL,
   `location_title` varchar(255) DEFAULT NULL,
   `location_address` varchar(255) DEFAULT NULL,
   `location_draggable` varchar(255) DEFAULT NULL,
@@ -197,9 +181,8 @@ CREATE TABLE IF NOT EXISTS `wp_map_locations` (
   `location_messages` text,
   `location_marker_image` text,
   `location_group_map` int(11) DEFAULT NULL,
-  `location_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`location_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `location_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `wp_map_locations`
@@ -215,13 +198,11 @@ INSERT INTO `wp_map_locations` (`location_id`, `location_title`, `location_addre
 --
 
 CREATE TABLE IF NOT EXISTS `wp_options` (
-  `option_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+`option_id` bigint(20) unsigned NOT NULL,
   `option_name` varchar(64) NOT NULL DEFAULT '',
   `option_value` longtext NOT NULL,
-  `autoload` varchar(20) NOT NULL DEFAULT 'yes',
-  PRIMARY KEY (`option_id`),
-  UNIQUE KEY `option_name` (`option_name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=257 ;
+  `autoload` varchar(20) NOT NULL DEFAULT 'yes'
+) ENGINE=InnoDB AUTO_INCREMENT=267 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `wp_options`
@@ -231,7 +212,7 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (1, 'siteurl', 'http://localhost/Harpia', 'yes'),
 (2, 'home', 'http://localhost/Harpia', 'yes'),
 (3, 'blogname', 'Harpia', 'yes'),
-(4, 'blogdescription', 'Só mais um site WordPress', 'yes'),
+(4, 'blogdescription', '', 'yes'),
 (5, 'users_can_register', '0', 'yes'),
 (6, 'admin_email', 'marketing@acens.com.br', 'yes'),
 (7, 'start_of_week', '0', 'yes'),
@@ -265,9 +246,9 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (35, 'ping_sites', 'http://rpc.pingomatic.com/', 'yes'),
 (36, 'advanced_edit', '0', 'yes'),
 (37, 'comment_max_links', '2', 'yes'),
-(38, 'gmt_offset', '0', 'yes'),
+(38, 'gmt_offset', '-3', 'yes'),
 (39, 'default_email_category', '1', 'yes'),
-(40, 'recently_edited', 'a:5:{i:0;s:62:"C:\\xampp\\htdocs\\Harpia/wp-content/themes/Vertex/front-page.php";i:1;s:57:"C:\\xampp\\htdocs\\Harpia/wp-content/themes/Vertex/style.css";i:2;s:78:"C:\\xampp\\htdocs\\Harpia/wp-content/plugins/contact-form-plugin/contact_form.php";i:3;s:64:"C:\\xampp\\htdocs\\Harpia/wp-content/themes/Vertex/page-contact.php";i:4;s:58:"C:\\xampp\\htdocs\\Harpia/wp-content/themes/Vertex/footer.php";}', 'no'),
+(40, 'recently_edited', 'a:5:{i:0;s:57:"C:\\xampp\\htdocs\\Harpia/wp-content/themes/Vertex/style.css";i:1;s:57:"C:\\xampp\\htdocs\\Harpia/wp-content/themes/Vertex/index.php";i:3;s:61:"C:\\xampp\\htdocs\\Harpia/wp-content/themes/Vertex/page-blog.php";i:4;s:62:"C:\\xampp\\htdocs\\Harpia/wp-content/themes/Vertex/front-page.php";i:5;s:58:"C:\\xampp\\htdocs\\Harpia/wp-content/themes/Vertex/header.php";}', 'no'),
 (41, 'template', 'Vertex', 'yes'),
 (42, 'stylesheet', 'Vertex', 'yes'),
 (43, 'comment_whitelist', '1', 'yes'),
@@ -325,7 +306,7 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (95, 'widget_meta', 'a:2:{i:2;a:1:{s:5:"title";s:0:"";}s:12:"_multiwidget";i:1;}', 'yes'),
 (96, 'sidebars_widgets', 'a:6:{s:19:"wp_inactive_widgets";a:0:{}s:9:"sidebar-1";a:6:{i:0;s:8:"search-2";i:1;s:14:"recent-posts-2";i:2;s:17:"recent-comments-2";i:3;s:10:"archives-2";i:4;s:12:"categories-2";i:5;s:6:"meta-2";}s:9:"sidebar-2";a:0:{}s:9:"sidebar-3";a:1:{i:0;s:8:"wysija-2";}s:9:"sidebar-4";a:0:{}s:13:"array_version";i:3;}', 'yes'),
 (97, 'cron', 'a:5:{i:1417030860;a:1:{s:20:"wp_maybe_auto_update";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1417046799;a:3:{s:16:"wp_version_check";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:17:"wp_update_plugins";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:16:"wp_update_themes";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1417090028;a:1:{s:19:"wp_scheduled_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1417094505;a:1:{s:30:"wp_scheduled_auto_draft_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}s:7:"version";i:2;}', 'yes'),
-(112, '_transient_random_seed', 'ddd96bf7253da134f0256671f3867af4', 'yes'),
+(112, '_transient_random_seed', '91da458e8eb91f08ea16b8098172fc48', 'yes'),
 (117, 'can_compress_scripts', '1', 'yes'),
 (134, 'theme_mods_twentyfourteen', 'a:1:{s:16:"sidebars_widgets";a:2:{s:4:"time";i:1416398845;s:4:"data";a:4:{s:19:"wp_inactive_widgets";a:0:{}s:9:"sidebar-1";a:6:{i:0;s:8:"search-2";i:1;s:14:"recent-posts-2";i:2;s:17:"recent-comments-2";i:3;s:10:"archives-2";i:4;s:12:"categories-2";i:5;s:6:"meta-2";}s:9:"sidebar-2";a:0:{}s:9:"sidebar-3";a:0:{}}}}', 'yes'),
 (135, 'current_theme', 'Vertex', 'yes'),
@@ -333,23 +314,23 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (137, 'theme_switched', '', 'yes'),
 (138, 'et_images_temp_folder', 'C:\\xampp\\htdocs\\Harpia/wp-content/uploads/et_temp', 'yes'),
 (139, 'et_schedule_clean_images_last_time', '1417010113', 'yes'),
-(141, 'et_vertex', 'a:97:{s:11:"vertex_logo";s:105:"http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal2-300x138.png";s:14:"vertex_favicon";s:67:"http://localhost/Harpia/wp-content/uploads/2014/11/favi-266x300.png";s:22:"vertex_header_bg_image";s:0:"";s:17:"vertex_grab_image";s:5:"false";s:20:"vertex_use_site_name";s:2:"on";s:17:"vertex_blog_style";s:2:"on";s:25:"vertex_action_button_text";s:0:"";s:24:"vertex_action_button_url";s:0:"";s:19:"vertex_catnum_posts";i:6;s:23:"vertex_archivenum_posts";i:5;s:22:"vertex_searchnum_posts";i:5;s:19:"vertex_tagnum_posts";i:5;s:18:"vertex_date_format";s:6:"M j, Y";s:18:"vertex_use_excerpt";s:5:"false";s:28:"vertex_responsive_shortcodes";s:2:"on";s:35:"vertex_gf_enable_all_character_sets";s:5:"false";s:27:"vertex_animations_on_scroll";s:2:"on";s:17:"vertex_custom_css";s:0:"";s:20:"vertex_show_projects";s:2:"on";s:24:"vertex_show_testimonials";s:2:"on";s:16:"vertex_show_team";s:2:"on";s:26:"vertex_home_projects_title";s:0:"";s:32:"vertex_home_projects_description";s:0:"";s:26:"vertex_home_featured_title";s:0:"";s:32:"vertex_home_featured_description";s:0:"";s:30:"vertex_home_testimonials_title";s:0:"";s:36:"vertex_home_testimonials_description";s:0:"";s:22:"vertex_home_team_title";s:0:"";s:28:"vertex_home_team_description";s:0:"";s:24:"vertex_home_projects_num";i:8;s:21:"vertex_homepage_posts";i:8;s:15:"vertex_featured";s:2:"on";s:19:"vertex_featured_num";i:3;s:21:"vertex_feat_posts_cat";i:1;s:16:"vertex_use_pages";s:5:"false";s:18:"vertex_slider_auto";s:5:"false";s:23:"vertex_slider_autospeed";i:7000;s:23:"vertex_enable_dropdowns";s:2:"on";s:16:"vertex_home_link";s:2:"on";s:17:"vertex_sort_pages";s:10:"post_title";s:17:"vertex_order_page";s:3:"asc";s:24:"vertex_tiers_shown_pages";i:3;s:34:"vertex_enable_dropdowns_categories";s:2:"on";s:23:"vertex_categories_empty";s:2:"on";s:29:"vertex_tiers_shown_categories";i:3;s:15:"vertex_sort_cat";s:4:"name";s:16:"vertex_order_cat";s:3:"asc";s:22:"vertex_disable_toptier";s:5:"false";s:16:"vertex_postinfo2";a:3:{i:0;s:6:"author";i:1;s:4:"date";i:2;s:8:"comments";}s:24:"vertex_show_postcomments";s:2:"on";s:25:"vertex_show_pagescomments";s:5:"false";s:16:"vertex_postinfo1";a:2:{i:0;s:6:"author";i:1;s:4:"date";}s:27:"vertex_show_avatar_on_posts";s:2:"on";s:21:"vertex_seo_home_title";s:5:"false";s:27:"vertex_seo_home_description";s:5:"false";s:24:"vertex_seo_home_keywords";s:5:"false";s:25:"vertex_seo_home_canonical";s:5:"false";s:25:"vertex_seo_home_titletext";s:0:"";s:31:"vertex_seo_home_descriptiontext";s:0:"";s:28:"vertex_seo_home_keywordstext";s:0:"";s:20:"vertex_seo_home_type";s:27:"BlogName | Blog description";s:24:"vertex_seo_home_separate";s:3:" | ";s:23:"vertex_seo_single_title";s:5:"false";s:29:"vertex_seo_single_description";s:5:"false";s:26:"vertex_seo_single_keywords";s:5:"false";s:27:"vertex_seo_single_canonical";s:5:"false";s:29:"vertex_seo_single_field_title";s:9:"seo_title";s:35:"vertex_seo_single_field_description";s:15:"seo_description";s:32:"vertex_seo_single_field_keywords";s:12:"seo_keywords";s:22:"vertex_seo_single_type";s:21:"Post title | BlogName";s:26:"vertex_seo_single_separate";s:3:" | ";s:26:"vertex_seo_index_canonical";s:5:"false";s:28:"vertex_seo_index_description";s:5:"false";s:21:"vertex_seo_index_type";s:24:"Category name | BlogName";s:25:"vertex_seo_index_separate";s:3:" | ";s:30:"vertex_integrate_header_enable";s:2:"on";s:28:"vertex_integrate_body_enable";s:2:"on";s:33:"vertex_integrate_singletop_enable";s:2:"on";s:36:"vertex_integrate_singlebottom_enable";s:2:"on";s:23:"vertex_integration_head";s:0:"";s:23:"vertex_integration_body";s:0:"";s:29:"vertex_integration_single_top";s:0:"";s:32:"vertex_integration_single_bottom";s:0:"";s:17:"vertex_468_enable";s:5:"false";s:16:"vertex_468_image";s:0:"";s:14:"vertex_468_url";s:0:"";s:18:"vertex_468_adsense";s:0:"";s:10:"link_color";s:7:"#4bb6f5";s:10:"font_color";s:7:"#959494";s:14:"accent_color_1";s:7:"#25383b";s:14:"accent_color_2";s:7:"#08e00c";s:9:"menu_link";s:7:"#ffffff";s:16:"menu_link_active";s:7:"#ffffff";s:12:"heading_font";s:4:"none";s:9:"body_font";s:4:"none";s:13:"color_schemes";s:4:"none";s:17:"vertex_feat_pages";a:2:{i:0;i:11;i:1;i:2;}}', 'yes'),
+(141, 'et_vertex', 'a:97:{s:11:"vertex_logo";s:105:"http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal1-300x138.png";s:14:"vertex_favicon";s:67:"http://localhost/Harpia/wp-content/uploads/2014/11/favi-266x300.png";s:22:"vertex_header_bg_image";s:0:"";s:17:"vertex_grab_image";s:5:"false";s:20:"vertex_use_site_name";s:2:"on";s:17:"vertex_blog_style";s:2:"on";s:25:"vertex_action_button_text";s:0:"";s:24:"vertex_action_button_url";s:0:"";s:19:"vertex_catnum_posts";i:6;s:23:"vertex_archivenum_posts";i:5;s:22:"vertex_searchnum_posts";i:5;s:19:"vertex_tagnum_posts";i:5;s:18:"vertex_date_format";s:6:"M j, Y";s:18:"vertex_use_excerpt";s:5:"false";s:28:"vertex_responsive_shortcodes";s:2:"on";s:35:"vertex_gf_enable_all_character_sets";s:5:"false";s:27:"vertex_animations_on_scroll";s:2:"on";s:17:"vertex_custom_css";s:0:"";s:20:"vertex_show_projects";s:2:"on";s:24:"vertex_show_testimonials";s:2:"on";s:16:"vertex_show_team";s:2:"on";s:26:"vertex_home_projects_title";s:0:"";s:32:"vertex_home_projects_description";s:0:"";s:26:"vertex_home_featured_title";s:0:"";s:32:"vertex_home_featured_description";s:0:"";s:30:"vertex_home_testimonials_title";s:0:"";s:36:"vertex_home_testimonials_description";s:0:"";s:22:"vertex_home_team_title";s:0:"";s:28:"vertex_home_team_description";s:0:"";s:24:"vertex_home_projects_num";i:8;s:21:"vertex_homepage_posts";i:8;s:15:"vertex_featured";s:2:"on";s:19:"vertex_featured_num";i:3;s:21:"vertex_feat_posts_cat";i:1;s:16:"vertex_use_pages";s:5:"false";s:18:"vertex_slider_auto";s:5:"false";s:23:"vertex_slider_autospeed";i:7000;s:23:"vertex_enable_dropdowns";s:2:"on";s:16:"vertex_home_link";s:2:"on";s:17:"vertex_sort_pages";s:10:"post_title";s:17:"vertex_order_page";s:3:"asc";s:24:"vertex_tiers_shown_pages";i:3;s:34:"vertex_enable_dropdowns_categories";s:2:"on";s:23:"vertex_categories_empty";s:2:"on";s:29:"vertex_tiers_shown_categories";i:3;s:15:"vertex_sort_cat";s:4:"name";s:16:"vertex_order_cat";s:3:"asc";s:22:"vertex_disable_toptier";s:5:"false";s:16:"vertex_postinfo2";a:3:{i:0;s:6:"author";i:1;s:4:"date";i:2;s:8:"comments";}s:24:"vertex_show_postcomments";s:2:"on";s:25:"vertex_show_pagescomments";s:5:"false";s:16:"vertex_postinfo1";a:2:{i:0;s:6:"author";i:1;s:4:"date";}s:27:"vertex_show_avatar_on_posts";s:2:"on";s:21:"vertex_seo_home_title";s:5:"false";s:27:"vertex_seo_home_description";s:5:"false";s:24:"vertex_seo_home_keywords";s:5:"false";s:25:"vertex_seo_home_canonical";s:5:"false";s:25:"vertex_seo_home_titletext";s:0:"";s:31:"vertex_seo_home_descriptiontext";s:0:"";s:28:"vertex_seo_home_keywordstext";s:0:"";s:20:"vertex_seo_home_type";s:27:"BlogName | Blog description";s:24:"vertex_seo_home_separate";s:3:" | ";s:23:"vertex_seo_single_title";s:5:"false";s:29:"vertex_seo_single_description";s:5:"false";s:26:"vertex_seo_single_keywords";s:5:"false";s:27:"vertex_seo_single_canonical";s:5:"false";s:29:"vertex_seo_single_field_title";s:9:"seo_title";s:35:"vertex_seo_single_field_description";s:15:"seo_description";s:32:"vertex_seo_single_field_keywords";s:12:"seo_keywords";s:22:"vertex_seo_single_type";s:21:"Post title | BlogName";s:26:"vertex_seo_single_separate";s:3:" | ";s:26:"vertex_seo_index_canonical";s:5:"false";s:28:"vertex_seo_index_description";s:5:"false";s:21:"vertex_seo_index_type";s:24:"Category name | BlogName";s:25:"vertex_seo_index_separate";s:3:" | ";s:30:"vertex_integrate_header_enable";s:2:"on";s:28:"vertex_integrate_body_enable";s:2:"on";s:33:"vertex_integrate_singletop_enable";s:2:"on";s:36:"vertex_integrate_singlebottom_enable";s:2:"on";s:23:"vertex_integration_head";s:0:"";s:23:"vertex_integration_body";s:0:"";s:29:"vertex_integration_single_top";s:0:"";s:32:"vertex_integration_single_bottom";s:0:"";s:17:"vertex_468_enable";s:5:"false";s:16:"vertex_468_image";s:0:"";s:14:"vertex_468_url";s:0:"";s:18:"vertex_468_adsense";s:0:"";s:10:"link_color";s:7:"#4bb6f5";s:10:"font_color";s:7:"#959494";s:14:"accent_color_1";s:7:"#25383b";s:14:"accent_color_2";s:7:"#08e00c";s:9:"menu_link";s:7:"#ffffff";s:16:"menu_link_active";s:7:"#ffffff";s:12:"heading_font";s:4:"none";s:9:"body_font";s:4:"none";s:13:"color_schemes";s:4:"none";s:17:"vertex_feat_pages";a:2:{i:0;i:11;i:1;i:2;}}', 'yes'),
 (142, 'category_children', 'a:0:{}', 'yes'),
 (143, 'recently_activated', 'a:2:{s:36:"contact-form-plugin/contact_form.php";i:1417011080;s:45:"wp-google-map-plugin/wp-google-map-plugin.php";i:1416490444;}', 'yes'),
-(148, '_site_transient_et_update_themes', 'O:8:"stdClass":1:{s:12:"last_checked";i:1417011118;}', 'yes'),
+(148, '_site_transient_et_update_themes', 'O:8:"stdClass":1:{s:12:"last_checked";i:1417025561;}', 'yes'),
 (151, 'wysija_post_type_updated', '1416405969', 'yes'),
 (152, 'wysija_post_type_created', '1416405969', 'yes'),
 (153, 'installation_step', '16', 'yes'),
 (154, 'wysija', 'YTo3NDp7czo5OiJmcm9tX25hbWUiO3M6ODoiaGFycGlhanIiO3M6MTI6InJlcGx5dG9fbmFtZSI7czo4OiJoYXJwaWFqciI7czoxNToiZW1haWxzX25vdGlmaWVkIjtzOjIyOiJtYXJrZXRpbmdAYWNlbnMuY29tLmJyIjtzOjEwOiJmcm9tX2VtYWlsIjtzOjE0OiJpbmZvQGxvY2FsaG9zdCI7czoxMzoicmVwbHl0b19lbWFpbCI7czoxNDoiaW5mb0Bsb2NhbGhvc3QiO3M6MTU6ImRlZmF1bHRfbGlzdF9pZCI7aToxO3M6MTc6InRvdGFsX3N1YnNjcmliZXJzIjtzOjE6IjEiO3M6MTY6ImltcG9ydHdwX2xpc3RfaWQiO2k6MjtzOjE4OiJjb25maXJtX2VtYWlsX2xpbmsiO2k6MTk7czoxMjoidXBsb2FkZm9sZGVyIjtzOjQ5OiJDOlx4YW1wcFxodGRvY3NcSGFycGlhL3dwLWNvbnRlbnQvdXBsb2Fkc1x3eXNpamFcIjtzOjk6InVwbG9hZHVybCI7czo1MDoiaHR0cDovL2xvY2FsaG9zdC9IYXJwaWEvd3AtY29udGVudC91cGxvYWRzL3d5c2lqYS8iO3M6MTY6ImNvbmZpcm1fZW1haWxfaWQiO2k6MjtzOjk6Imluc3RhbGxlZCI7YjoxO3M6MjA6Im1hbmFnZV9zdWJzY3JpcHRpb25zIjtpOjE7czoxNDoiaW5zdGFsbGVkX3RpbWUiO2k6MTQxNjQwNTk3MTtzOjE3OiJ3eXNpamFfZGJfdmVyc2lvbiI7czo2OiIyLjYuMTMiO3M6MTE6ImRraW1fZG9tYWluIjtzOjk6ImxvY2FsaG9zdCI7czoxNjoid3lzaWphX3doYXRzX25ldyI7czo2OiIyLjYuMTMiO3M6MjQ6ImVtYWlsc19ub3RpZmllZF93aGVuX3N1YiI7aToxO3M6Mjc6ImVtYWlsc19ub3RpZmllZF93aGVuX2JvdW5jZSI7YjowO3M6MzM6ImVtYWlsc19ub3RpZmllZF93aGVuX2RhaWx5c3VtbWFyeSI7YjowO3M6MTk6ImJvdW5jZV9wcm9jZXNzX2F1dG8iO2I6MDtzOjIyOiJtc19ib3VuY2VfcHJvY2Vzc19hdXRvIjtiOjA7czo5OiJzaGFyZWRhdGEiO2I6MDtzOjExOiJka2ltX2FjdGl2ZSI7YjowO3M6OToic210cF9yZXN0IjtiOjA7czoxMjoibXNfc210cF9yZXN0IjtiOjA7czoxNDoiZGVidWdfbG9nX2Nyb24iO2I6MDtzOjIwOiJkZWJ1Z19sb2dfcG9zdF9ub3RpZiI7YjowO3M6MjI6ImRlYnVnX2xvZ19xdWVyeV9lcnJvcnMiO2I6MDtzOjIzOiJkZWJ1Z19sb2dfcXVldWVfcHJvY2VzcyI7YjowO3M6MTY6ImRlYnVnX2xvZ19tYW51YWwiO2I6MDtzOjE1OiJjb21wYW55X2FkZHJlc3MiO3M6MDoiIjtzOjE2OiJ1bnN1YnNjcmliZV9wYWdlIjtzOjI6IjE5IjtzOjE3OiJjb25maXJtYXRpb25fcGFnZSI7czoyOiIxOSI7czo5OiJzbXRwX2hvc3QiO3M6MDoiIjtzOjEwOiJzbXRwX2xvZ2luIjtzOjA6IiI7czoxMzoic210cF9wYXNzd29yZCI7czowOiIiO3M6OToic210cF9wb3J0IjtzOjI6IjI1IjtzOjExOiJzbXRwX3NlY3VyZSI7czoxOiIwIjtzOjEwOiJ0ZXN0X21haWxzIjtzOjIyOiJtYXJrZXRpbmdAYWNlbnMuY29tLmJyIjtzOjEyOiJib3VuY2VfZW1haWwiO3M6MDoiIjtzOjI2OiJtYW5hZ2Vfc3Vic2NyaXB0aW9uc19saXN0cyI7YToxOntpOjA7czoxOiIxIjt9czoxODoic3Vic2NyaXB0aW9uc19wYWdlIjtzOjI6IjE5IjtzOjExOiJodG1sX3NvdXJjZSI7czoxOiIwIjtzOjg6ImluZHVzdHJ5IjtzOjU6Im91dHJvIjtzOjE2OiJhcmNoaXZlX2xpbmtuYW1lIjtzOjE2OiJbd3lzaWphX2FyY2hpdmVdIjtzOjI2OiJzdWJzY3JpYmVyc19jb3VudF9saW5rbmFtZSI7czoyNjoiW3d5c2lqYV9zdWJzY3JpYmVyc19jb3VudF0iO3M6MTM6ImFyY2hpdmVfbGlzdHMiO2E6MTp7aToxO2I6MDt9czozODoicm9sZXNjYXAtLS1hZG1pbmlzdHJhdG9yLS0tbmV3c2xldHRlcnMiO2I6MDtzOjMxOiJyb2xlc2NhcC0tLWVkaXRvci0tLW5ld3NsZXR0ZXJzIjtiOjA7czozMToicm9sZXNjYXAtLS1hdXRob3ItLS1uZXdzbGV0dGVycyI7YjowO3M6MzY6InJvbGVzY2FwLS0tY29udHJpYnV0b3ItLS1uZXdzbGV0dGVycyI7YjowO3M6MzU6InJvbGVzY2FwLS0tc3Vic2NyaWJlci0tLW5ld3NsZXR0ZXJzIjtiOjA7czozODoicm9sZXNjYXAtLS1hZG1pbmlzdHJhdG9yLS0tc3Vic2NyaWJlcnMiO2I6MDtzOjMxOiJyb2xlc2NhcC0tLWVkaXRvci0tLXN1YnNjcmliZXJzIjtiOjA7czozMToicm9sZXNjYXAtLS1hdXRob3ItLS1zdWJzY3JpYmVycyI7YjowO3M6MzY6InJvbGVzY2FwLS0tY29udHJpYnV0b3ItLS1zdWJzY3JpYmVycyI7YjowO3M6MzU6InJvbGVzY2FwLS0tc3Vic2NyaWJlci0tLXN1YnNjcmliZXJzIjtiOjA7czozMzoicm9sZXNjYXAtLS1hZG1pbmlzdHJhdG9yLS0tY29uZmlnIjtiOjA7czoyNjoicm9sZXNjYXAtLS1lZGl0b3ItLS1jb25maWciO2I6MDtzOjI2OiJyb2xlc2NhcC0tLWF1dGhvci0tLWNvbmZpZyI7YjowO3M6MzE6InJvbGVzY2FwLS0tY29udHJpYnV0b3ItLS1jb25maWciO2I6MDtzOjMwOiJyb2xlc2NhcC0tLXN1YnNjcmliZXItLS1jb25maWciO2I6MDtzOjM2OiJyb2xlc2NhcC0tLWFkbWluaXN0cmF0b3ItLS10aGVtZV90YWIiO2I6MDtzOjI5OiJyb2xlc2NhcC0tLWVkaXRvci0tLXRoZW1lX3RhYiI7YjowO3M6Mjk6InJvbGVzY2FwLS0tYXV0aG9yLS0tdGhlbWVfdGFiIjtiOjA7czozNDoicm9sZXNjYXAtLS1jb250cmlidXRvci0tLXRoZW1lX3RhYiI7YjowO3M6MzM6InJvbGVzY2FwLS0tc3Vic2NyaWJlci0tLXRoZW1lX3RhYiI7YjowO3M6MzY6InJvbGVzY2FwLS0tYWRtaW5pc3RyYXRvci0tLXN0eWxlX3RhYiI7YjowO3M6Mjk6InJvbGVzY2FwLS0tZWRpdG9yLS0tc3R5bGVfdGFiIjtiOjA7czoyOToicm9sZXNjYXAtLS1hdXRob3ItLS1zdHlsZV90YWIiO2I6MDtzOjM0OiJyb2xlc2NhcC0tLWNvbnRyaWJ1dG9yLS0tc3R5bGVfdGFiIjtiOjA7czozMzoicm9sZXNjYXAtLS1zdWJzY3JpYmVyLS0tc3R5bGVfdGFiIjtiOjA7fQ==', 'yes'),
 (155, 'wysija_reinstall', '0', 'no'),
-(157, 'wysija_schedules', 'a:5:{s:5:"queue";a:3:{s:13:"next_schedule";i:1417025361;s:13:"prev_schedule";b:0;s:7:"running";b:0;}s:6:"bounce";a:3:{s:13:"next_schedule";i:1416492379;s:13:"prev_schedule";i:0;s:7:"running";b:0;}s:5:"daily";a:3:{s:13:"next_schedule";i:1417096511;s:13:"prev_schedule";b:0;s:7:"running";b:0;}s:6:"weekly";a:3:{s:13:"next_schedule";i:1417615635;s:13:"prev_schedule";b:0;s:7:"running";b:0;}s:7:"monthly";a:3:{s:13:"next_schedule";i:1418825179;s:13:"prev_schedule";i:0;s:7:"running";b:0;}}', 'yes'),
+(157, 'wysija_schedules', 'a:5:{s:5:"queue";a:3:{s:13:"next_schedule";i:1417029121;s:13:"prev_schedule";b:0;s:7:"running";b:0;}s:6:"bounce";a:3:{s:13:"next_schedule";i:1416492379;s:13:"prev_schedule";i:0;s:7:"running";b:0;}s:5:"daily";a:3:{s:13:"next_schedule";i:1417096511;s:13:"prev_schedule";b:0;s:7:"running";b:0;}s:6:"weekly";a:3:{s:13:"next_schedule";i:1417615635;s:13:"prev_schedule";b:0;s:7:"running";b:0;}s:7:"monthly";a:3:{s:13:"next_schedule";i:1418825179;s:13:"prev_schedule";i:0;s:7:"running";b:0;}}', 'yes'),
 (158, 'wysija_msg', '', 'no'),
 (159, 'wysija_queries', '', 'no'),
 (160, 'wysija_queries_errors', '', 'no'),
 (161, 'widget_wysija', 'a:2:{i:2;a:2:{s:5:"title";s:23:"Assine nossa Newsletter";s:4:"form";s:1:"1";}s:12:"_multiwidget";i:1;}', 'yes'),
-(162, 'wysija_check_pn', '1417021760.9326', 'yes'),
-(163, 'wysija_last_scheduled_check', '1417021760', 'yes'),
-(164, 'wysija_last_php_cron_call', '1417024405', 'yes'),
+(162, 'wysija_check_pn', '1417025521.8717', 'yes'),
+(163, 'wysija_last_scheduled_check', '1417025521', 'yes'),
+(164, 'wysija_last_php_cron_call', '1417025835', 'yes'),
 (169, 'widget_pages', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
 (170, 'widget_calendar', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
 (171, 'widget_tag_cloud', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
@@ -358,10 +339,8 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (174, 'widget_adsensewidget', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
 (175, 'widget_advwidget', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
 (176, 'widget_customlogowidget', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
-(205, '_site_transient_timeout_available_translations', '1416500777', 'yes'),
-(206, '_site_transient_available_translations', 'a:41:{s:2:"ar";a:8:{s:8:"language";s:2:"ar";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 15:44:04";s:12:"english_name";s:6:"Arabic";s:11:"native_name";s:14:"العربية";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/ar.zip";s:3:"iso";a:2:{i:1;s:2:"ar";i:2;s:3:"ara";}s:7:"strings";a:1:{s:8:"continue";s:16:"المتابعة";}}s:2:"az";a:8:{s:8:"language";s:2:"az";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-01 13:29:39";s:12:"english_name";s:11:"Azerbaijani";s:11:"native_name";s:16:"Azərbaycan dili";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/az.zip";s:3:"iso";a:2:{i:1;s:2:"az";i:2;s:3:"aze";}s:7:"strings";a:1:{s:8:"continue";s:5:"Davam";}}s:5:"bg_BG";a:8:{s:8:"language";s:5:"bg_BG";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-08 11:17:50";s:12:"english_name";s:9:"Bulgarian";s:11:"native_name";s:18:"Български";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/bg_BG.zip";s:3:"iso";a:2:{i:1;s:2:"bg";i:2;s:3:"bul";}s:7:"strings";a:1:{s:8:"continue";s:22:"Продължение";}}s:5:"bs_BA";a:8:{s:8:"language";s:5:"bs_BA";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 15:47:16";s:12:"english_name";s:7:"Bosnian";s:11:"native_name";s:8:"Bosanski";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/bs_BA.zip";s:3:"iso";a:2:{i:1;s:2:"bs";i:2;s:3:"bos";}s:7:"strings";a:1:{s:8:"continue";s:7:"Nastavi";}}s:2:"ca";a:8:{s:8:"language";s:2:"ca";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-19 13:59:46";s:12:"english_name";s:7:"Catalan";s:11:"native_name";s:7:"Català";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/ca.zip";s:3:"iso";a:2:{i:1;s:2:"ca";i:2;s:3:"cat";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continua";}}s:2:"cy";a:8:{s:8:"language";s:2:"cy";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 16:43:49";s:12:"english_name";s:5:"Welsh";s:11:"native_name";s:7:"Cymraeg";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/cy.zip";s:3:"iso";a:2:{i:1;s:2:"cy";i:2;s:3:"cym";}s:7:"strings";a:1:{s:8:"continue";s:6:"Parhau";}}s:5:"da_DK";a:8:{s:8:"language";s:5:"da_DK";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-22 11:59:16";s:12:"english_name";s:6:"Danish";s:11:"native_name";s:5:"Dansk";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/da_DK.zip";s:3:"iso";a:2:{i:1;s:2:"da";i:2;s:3:"dan";}s:7:"strings";a:1:{s:8:"continue";s:12:"Forts&#230;t";}}s:5:"de_DE";a:8:{s:8:"language";s:5:"de_DE";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-26 13:41:46";s:12:"english_name";s:6:"German";s:11:"native_name";s:7:"Deutsch";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/de_DE.zip";s:3:"iso";a:1:{i:1;s:2:"de";}s:7:"strings";a:1:{s:8:"continue";s:10:"Fortfahren";}}s:5:"en_CA";a:8:{s:8:"language";s:5:"en_CA";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 00:31:07";s:12:"english_name";s:16:"English (Canada)";s:11:"native_name";s:16:"English (Canada)";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/en_CA.zip";s:3:"iso";a:3:{i:1;s:2:"en";i:2;s:3:"eng";i:3;s:3:"eng";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continue";}}s:5:"en_GB";a:8:{s:8:"language";s:5:"en_GB";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 08:52:52";s:12:"english_name";s:12:"English (UK)";s:11:"native_name";s:12:"English (UK)";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/en_GB.zip";s:3:"iso";a:3:{i:1;s:2:"en";i:2;s:3:"eng";i:3;s:3:"eng";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continue";}}s:5:"en_AU";a:8:{s:8:"language";s:5:"en_AU";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-06 00:56:37";s:12:"english_name";s:19:"English (Australia)";s:11:"native_name";s:19:"English (Australia)";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/en_AU.zip";s:3:"iso";a:3:{i:1;s:2:"en";i:2;s:3:"eng";i:3;s:3:"eng";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continue";}}s:5:"es_ES";a:8:{s:8:"language";s:5:"es_ES";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 17:40:25";s:12:"english_name";s:15:"Spanish (Spain)";s:11:"native_name";s:8:"Español";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/es_ES.zip";s:3:"iso";a:1:{i:1;s:2:"es";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"es_PE";a:8:{s:8:"language";s:5:"es_PE";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 07:49:30";s:12:"english_name";s:14:"Spanish (Peru)";s:11:"native_name";s:17:"Español de Perú";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/es_PE.zip";s:3:"iso";a:2:{i:1;s:2:"es";i:2;s:3:"spa";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"es_CL";a:8:{s:8:"language";s:5:"es_CL";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 19:47:01";s:12:"english_name";s:15:"Spanish (Chile)";s:11:"native_name";s:17:"Español de Chile";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/es_CL.zip";s:3:"iso";a:2:{i:1;s:2:"es";i:2;s:3:"spa";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:2:"eu";a:8:{s:8:"language";s:2:"eu";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 06:55:23";s:12:"english_name";s:6:"Basque";s:11:"native_name";s:7:"Euskara";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/eu.zip";s:3:"iso";a:2:{i:1;s:2:"eu";i:2;s:3:"eus";}s:7:"strings";a:1:{s:8:"continue";s:8:"Jarraitu";}}s:5:"fa_IR";a:8:{s:8:"language";s:5:"fa_IR";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 15:58:20";s:12:"english_name";s:7:"Persian";s:11:"native_name";s:10:"فارسی";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/fa_IR.zip";s:3:"iso";a:2:{i:1;s:2:"fa";i:2;s:3:"fas";}s:7:"strings";a:1:{s:8:"continue";s:10:"ادامه";}}s:2:"fi";a:8:{s:8:"language";s:2:"fi";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-06 08:32:55";s:12:"english_name";s:7:"Finnish";s:11:"native_name";s:5:"Suomi";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/fi.zip";s:3:"iso";a:2:{i:1;s:2:"fi";i:2;s:3:"fin";}s:7:"strings";a:1:{s:8:"continue";s:5:"Jatka";}}s:5:"fr_FR";a:8:{s:8:"language";s:5:"fr_FR";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-04 17:49:48";s:12:"english_name";s:15:"French (France)";s:11:"native_name";s:9:"Français";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/fr_FR.zip";s:3:"iso";a:1:{i:1;s:2:"fr";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuer";}}s:2:"gd";a:8:{s:8:"language";s:2:"gd";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 17:37:43";s:12:"english_name";s:15:"Scottish Gaelic";s:11:"native_name";s:9:"Gàidhlig";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/gd.zip";s:3:"iso";a:3:{i:1;s:2:"gd";i:2;s:3:"gla";i:3;s:3:"gla";}s:7:"strings";a:1:{s:8:"continue";s:15:"Lean air adhart";}}s:5:"gl_ES";a:8:{s:8:"language";s:5:"gl_ES";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 01:18:12";s:12:"english_name";s:8:"Galician";s:11:"native_name";s:6:"Galego";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/gl_ES.zip";s:3:"iso";a:2:{i:1;s:2:"gl";i:2;s:3:"glg";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"he_IL";a:8:{s:8:"language";s:5:"he_IL";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 22:57:38";s:12:"english_name";s:6:"Hebrew";s:11:"native_name";s:16:"עִבְרִית";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/he_IL.zip";s:3:"iso";a:1:{i:1;s:2:"he";}s:7:"strings";a:1:{s:8:"continue";s:12:"להמשיך";}}s:2:"hr";a:8:{s:8:"language";s:2:"hr";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-20 14:09:34";s:12:"english_name";s:8:"Croatian";s:11:"native_name";s:8:"Hrvatski";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/hr.zip";s:3:"iso";a:2:{i:1;s:2:"hr";i:2;s:3:"hrv";}s:7:"strings";a:1:{s:8:"continue";s:7:"Nastavi";}}s:5:"hu_HU";a:8:{s:8:"language";s:5:"hu_HU";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 19:12:04";s:12:"english_name";s:9:"Hungarian";s:11:"native_name";s:6:"Magyar";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/hu_HU.zip";s:3:"iso";a:2:{i:1;s:2:"hu";i:2;s:3:"hun";}s:7:"strings";a:1:{s:8:"continue";s:7:"Tovább";}}s:5:"id_ID";a:8:{s:8:"language";s:5:"id_ID";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 11:26:19";s:12:"english_name";s:10:"Indonesian";s:11:"native_name";s:16:"Bahasa Indonesia";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/id_ID.zip";s:3:"iso";a:2:{i:1;s:2:"id";i:2;s:3:"ind";}s:7:"strings";a:1:{s:8:"continue";s:9:"Lanjutkan";}}s:5:"it_IT";a:8:{s:8:"language";s:5:"it_IT";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-02 08:24:03";s:12:"english_name";s:7:"Italian";s:11:"native_name";s:8:"Italiano";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/it_IT.zip";s:3:"iso";a:2:{i:1;s:2:"it";i:2;s:3:"ita";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continua";}}s:2:"ja";a:8:{s:8:"language";s:2:"ja";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-21 06:30:27";s:12:"english_name";s:8:"Japanese";s:11:"native_name";s:9:"日本語";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/ja.zip";s:3:"iso";a:1:{i:1;s:2:"ja";}s:7:"strings";a:1:{s:8:"continue";s:9:"続ける";}}s:5:"ko_KR";a:8:{s:8:"language";s:5:"ko_KR";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 07:54:33";s:12:"english_name";s:6:"Korean";s:11:"native_name";s:9:"한국어";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/ko_KR.zip";s:3:"iso";a:2:{i:1;s:2:"ko";i:2;s:3:"kor";}s:7:"strings";a:1:{s:8:"continue";s:6:"계속";}}s:5:"my_MM";a:8:{s:8:"language";s:5:"my_MM";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-06 08:41:35";s:12:"english_name";s:7:"Burmese";s:11:"native_name";s:15:"ဗမာစာ";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/my_MM.zip";s:3:"iso";a:2:{i:1;s:2:"my";i:2;s:3:"mya";}s:7:"strings";a:1:{s:8:"continue";s:54:"ဆက်လက်လုပ်ေဆာင်ပါ။";}}s:5:"nb_NO";a:8:{s:8:"language";s:5:"nb_NO";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 20:51:26";s:12:"english_name";s:19:"Norwegian (Bokmål)";s:11:"native_name";s:13:"Norsk bokmål";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/nb_NO.zip";s:3:"iso";a:2:{i:1;s:2:"nb";i:2;s:3:"nob";}s:7:"strings";a:1:{s:8:"continue";s:8:"Fortsett";}}s:5:"nl_NL";a:8:{s:8:"language";s:5:"nl_NL";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-17 06:23:19";s:12:"english_name";s:5:"Dutch";s:11:"native_name";s:10:"Nederlands";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/nl_NL.zip";s:3:"iso";a:2:{i:1;s:2:"nl";i:2;s:3:"nld";}s:7:"strings";a:1:{s:8:"continue";s:8:"Doorgaan";}}s:5:"pl_PL";a:8:{s:8:"language";s:5:"pl_PL";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-03 17:44:34";s:12:"english_name";s:6:"Polish";s:11:"native_name";s:6:"Polski";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/pl_PL.zip";s:3:"iso";a:2:{i:1;s:2:"pl";i:2;s:3:"pol";}s:7:"strings";a:1:{s:8:"continue";s:9:"Kontynuuj";}}s:5:"pt_PT";a:8:{s:8:"language";s:5:"pt_PT";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-29 15:27:01";s:12:"english_name";s:21:"Portuguese (Portugal)";s:11:"native_name";s:10:"Português";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/pt_PT.zip";s:3:"iso";a:1:{i:1;s:2:"pt";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"pt_BR";a:8:{s:8:"language";s:5:"pt_BR";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-30 13:29:44";s:12:"english_name";s:19:"Portuguese (Brazil)";s:11:"native_name";s:20:"Português do Brasil";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/pt_BR.zip";s:3:"iso";a:2:{i:1;s:2:"pt";i:2;s:3:"por";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"ru_RU";a:8:{s:8:"language";s:5:"ru_RU";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-21 12:32:07";s:12:"english_name";s:7:"Russian";s:11:"native_name";s:14:"Русский";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/ru_RU.zip";s:3:"iso";a:2:{i:1;s:2:"ru";i:2;s:3:"rus";}s:7:"strings";a:1:{s:8:"continue";s:20:"Продолжить";}}s:5:"sk_SK";a:8:{s:8:"language";s:5:"sk_SK";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-20 13:05:09";s:12:"english_name";s:6:"Slovak";s:11:"native_name";s:11:"Slovenčina";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/sk_SK.zip";s:3:"iso";a:2:{i:1;s:2:"sk";i:2;s:3:"slk";}s:7:"strings";a:1:{s:8:"continue";s:12:"Pokračovať";}}s:5:"sr_RS";a:8:{s:8:"language";s:5:"sr_RS";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 15:37:38";s:12:"english_name";s:7:"Serbian";s:11:"native_name";s:23:"Српски језик";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/sr_RS.zip";s:3:"iso";a:2:{i:1;s:2:"sr";i:2;s:3:"srp";}s:7:"strings";a:1:{s:8:"continue";s:14:"Настави";}}s:5:"sv_SE";a:8:{s:8:"language";s:5:"sv_SE";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-11 20:39:56";s:12:"english_name";s:7:"Swedish";s:11:"native_name";s:7:"Svenska";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/sv_SE.zip";s:3:"iso";a:2:{i:1;s:2:"sv";i:2;s:3:"swe";}s:7:"strings";a:1:{s:8:"continue";s:9:"Fortsätt";}}s:2:"th";a:8:{s:8:"language";s:2:"th";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-09 03:43:17";s:12:"english_name";s:4:"Thai";s:11:"native_name";s:9:"ไทย";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/th.zip";s:3:"iso";a:2:{i:1;s:2:"th";i:2;s:3:"tha";}s:7:"strings";a:1:{s:8:"continue";s:15:"ต่อไป";}}s:5:"tr_TR";a:8:{s:8:"language";s:5:"tr_TR";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 17:57:59";s:12:"english_name";s:7:"Turkish";s:11:"native_name";s:8:"Türkçe";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/tr_TR.zip";s:3:"iso";a:2:{i:1;s:2:"tr";i:2;s:3:"tur";}s:7:"strings";a:1:{s:8:"continue";s:5:"Devam";}}s:5:"zh_CN";a:8:{s:8:"language";s:5:"zh_CN";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 00:41:46";s:12:"english_name";s:15:"Chinese (China)";s:11:"native_name";s:12:"简体中文";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/zh_CN.zip";s:3:"iso";a:2:{i:1;s:2:"zh";i:2;s:3:"zho";}s:7:"strings";a:1:{s:8:"continue";s:6:"继续";}}s:5:"zh_TW";a:8:{s:8:"language";s:5:"zh_TW";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 06:58:31";s:12:"english_name";s:16:"Chinese (Taiwan)";s:11:"native_name";s:12:"繁體中文";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/zh_TW.zip";s:3:"iso";a:2:{i:1;s:2:"zh";i:2;s:3:"zho";}s:7:"strings";a:1:{s:8:"continue";s:6:"繼續";}}}', 'yes'),
 (214, 'auto_core_update_notified', 'a:4:{s:4:"type";s:6:"manual";s:5:"email";s:22:"marketing@acens.com.br";s:7:"version";s:5:"4.0.1";s:9:"timestamp";i:1416837039;}', 'yes'),
-(225, '_site_transient_update_themes', 'O:8:"stdClass":4:{s:12:"last_checked";i:1417011118;s:7:"checked";a:4:{s:6:"Vertex";s:3:"1.7";s:14:"twentyfourteen";s:3:"1.2";s:14:"twentythirteen";s:3:"1.3";s:12:"twentytwelve";s:3:"1.5";}s:8:"response";a:0:{}s:12:"translations";a:0:{}}', 'yes'),
+(225, '_site_transient_update_themes', 'O:8:"stdClass":4:{s:12:"last_checked";i:1417025561;s:7:"checked";a:4:{s:6:"Vertex";s:3:"1.7";s:14:"twentyfourteen";s:3:"1.2";s:14:"twentythirteen";s:3:"1.3";s:12:"twentytwelve";s:3:"1.5";}s:8:"response";a:0:{}s:12:"translations";a:0:{}}', 'yes'),
 (227, '_site_transient_timeout_browser_101c078b0b5647eb5e3a4fe7093c83da', '1417614980', 'yes'),
 (228, '_site_transient_browser_101c078b0b5647eb5e3a4fe7093c83da', 'a:9:{s:8:"platform";s:7:"Windows";s:4:"name";s:7:"Firefox";s:7:"version";s:4:"33.0";s:10:"update_url";s:23:"http://www.firefox.com/";s:7:"img_src";s:50:"http://s.wordpress.org/images/browsers/firefox.png";s:11:"img_src_ssl";s:49:"https://wordpress.org/images/browsers/firefox.png";s:15:"current_version";s:2:"16";s:7:"upgrade";b:0;s:8:"insecure";b:0;}', 'yes'),
 (229, '_transient_timeout_feed_ac0b00fe65abe10e0c5b588f3ed8c7ca', '1417053384', 'no');
@@ -390,8 +369,12 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (251, 'bstwbsftwppdtplgns_options', 'a:1:{s:8:"bws_menu";a:1:{s:7:"version";a:1:{s:36:"contact-form-plugin/contact_form.php";s:5:"1.3.8";}}}', 'yes'),
 (253, '_site_transient_update_plugins', 'O:8:"stdClass":5:{s:12:"last_checked";i:1417011250;s:7:"checked";a:4:{s:19:"akismet/akismet.php";s:5:"3.0.2";s:36:"contact-form-7/wp-contact-form-7.php";s:5:"4.0.2";s:9:"hello.php";s:3:"1.6";s:28:"wysija-newsletters/index.php";s:6:"2.6.13";}s:8:"response";a:1:{s:19:"akismet/akismet.php";O:8:"stdClass":6:{s:2:"id";s:2:"15";s:4:"slug";s:7:"akismet";s:6:"plugin";s:19:"akismet/akismet.php";s:11:"new_version";s:5:"3.0.3";s:3:"url";s:38:"https://wordpress.org/plugins/akismet/";s:7:"package";s:56:"https://downloads.wordpress.org/plugin/akismet.3.0.3.zip";}}s:12:"translations";a:0:{}s:9:"no_update";a:3:{s:36:"contact-form-7/wp-contact-form-7.php";O:8:"stdClass":6:{s:2:"id";s:3:"790";s:4:"slug";s:14:"contact-form-7";s:6:"plugin";s:36:"contact-form-7/wp-contact-form-7.php";s:11:"new_version";s:5:"4.0.2";s:3:"url";s:45:"https://wordpress.org/plugins/contact-form-7/";s:7:"package";s:63:"https://downloads.wordpress.org/plugin/contact-form-7.4.0.2.zip";}s:9:"hello.php";O:8:"stdClass":6:{s:2:"id";s:4:"3564";s:4:"slug";s:11:"hello-dolly";s:6:"plugin";s:9:"hello.php";s:11:"new_version";s:3:"1.6";s:3:"url";s:42:"https://wordpress.org/plugins/hello-dolly/";s:7:"package";s:58:"https://downloads.wordpress.org/plugin/hello-dolly.1.6.zip";}s:28:"wysija-newsletters/index.php";O:8:"stdClass":6:{s:2:"id";s:5:"27505";s:4:"slug";s:18:"wysija-newsletters";s:6:"plugin";s:28:"wysija-newsletters/index.php";s:11:"new_version";s:6:"2.6.13";s:3:"url";s:49:"https://wordpress.org/plugins/wysija-newsletters/";s:7:"package";s:68:"https://downloads.wordpress.org/plugin/wysija-newsletters.2.6.13.zip";}}}', 'yes'),
 (254, 'wpcf7', 'a:1:{s:7:"version";s:5:"4.0.2";}', 'yes'),
-(255, '_site_transient_timeout_theme_roots', '1417021750', 'yes'),
-(256, '_site_transient_theme_roots', 'a:4:{s:6:"Vertex";s:7:"/themes";s:14:"twentyfourteen";s:7:"/themes";s:14:"twentythirteen";s:7:"/themes";s:12:"twentytwelve";s:7:"/themes";}', 'yes');
+(255, '_site_transient_timeout_browser_eeaadcdae20e79a8498ae96f41e4f2fc', '1417620249', 'yes'),
+(256, '_site_transient_browser_eeaadcdae20e79a8498ae96f41e4f2fc', 'a:9:{s:8:"platform";s:7:"Windows";s:4:"name";s:6:"Chrome";s:7:"version";s:12:"39.0.2171.65";s:10:"update_url";s:28:"http://www.google.com/chrome";s:7:"img_src";s:49:"http://s.wordpress.org/images/browsers/chrome.png";s:11:"img_src_ssl";s:48:"https://wordpress.org/images/browsers/chrome.png";s:15:"current_version";s:2:"18";s:7:"upgrade";b:0;s:8:"insecure";b:0;}', 'yes'),
+(259, '_site_transient_timeout_available_translations', '1417034083', 'yes'),
+(260, '_site_transient_available_translations', 'a:41:{s:2:"ar";a:8:{s:8:"language";s:2:"ar";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 15:44:04";s:12:"english_name";s:6:"Arabic";s:11:"native_name";s:14:"العربية";s:7:"package";s:58:"http://downloads.wordpress.org/translation/core/4.0/ar.zip";s:3:"iso";a:2:{i:1;s:2:"ar";i:2;s:3:"ara";}s:7:"strings";a:1:{s:8:"continue";s:16:"المتابعة";}}s:2:"az";a:8:{s:8:"language";s:2:"az";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-01 13:29:39";s:12:"english_name";s:11:"Azerbaijani";s:11:"native_name";s:16:"Azərbaycan dili";s:7:"package";s:58:"http://downloads.wordpress.org/translation/core/4.0/az.zip";s:3:"iso";a:2:{i:1;s:2:"az";i:2;s:3:"aze";}s:7:"strings";a:1:{s:8:"continue";s:5:"Davam";}}s:5:"bg_BG";a:8:{s:8:"language";s:5:"bg_BG";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-08 11:17:50";s:12:"english_name";s:9:"Bulgarian";s:11:"native_name";s:18:"Български";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/bg_BG.zip";s:3:"iso";a:2:{i:1;s:2:"bg";i:2;s:3:"bul";}s:7:"strings";a:1:{s:8:"continue";s:22:"Продължение";}}s:5:"bs_BA";a:8:{s:8:"language";s:5:"bs_BA";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 15:47:16";s:12:"english_name";s:7:"Bosnian";s:11:"native_name";s:8:"Bosanski";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/bs_BA.zip";s:3:"iso";a:2:{i:1;s:2:"bs";i:2;s:3:"bos";}s:7:"strings";a:1:{s:8:"continue";s:7:"Nastavi";}}s:2:"ca";a:8:{s:8:"language";s:2:"ca";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-19 13:59:46";s:12:"english_name";s:7:"Catalan";s:11:"native_name";s:7:"Català";s:7:"package";s:58:"http://downloads.wordpress.org/translation/core/4.0/ca.zip";s:3:"iso";a:2:{i:1;s:2:"ca";i:2;s:3:"cat";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continua";}}s:2:"cy";a:8:{s:8:"language";s:2:"cy";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 16:43:49";s:12:"english_name";s:5:"Welsh";s:11:"native_name";s:7:"Cymraeg";s:7:"package";s:58:"http://downloads.wordpress.org/translation/core/4.0/cy.zip";s:3:"iso";a:2:{i:1;s:2:"cy";i:2;s:3:"cym";}s:7:"strings";a:1:{s:8:"continue";s:6:"Parhau";}}s:5:"da_DK";a:8:{s:8:"language";s:5:"da_DK";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-22 11:59:16";s:12:"english_name";s:6:"Danish";s:11:"native_name";s:5:"Dansk";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/da_DK.zip";s:3:"iso";a:2:{i:1;s:2:"da";i:2;s:3:"dan";}s:7:"strings";a:1:{s:8:"continue";s:12:"Forts&#230;t";}}s:5:"de_DE";a:8:{s:8:"language";s:5:"de_DE";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-26 13:41:46";s:12:"english_name";s:6:"German";s:11:"native_name";s:7:"Deutsch";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/de_DE.zip";s:3:"iso";a:1:{i:1;s:2:"de";}s:7:"strings";a:1:{s:8:"continue";s:10:"Fortfahren";}}s:5:"en_CA";a:8:{s:8:"language";s:5:"en_CA";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 00:31:07";s:12:"english_name";s:16:"English (Canada)";s:11:"native_name";s:16:"English (Canada)";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/en_CA.zip";s:3:"iso";a:3:{i:1;s:2:"en";i:2;s:3:"eng";i:3;s:3:"eng";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continue";}}s:5:"en_GB";a:8:{s:8:"language";s:5:"en_GB";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 08:52:52";s:12:"english_name";s:12:"English (UK)";s:11:"native_name";s:12:"English (UK)";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/en_GB.zip";s:3:"iso";a:3:{i:1;s:2:"en";i:2;s:3:"eng";i:3;s:3:"eng";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continue";}}s:5:"en_AU";a:8:{s:8:"language";s:5:"en_AU";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-06 00:56:37";s:12:"english_name";s:19:"English (Australia)";s:11:"native_name";s:19:"English (Australia)";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/en_AU.zip";s:3:"iso";a:3:{i:1;s:2:"en";i:2;s:3:"eng";i:3;s:3:"eng";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continue";}}s:5:"es_ES";a:8:{s:8:"language";s:5:"es_ES";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 17:40:25";s:12:"english_name";s:15:"Spanish (Spain)";s:11:"native_name";s:8:"Español";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/es_ES.zip";s:3:"iso";a:1:{i:1;s:2:"es";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"es_PE";a:8:{s:8:"language";s:5:"es_PE";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 07:49:30";s:12:"english_name";s:14:"Spanish (Peru)";s:11:"native_name";s:17:"Español de Perú";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/es_PE.zip";s:3:"iso";a:2:{i:1;s:2:"es";i:2;s:3:"spa";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"es_CL";a:8:{s:8:"language";s:5:"es_CL";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 19:47:01";s:12:"english_name";s:15:"Spanish (Chile)";s:11:"native_name";s:17:"Español de Chile";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/es_CL.zip";s:3:"iso";a:2:{i:1;s:2:"es";i:2;s:3:"spa";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:2:"eu";a:8:{s:8:"language";s:2:"eu";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 06:55:23";s:12:"english_name";s:6:"Basque";s:11:"native_name";s:7:"Euskara";s:7:"package";s:58:"http://downloads.wordpress.org/translation/core/4.0/eu.zip";s:3:"iso";a:2:{i:1;s:2:"eu";i:2;s:3:"eus";}s:7:"strings";a:1:{s:8:"continue";s:8:"Jarraitu";}}s:5:"fa_IR";a:8:{s:8:"language";s:5:"fa_IR";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 15:58:20";s:12:"english_name";s:7:"Persian";s:11:"native_name";s:10:"فارسی";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/fa_IR.zip";s:3:"iso";a:2:{i:1;s:2:"fa";i:2;s:3:"fas";}s:7:"strings";a:1:{s:8:"continue";s:10:"ادامه";}}s:2:"fi";a:8:{s:8:"language";s:2:"fi";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-06 08:32:55";s:12:"english_name";s:7:"Finnish";s:11:"native_name";s:5:"Suomi";s:7:"package";s:58:"http://downloads.wordpress.org/translation/core/4.0/fi.zip";s:3:"iso";a:2:{i:1;s:2:"fi";i:2;s:3:"fin";}s:7:"strings";a:1:{s:8:"continue";s:5:"Jatka";}}s:5:"fr_FR";a:8:{s:8:"language";s:5:"fr_FR";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-04 17:49:48";s:12:"english_name";s:15:"French (France)";s:11:"native_name";s:9:"Français";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/fr_FR.zip";s:3:"iso";a:1:{i:1;s:2:"fr";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuer";}}s:2:"gd";a:8:{s:8:"language";s:2:"gd";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 17:37:43";s:12:"english_name";s:15:"Scottish Gaelic";s:11:"native_name";s:9:"Gàidhlig";s:7:"package";s:58:"http://downloads.wordpress.org/translation/core/4.0/gd.zip";s:3:"iso";a:3:{i:1;s:2:"gd";i:2;s:3:"gla";i:3;s:3:"gla";}s:7:"strings";a:1:{s:8:"continue";s:15:"Lean air adhart";}}s:5:"gl_ES";a:8:{s:8:"language";s:5:"gl_ES";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 01:18:12";s:12:"english_name";s:8:"Galician";s:11:"native_name";s:6:"Galego";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/gl_ES.zip";s:3:"iso";a:2:{i:1;s:2:"gl";i:2;s:3:"glg";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"he_IL";a:8:{s:8:"language";s:5:"he_IL";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 22:57:38";s:12:"english_name";s:6:"Hebrew";s:11:"native_name";s:16:"עִבְרִית";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/he_IL.zip";s:3:"iso";a:1:{i:1;s:2:"he";}s:7:"strings";a:1:{s:8:"continue";s:12:"להמשיך";}}s:2:"hr";a:8:{s:8:"language";s:2:"hr";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-20 14:09:34";s:12:"english_name";s:8:"Croatian";s:11:"native_name";s:8:"Hrvatski";s:7:"package";s:58:"http://downloads.wordpress.org/translation/core/4.0/hr.zip";s:3:"iso";a:2:{i:1;s:2:"hr";i:2;s:3:"hrv";}s:7:"strings";a:1:{s:8:"continue";s:7:"Nastavi";}}s:5:"hu_HU";a:8:{s:8:"language";s:5:"hu_HU";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 19:12:04";s:12:"english_name";s:9:"Hungarian";s:11:"native_name";s:6:"Magyar";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/hu_HU.zip";s:3:"iso";a:2:{i:1;s:2:"hu";i:2;s:3:"hun";}s:7:"strings";a:1:{s:8:"continue";s:7:"Tovább";}}s:5:"id_ID";a:8:{s:8:"language";s:5:"id_ID";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 11:26:19";s:12:"english_name";s:10:"Indonesian";s:11:"native_name";s:16:"Bahasa Indonesia";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/id_ID.zip";s:3:"iso";a:2:{i:1;s:2:"id";i:2;s:3:"ind";}s:7:"strings";a:1:{s:8:"continue";s:9:"Lanjutkan";}}s:5:"it_IT";a:8:{s:8:"language";s:5:"it_IT";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-02 08:24:03";s:12:"english_name";s:7:"Italian";s:11:"native_name";s:8:"Italiano";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/it_IT.zip";s:3:"iso";a:2:{i:1;s:2:"it";i:2;s:3:"ita";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continua";}}s:2:"ja";a:8:{s:8:"language";s:2:"ja";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-21 06:30:27";s:12:"english_name";s:8:"Japanese";s:11:"native_name";s:9:"日本語";s:7:"package";s:58:"http://downloads.wordpress.org/translation/core/4.0/ja.zip";s:3:"iso";a:1:{i:1;s:2:"ja";}s:7:"strings";a:1:{s:8:"continue";s:9:"続ける";}}s:5:"ko_KR";a:8:{s:8:"language";s:5:"ko_KR";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 07:54:33";s:12:"english_name";s:6:"Korean";s:11:"native_name";s:9:"한국어";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/ko_KR.zip";s:3:"iso";a:2:{i:1;s:2:"ko";i:2;s:3:"kor";}s:7:"strings";a:1:{s:8:"continue";s:6:"계속";}}s:5:"my_MM";a:8:{s:8:"language";s:5:"my_MM";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-06 08:41:35";s:12:"english_name";s:7:"Burmese";s:11:"native_name";s:15:"ဗမာစာ";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/my_MM.zip";s:3:"iso";a:2:{i:1;s:2:"my";i:2;s:3:"mya";}s:7:"strings";a:1:{s:8:"continue";s:54:"ဆက်လက်လုပ်ေဆာင်ပါ။";}}s:5:"nb_NO";a:8:{s:8:"language";s:5:"nb_NO";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 20:51:26";s:12:"english_name";s:19:"Norwegian (Bokmål)";s:11:"native_name";s:13:"Norsk bokmål";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/nb_NO.zip";s:3:"iso";a:2:{i:1;s:2:"nb";i:2;s:3:"nob";}s:7:"strings";a:1:{s:8:"continue";s:8:"Fortsett";}}s:5:"nl_NL";a:8:{s:8:"language";s:5:"nl_NL";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-17 06:23:19";s:12:"english_name";s:5:"Dutch";s:11:"native_name";s:10:"Nederlands";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/nl_NL.zip";s:3:"iso";a:2:{i:1;s:2:"nl";i:2;s:3:"nld";}s:7:"strings";a:1:{s:8:"continue";s:8:"Doorgaan";}}s:5:"pl_PL";a:8:{s:8:"language";s:5:"pl_PL";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-03 17:44:34";s:12:"english_name";s:6:"Polish";s:11:"native_name";s:6:"Polski";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/pl_PL.zip";s:3:"iso";a:2:{i:1;s:2:"pl";i:2;s:3:"pol";}s:7:"strings";a:1:{s:8:"continue";s:9:"Kontynuuj";}}s:5:"pt_PT";a:8:{s:8:"language";s:5:"pt_PT";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-29 15:27:01";s:12:"english_name";s:21:"Portuguese (Portugal)";s:11:"native_name";s:10:"Português";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/pt_PT.zip";s:3:"iso";a:1:{i:1;s:2:"pt";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"pt_BR";a:8:{s:8:"language";s:5:"pt_BR";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-30 13:29:44";s:12:"english_name";s:19:"Portuguese (Brazil)";s:11:"native_name";s:20:"Português do Brasil";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/pt_BR.zip";s:3:"iso";a:2:{i:1;s:2:"pt";i:2;s:3:"por";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"ru_RU";a:8:{s:8:"language";s:5:"ru_RU";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-21 12:32:07";s:12:"english_name";s:7:"Russian";s:11:"native_name";s:14:"Русский";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/ru_RU.zip";s:3:"iso";a:2:{i:1;s:2:"ru";i:2;s:3:"rus";}s:7:"strings";a:1:{s:8:"continue";s:20:"Продолжить";}}s:5:"sk_SK";a:8:{s:8:"language";s:5:"sk_SK";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-20 13:05:09";s:12:"english_name";s:6:"Slovak";s:11:"native_name";s:11:"Slovenčina";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/sk_SK.zip";s:3:"iso";a:2:{i:1;s:2:"sk";i:2;s:3:"slk";}s:7:"strings";a:1:{s:8:"continue";s:12:"Pokračovať";}}s:5:"sr_RS";a:8:{s:8:"language";s:5:"sr_RS";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 15:37:38";s:12:"english_name";s:7:"Serbian";s:11:"native_name";s:23:"Српски језик";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/sr_RS.zip";s:3:"iso";a:2:{i:1;s:2:"sr";i:2;s:3:"srp";}s:7:"strings";a:1:{s:8:"continue";s:14:"Настави";}}s:5:"sv_SE";a:8:{s:8:"language";s:5:"sv_SE";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-11 20:39:56";s:12:"english_name";s:7:"Swedish";s:11:"native_name";s:7:"Svenska";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/sv_SE.zip";s:3:"iso";a:2:{i:1;s:2:"sv";i:2;s:3:"swe";}s:7:"strings";a:1:{s:8:"continue";s:9:"Fortsätt";}}s:2:"th";a:8:{s:8:"language";s:2:"th";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-09 03:43:17";s:12:"english_name";s:4:"Thai";s:11:"native_name";s:9:"ไทย";s:7:"package";s:58:"http://downloads.wordpress.org/translation/core/4.0/th.zip";s:3:"iso";a:2:{i:1;s:2:"th";i:2;s:3:"tha";}s:7:"strings";a:1:{s:8:"continue";s:15:"ต่อไป";}}s:5:"tr_TR";a:8:{s:8:"language";s:5:"tr_TR";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 17:57:59";s:12:"english_name";s:7:"Turkish";s:11:"native_name";s:8:"Türkçe";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/tr_TR.zip";s:3:"iso";a:2:{i:1;s:2:"tr";i:2;s:3:"tur";}s:7:"strings";a:1:{s:8:"continue";s:5:"Devam";}}s:5:"zh_CN";a:8:{s:8:"language";s:5:"zh_CN";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 00:41:46";s:12:"english_name";s:15:"Chinese (China)";s:11:"native_name";s:12:"简体中文";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/zh_CN.zip";s:3:"iso";a:2:{i:1;s:2:"zh";i:2;s:3:"zho";}s:7:"strings";a:1:{s:8:"continue";s:6:"继续";}}s:5:"zh_TW";a:8:{s:8:"language";s:5:"zh_TW";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 06:58:31";s:12:"english_name";s:16:"Chinese (Taiwan)";s:11:"native_name";s:12:"繁體中文";s:7:"package";s:61:"http://downloads.wordpress.org/translation/core/4.0/zh_TW.zip";s:3:"iso";a:2:{i:1;s:2:"zh";i:2;s:3:"zho";}s:7:"strings";a:1:{s:8:"continue";s:6:"繼續";}}}', 'yes'),
+(265, '_site_transient_timeout_theme_roots', '1417027359', 'yes'),
+(266, '_site_transient_theme_roots', 'a:4:{s:6:"Vertex";s:7:"/themes";s:14:"twentyfourteen";s:7:"/themes";s:14:"twentythirteen";s:7:"/themes";s:12:"twentytwelve";s:7:"/themes";}', 'yes');
 
 -- --------------------------------------------------------
 
@@ -400,14 +383,11 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 --
 
 CREATE TABLE IF NOT EXISTS `wp_postmeta` (
-  `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+`meta_id` bigint(20) unsigned NOT NULL,
   `post_id` bigint(20) unsigned NOT NULL DEFAULT '0',
   `meta_key` varchar(255) DEFAULT NULL,
-  `meta_value` longtext,
-  PRIMARY KEY (`meta_id`),
-  KEY `post_id` (`post_id`),
-  KEY `meta_key` (`meta_key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=157 ;
+  `meta_value` longtext
+) ENGINE=InnoDB AUTO_INCREMENT=165 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `wp_postmeta`
@@ -415,7 +395,7 @@ CREATE TABLE IF NOT EXISTS `wp_postmeta` (
 
 INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
 (1, 2, '_wp_page_template', 'default'),
-(2, 2, '_edit_lock', '1417021824:1'),
+(2, 2, '_edit_lock', '1417013341:1'),
 (3, 2, '_edit_last', '1'),
 (4, 2, '_et_single_bg_image', ''),
 (5, 6, '_wp_attached_file', '2014/11/logo-harpia-com-desenho-antigo-horizontal.png'),
@@ -429,19 +409,19 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (13, 11, '_edit_last', '1'),
 (14, 11, '_wp_page_template', 'page-contact.php'),
 (15, 11, '_et_single_bg_image', ''),
-(16, 11, '_edit_lock', '1417022241:1'),
+(16, 11, '_edit_lock', '1417025854:1'),
 (17, 13, '_edit_last', '1'),
 (18, 13, '_wp_page_template', 'default'),
 (19, 13, '_et_single_bg_image', ''),
-(20, 13, '_edit_lock', '1416405461:1'),
+(20, 13, '_edit_lock', '1417021574:1'),
 (21, 15, '_edit_last', '1'),
 (22, 15, '_wp_page_template', 'default'),
 (23, 15, '_et_single_bg_image', ''),
-(24, 15, '_edit_lock', '1416405535:1'),
+(24, 15, '_edit_lock', '1417018553:1'),
 (25, 17, '_edit_last', '1'),
 (26, 17, '_wp_page_template', 'default'),
 (27, 17, '_et_single_bg_image', ''),
-(28, 17, '_edit_lock', '1416405569:1'),
+(28, 17, '_edit_lock', '1417018942:1'),
 (29, 11, '_oembed_2e3d155ed5c047311f5ca1c9a15ca831', '{{unknown}}'),
 (30, 11, '_oembed_370782c7a9d10272f9f19f4ce0bd912d', '{{unknown}}'),
 (31, 11, '_oembed_ebda26076a58002a21f5e15889ddd11a', '{{unknown}}'),
@@ -556,20 +536,28 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (140, 34, '_menu_item_xfn', ''),
 (141, 34, '_menu_item_url', ''),
 (142, 34, '_menu_item_orphaned', '1416490041'),
-(143, 35, '_form', '<p>Nome Completo<br />\n    [text* your-name] </p>\n\n<p>Endereço<br />\n    [text* Endereco] </p>\n\n<p>RG<br />\n    [tel RG /13] </p>\n\n<p>CPF<br />\n    [tel CPF /11] </p>\n\n<p>Semestre atual<br />\n    [number Semestre min:1 max:7 "1"] </p>\n\n<p>Telefone fixo/celular<br />\n    [tel telefone /11] </p>\n\n<p>Seu e-mail<br />\n    [email* your-email] </p>\n\n<p>Declaração de matrícula<br />\n    [file* matricula filetypes:.pdf] </p>\n\n<p>Currículo Lattes<br />\n    [file* lattes filetypes:.pdf] </p>\n\n<p>Carta de intenção e interesse pessoal<br />\n    [file* carta filetypes:.pdf] </p>\n\n<p>[submit "Enviar"]</p>'),
-(144, 35, '_mail', 'a:8:{s:7:"subject";s:14:"[your-subject]";s:6:"sender";s:36:"[your-name] <marketing@acens.com.br>";s:4:"body";s:243:"De: [your-name] <[your-email]>\nAssunto: Inscrição processo seletivo\n\nCorpo da mensagem:\n[Endereco]\n[CPF]\n[RG]\n[matricula]\n[lattes]\n[carta]\n[telefone]\n--\nEste e-mail foi enviado de um formulário de contato em Harpia (http://localhost/Harpia)";s:9:"recipient";s:18:"ejharpia@gmail.com";s:18:"additional_headers";s:22:"Reply-To: [your-email]";s:11:"attachments";s:0:"";s:8:"use_html";b:0;s:13:"exclude_blank";b:0;}'),
+(143, 35, '_form', '<p>Nome Completo<br />\n    [text* your-name] </p>\n\n<p>Endereço<br />\n    [text* Endereco] </p>\n\n<p>CPF<br />\n    [range CPF min:1 max:11] </p>\n\n<p>RG<br />\n    [email* your-email] </p>\n\n<p>Semestre atual<br />\n    [number Semestre min:1 max:7 "1"] </p>\n\n<p>Seu e-mail<br />\n    [email* your-email] </p>\n\n<p>Assunto<br />\n    [text your-subject] </p>\n\n<p>Sua mensagem<br />\n    [textarea your-message] </p>\n\n<p>[submit "Enviar"]</p>'),
+(144, 35, '_mail', 'a:8:{s:7:"subject";s:14:"[your-subject]";s:6:"sender";s:36:"[your-name] <marketing@acens.com.br>";s:4:"body";s:198:"De: [your-name] <[your-email]>\nAssunto: [your-subject]\n\nCorpo da mensagem:\n[your-message]\n[Endereco]\n[CPF]\n--\nEste e-mail foi enviado de um formulário de contato em Harpia (http://localhost/Harpia)";s:9:"recipient";s:22:"marketing@acens.com.br";s:18:"additional_headers";s:22:"Reply-To: [your-email]";s:11:"attachments";s:0:"";s:8:"use_html";b:0;s:13:"exclude_blank";b:0;}'),
 (145, 35, '_mail_2', 'a:9:{s:6:"active";b:0;s:7:"subject";s:14:"[your-subject]";s:6:"sender";s:31:"Harpia <marketing@acens.com.br>";s:4:"body";s:126:"Corpo da mensagem:\n[your-message]\n\n--\nEste e-mail foi enviado de um formulário de contato em Harpia (http://localhost/Harpia)";s:9:"recipient";s:12:"[your-email]";s:18:"additional_headers";s:32:"Reply-To: marketing@acens.com.br";s:11:"attachments";s:0:"";s:8:"use_html";b:0;s:13:"exclude_blank";b:0;}'),
 (146, 35, '_messages', 'a:21:{s:12:"mail_sent_ok";s:47:"Sua mensagem foi enviada com sucesso. Obrigado.";s:12:"mail_sent_ng";s:115:"Não foi possível enviar a sua mensagem. Por favor, tente mais tarde ou contate o administrador por outro método.";s:16:"validation_error";s:77:"Ocorreram erros de validação. Por favor confira os dados e envie novamente.";s:4:"spam";s:115:"Não foi possível enviar a sua mensagem. Por favor, tente mais tarde ou contate o administrador por outro método.";s:12:"accept_terms";s:43:"Por favor aceite os termos para prosseguir.";s:16:"invalid_required";s:43:"Por favor preencha este campo obrigatório.";s:17:"captcha_not_match";s:35:"O código digitado está incorreto.";s:14:"invalid_number";s:36:"Formato de número parece inválido.";s:16:"number_too_small";s:30:"Este número é muito pequeno.";s:16:"number_too_large";s:29:"Este número é muito grande.";s:13:"invalid_email";s:39:"O endereço de e-mail parece inválido.";s:11:"invalid_url";s:21:"URL parece inválido.";s:11:"invalid_tel";s:26:"Telefone parece inválido.";s:23:"quiz_answer_not_correct";s:29:"Sua resposta está incorreta.";s:12:"invalid_date";s:33:"Formato da data parece inválido.";s:14:"date_too_early";s:32:"Esta data é demasiado primeira.";s:13:"date_too_late";s:29:"Esta data é demasiado tarde.";s:13:"upload_failed";s:27:"Falha no upload do arquivo.";s:24:"upload_file_type_invalid";s:39:"Este tipo de arquivo não é permitido.";s:21:"upload_file_too_large";s:30:"Este arquivo é grande demais.";s:23:"upload_failed_php_error";s:27:"Falha no upload do arquivo.";}'),
 (147, 35, '_additional_settings', ''),
 (148, 35, '_locale', 'pt_BR'),
-(149, 37, '_wp_attached_file', '2014/11/logo-harpia-com-desenho-antigo-horizontal2.png'),
-(150, 37, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:1036;s:6:"height";i:478;s:4:"file";s:54:"2014/11/logo-harpia-com-desenho-antigo-horizontal2.png";s:5:"sizes";a:18:{s:9:"thumbnail";a:4:{s:4:"file";s:54:"logo-harpia-com-desenho-antigo-horizontal2-150x150.png";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:9:"image/png";}s:6:"medium";a:4:{s:4:"file";s:54:"logo-harpia-com-desenho-antigo-horizontal2-300x138.png";s:5:"width";i:300;s:6:"height";i:138;s:9:"mime-type";s:9:"image/png";}s:5:"large";a:4:{s:4:"file";s:55:"logo-harpia-com-desenho-antigo-horizontal2-1024x472.png";s:5:"width";i:1024;s:6:"height";i:472;s:9:"mime-type";s:9:"image/png";}s:22:"wysija-newsletters-max";a:4:{s:4:"file";s:54:"logo-harpia-com-desenho-antigo-horizontal2-600x276.png";s:5:"width";i:600;s:6:"height";i:276;s:9:"mime-type";s:9:"image/png";}s:16:"et-project-thumb";a:4:{s:4:"file";s:54:"logo-harpia-com-desenho-antigo-horizontal2-240x240.png";s:5:"width";i:240;s:6:"height";i:240;s:9:"mime-type";s:9:"image/png";}s:24:"et-featured-slider-image";a:4:{s:4:"file";s:54:"logo-harpia-com-desenho-antigo-horizontal2-539x478.png";s:5:"width";i:539;s:6:"height";i:478;s:9:"mime-type";s:9:"image/png";}s:20:"et-testimonial-image";a:4:{s:4:"file";s:52:"logo-harpia-com-desenho-antigo-horizontal2-96x96.png";s:5:"width";i:96;s:6:"height";i:96;s:9:"mime-type";s:9:"image/png";}s:15:"et-member-image";a:4:{s:4:"file";s:54:"logo-harpia-com-desenho-antigo-horizontal2-121x121.png";s:5:"width";i:121;s:6:"height";i:121;s:9:"mime-type";s:9:"image/png";}s:14:"et-entry-image";a:4:{s:4:"file";s:54:"logo-harpia-com-desenho-antigo-horizontal2-640x280.png";s:5:"width";i:640;s:6:"height";i:280;s:9:"mime-type";s:9:"image/png";}s:21:"et-member-image-small";a:4:{s:4:"file";s:52:"logo-harpia-com-desenho-antigo-horizontal2-60x60.png";s:5:"width";i:60;s:6:"height";i:60;s:9:"mime-type";s:9:"image/png";}s:18:"et-blog-page-thumb";a:4:{s:4:"file";s:54:"logo-harpia-com-desenho-antigo-horizontal2-184x184.png";s:5:"width";i:184;s:6:"height";i:184;s:9:"mime-type";s:9:"image/png";}s:21:"et-gallery-page-thumb";a:4:{s:4:"file";s:54:"logo-harpia-com-desenho-antigo-horizontal2-207x136.png";s:5:"width";i:207;s:6:"height";i:136;s:9:"mime-type";s:9:"image/png";}s:30:"et-portfolio-medium-page-thumb";a:4:{s:4:"file";s:54:"logo-harpia-com-desenho-antigo-horizontal2-260x170.png";s:5:"width";i:260;s:6:"height";i:170;s:9:"mime-type";s:9:"image/png";}s:39:"et-portfolio-medium-portrait-page-thumb";a:4:{s:4:"file";s:54:"logo-harpia-com-desenho-antigo-horizontal2-260x315.png";s:5:"width";i:260;s:6:"height";i:315;s:9:"mime-type";s:9:"image/png";}s:29:"et-portfolio-small-page-thumb";a:4:{s:4:"file";s:53:"logo-harpia-com-desenho-antigo-horizontal2-140x94.png";s:5:"width";i:140;s:6:"height";i:94;s:9:"mime-type";s:9:"image/png";}s:38:"et-portfolio-small-portrait-page-thumb";a:4:{s:4:"file";s:54:"logo-harpia-com-desenho-antigo-horizontal2-140x170.png";s:5:"width";i:140;s:6:"height";i:170;s:9:"mime-type";s:9:"image/png";}s:29:"et-portfolio-large-page-thumb";a:4:{s:4:"file";s:54:"logo-harpia-com-desenho-antigo-horizontal2-430x283.png";s:5:"width";i:430;s:6:"height";i:283;s:9:"mime-type";s:9:"image/png";}s:38:"et-portfolio-large-portrait-page-thumb";a:4:{s:4:"file";s:54:"logo-harpia-com-desenho-antigo-horizontal2-430x478.png";s:5:"width";i:430;s:6:"height";i:478;s:9:"mime-type";s:9:"image/png";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
-(151, 40, '_form', '<p>Nome*<br />\n    [text* your-name] </p>\n\n<p>Seu e-mail*<br />\n    [email* your-email] </p>\n\n<p>Assunto*<br />\n    [text* your-subject] </p>\n\n<p>Sua mensagem*<br />\n    [textarea* your-message] </p>\n\n<p>[submit "Enviar"]</p>'),
-(152, 40, '_mail', 'a:8:{s:7:"subject";s:14:"[your-subject]";s:6:"sender";s:36:"[your-name] <marketing@acens.com.br>";s:4:"body";s:182:"De: [your-name] <[your-email]>\nAssunto: [your-subject]\n\nCorpo da mensagem:\n[your-message]\n\n--\nEste e-mail foi enviado de um formulário de contato em Harpia (http://localhost/Harpia)";s:9:"recipient";s:18:"ejharpia@gmail.com";s:18:"additional_headers";s:22:"Reply-To: [your-email]";s:11:"attachments";s:0:"";s:8:"use_html";b:0;s:13:"exclude_blank";b:0;}'),
-(153, 40, '_mail_2', 'a:9:{s:6:"active";b:0;s:7:"subject";s:14:"[your-subject]";s:6:"sender";s:31:"Harpia <marketing@acens.com.br>";s:4:"body";s:126:"Corpo da mensagem:\n[your-message]\n\n--\nEste e-mail foi enviado de um formulário de contato em Harpia (http://localhost/Harpia)";s:9:"recipient";s:12:"[your-email]";s:18:"additional_headers";s:32:"Reply-To: marketing@acens.com.br";s:11:"attachments";s:0:"";s:8:"use_html";b:0;s:13:"exclude_blank";b:0;}'),
-(154, 40, '_messages', 'a:21:{s:12:"mail_sent_ok";s:47:"Sua mensagem foi enviada com sucesso. Obrigado.";s:12:"mail_sent_ng";s:115:"Não foi possível enviar a sua mensagem. Por favor, tente mais tarde ou contate o administrador por outro método.";s:16:"validation_error";s:77:"Ocorreram erros de validação. Por favor confira os dados e envie novamente.";s:4:"spam";s:115:"Não foi possível enviar a sua mensagem. Por favor, tente mais tarde ou contate o administrador por outro método.";s:12:"accept_terms";s:43:"Por favor aceite os termos para prosseguir.";s:16:"invalid_required";s:43:"Por favor preencha este campo obrigatório.";s:17:"captcha_not_match";s:35:"O código digitado está incorreto.";s:14:"invalid_number";s:36:"Formato de número parece inválido.";s:16:"number_too_small";s:30:"Este número é muito pequeno.";s:16:"number_too_large";s:29:"Este número é muito grande.";s:13:"invalid_email";s:39:"O endereço de e-mail parece inválido.";s:11:"invalid_url";s:21:"URL parece inválido.";s:11:"invalid_tel";s:26:"Telefone parece inválido.";s:23:"quiz_answer_not_correct";s:29:"Sua resposta está incorreta.";s:12:"invalid_date";s:33:"Formato da data parece inválido.";s:14:"date_too_early";s:32:"Esta data é demasiado primeira.";s:13:"date_too_late";s:29:"Esta data é demasiado tarde.";s:13:"upload_failed";s:27:"Falha no upload do arquivo.";s:24:"upload_file_type_invalid";s:39:"Este tipo de arquivo não é permitido.";s:21:"upload_file_too_large";s:30:"Este arquivo é grande demais.";s:23:"upload_failed_php_error";s:27:"Falha no upload do arquivo.";}'),
-(155, 40, '_additional_settings', ''),
-(156, 40, '_locale', 'pt_BR');
+(149, 48, '_wp_attached_file', '2014/11/projeto-1.jpg'),
+(150, 48, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:960;s:6:"height";i:720;s:4:"file";s:21:"2014/11/projeto-1.jpg";s:5:"sizes";a:17:{s:9:"thumbnail";a:4:{s:4:"file";s:21:"projeto-1-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:21:"projeto-1-300x225.jpg";s:5:"width";i:300;s:6:"height";i:225;s:9:"mime-type";s:10:"image/jpeg";}s:22:"wysija-newsletters-max";a:4:{s:4:"file";s:21:"projeto-1-600x450.jpg";s:5:"width";i:600;s:6:"height";i:450;s:9:"mime-type";s:10:"image/jpeg";}s:16:"et-project-thumb";a:4:{s:4:"file";s:21:"projeto-1-240x240.jpg";s:5:"width";i:240;s:6:"height";i:240;s:9:"mime-type";s:10:"image/jpeg";}s:24:"et-featured-slider-image";a:4:{s:4:"file";s:21:"projeto-1-539x480.jpg";s:5:"width";i:539;s:6:"height";i:480;s:9:"mime-type";s:10:"image/jpeg";}s:20:"et-testimonial-image";a:4:{s:4:"file";s:19:"projeto-1-96x96.jpg";s:5:"width";i:96;s:6:"height";i:96;s:9:"mime-type";s:10:"image/jpeg";}s:15:"et-member-image";a:4:{s:4:"file";s:21:"projeto-1-121x121.jpg";s:5:"width";i:121;s:6:"height";i:121;s:9:"mime-type";s:10:"image/jpeg";}s:14:"et-entry-image";a:4:{s:4:"file";s:21:"projeto-1-640x280.jpg";s:5:"width";i:640;s:6:"height";i:280;s:9:"mime-type";s:10:"image/jpeg";}s:21:"et-member-image-small";a:4:{s:4:"file";s:19:"projeto-1-60x60.jpg";s:5:"width";i:60;s:6:"height";i:60;s:9:"mime-type";s:10:"image/jpeg";}s:18:"et-blog-page-thumb";a:4:{s:4:"file";s:21:"projeto-1-184x184.jpg";s:5:"width";i:184;s:6:"height";i:184;s:9:"mime-type";s:10:"image/jpeg";}s:21:"et-gallery-page-thumb";a:4:{s:4:"file";s:21:"projeto-1-207x136.jpg";s:5:"width";i:207;s:6:"height";i:136;s:9:"mime-type";s:10:"image/jpeg";}s:30:"et-portfolio-medium-page-thumb";a:4:{s:4:"file";s:21:"projeto-1-260x170.jpg";s:5:"width";i:260;s:6:"height";i:170;s:9:"mime-type";s:10:"image/jpeg";}s:39:"et-portfolio-medium-portrait-page-thumb";a:4:{s:4:"file";s:21:"projeto-1-260x315.jpg";s:5:"width";i:260;s:6:"height";i:315;s:9:"mime-type";s:10:"image/jpeg";}s:29:"et-portfolio-small-page-thumb";a:4:{s:4:"file";s:20:"projeto-1-140x94.jpg";s:5:"width";i:140;s:6:"height";i:94;s:9:"mime-type";s:10:"image/jpeg";}s:38:"et-portfolio-small-portrait-page-thumb";a:4:{s:4:"file";s:21:"projeto-1-140x170.jpg";s:5:"width";i:140;s:6:"height";i:170;s:9:"mime-type";s:10:"image/jpeg";}s:29:"et-portfolio-large-page-thumb";a:4:{s:4:"file";s:21:"projeto-1-430x283.jpg";s:5:"width";i:430;s:6:"height";i:283;s:9:"mime-type";s:10:"image/jpeg";}s:38:"et-portfolio-large-portrait-page-thumb";a:4:{s:4:"file";s:21:"projeto-1-430x720.jpg";s:5:"width";i:430;s:6:"height";i:720;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(151, 49, '_wp_attached_file', '2014/11/projeto-2.jpg'),
+(152, 49, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:960;s:6:"height";i:720;s:4:"file";s:21:"2014/11/projeto-2.jpg";s:5:"sizes";a:17:{s:9:"thumbnail";a:4:{s:4:"file";s:21:"projeto-2-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:21:"projeto-2-300x225.jpg";s:5:"width";i:300;s:6:"height";i:225;s:9:"mime-type";s:10:"image/jpeg";}s:22:"wysija-newsletters-max";a:4:{s:4:"file";s:21:"projeto-2-600x450.jpg";s:5:"width";i:600;s:6:"height";i:450;s:9:"mime-type";s:10:"image/jpeg";}s:16:"et-project-thumb";a:4:{s:4:"file";s:21:"projeto-2-240x240.jpg";s:5:"width";i:240;s:6:"height";i:240;s:9:"mime-type";s:10:"image/jpeg";}s:24:"et-featured-slider-image";a:4:{s:4:"file";s:21:"projeto-2-539x480.jpg";s:5:"width";i:539;s:6:"height";i:480;s:9:"mime-type";s:10:"image/jpeg";}s:20:"et-testimonial-image";a:4:{s:4:"file";s:19:"projeto-2-96x96.jpg";s:5:"width";i:96;s:6:"height";i:96;s:9:"mime-type";s:10:"image/jpeg";}s:15:"et-member-image";a:4:{s:4:"file";s:21:"projeto-2-121x121.jpg";s:5:"width";i:121;s:6:"height";i:121;s:9:"mime-type";s:10:"image/jpeg";}s:14:"et-entry-image";a:4:{s:4:"file";s:21:"projeto-2-640x280.jpg";s:5:"width";i:640;s:6:"height";i:280;s:9:"mime-type";s:10:"image/jpeg";}s:21:"et-member-image-small";a:4:{s:4:"file";s:19:"projeto-2-60x60.jpg";s:5:"width";i:60;s:6:"height";i:60;s:9:"mime-type";s:10:"image/jpeg";}s:18:"et-blog-page-thumb";a:4:{s:4:"file";s:21:"projeto-2-184x184.jpg";s:5:"width";i:184;s:6:"height";i:184;s:9:"mime-type";s:10:"image/jpeg";}s:21:"et-gallery-page-thumb";a:4:{s:4:"file";s:21:"projeto-2-207x136.jpg";s:5:"width";i:207;s:6:"height";i:136;s:9:"mime-type";s:10:"image/jpeg";}s:30:"et-portfolio-medium-page-thumb";a:4:{s:4:"file";s:21:"projeto-2-260x170.jpg";s:5:"width";i:260;s:6:"height";i:170;s:9:"mime-type";s:10:"image/jpeg";}s:39:"et-portfolio-medium-portrait-page-thumb";a:4:{s:4:"file";s:21:"projeto-2-260x315.jpg";s:5:"width";i:260;s:6:"height";i:315;s:9:"mime-type";s:10:"image/jpeg";}s:29:"et-portfolio-small-page-thumb";a:4:{s:4:"file";s:20:"projeto-2-140x94.jpg";s:5:"width";i:140;s:6:"height";i:94;s:9:"mime-type";s:10:"image/jpeg";}s:38:"et-portfolio-small-portrait-page-thumb";a:4:{s:4:"file";s:21:"projeto-2-140x170.jpg";s:5:"width";i:140;s:6:"height";i:170;s:9:"mime-type";s:10:"image/jpeg";}s:29:"et-portfolio-large-page-thumb";a:4:{s:4:"file";s:21:"projeto-2-430x283.jpg";s:5:"width";i:430;s:6:"height";i:283;s:9:"mime-type";s:10:"image/jpeg";}s:38:"et-portfolio-large-portrait-page-thumb";a:4:{s:4:"file";s:21:"projeto-2-430x720.jpg";s:5:"width";i:430;s:6:"height";i:720;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(153, 50, '_wp_attached_file', '2014/11/Projeto-3.jpg'),
+(154, 50, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:960;s:6:"height";i:720;s:4:"file";s:21:"2014/11/Projeto-3.jpg";s:5:"sizes";a:17:{s:9:"thumbnail";a:4:{s:4:"file";s:21:"Projeto-3-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:21:"Projeto-3-300x225.jpg";s:5:"width";i:300;s:6:"height";i:225;s:9:"mime-type";s:10:"image/jpeg";}s:22:"wysija-newsletters-max";a:4:{s:4:"file";s:21:"Projeto-3-600x450.jpg";s:5:"width";i:600;s:6:"height";i:450;s:9:"mime-type";s:10:"image/jpeg";}s:16:"et-project-thumb";a:4:{s:4:"file";s:21:"Projeto-3-240x240.jpg";s:5:"width";i:240;s:6:"height";i:240;s:9:"mime-type";s:10:"image/jpeg";}s:24:"et-featured-slider-image";a:4:{s:4:"file";s:21:"Projeto-3-539x480.jpg";s:5:"width";i:539;s:6:"height";i:480;s:9:"mime-type";s:10:"image/jpeg";}s:20:"et-testimonial-image";a:4:{s:4:"file";s:19:"Projeto-3-96x96.jpg";s:5:"width";i:96;s:6:"height";i:96;s:9:"mime-type";s:10:"image/jpeg";}s:15:"et-member-image";a:4:{s:4:"file";s:21:"Projeto-3-121x121.jpg";s:5:"width";i:121;s:6:"height";i:121;s:9:"mime-type";s:10:"image/jpeg";}s:14:"et-entry-image";a:4:{s:4:"file";s:21:"Projeto-3-640x280.jpg";s:5:"width";i:640;s:6:"height";i:280;s:9:"mime-type";s:10:"image/jpeg";}s:21:"et-member-image-small";a:4:{s:4:"file";s:19:"Projeto-3-60x60.jpg";s:5:"width";i:60;s:6:"height";i:60;s:9:"mime-type";s:10:"image/jpeg";}s:18:"et-blog-page-thumb";a:4:{s:4:"file";s:21:"Projeto-3-184x184.jpg";s:5:"width";i:184;s:6:"height";i:184;s:9:"mime-type";s:10:"image/jpeg";}s:21:"et-gallery-page-thumb";a:4:{s:4:"file";s:21:"Projeto-3-207x136.jpg";s:5:"width";i:207;s:6:"height";i:136;s:9:"mime-type";s:10:"image/jpeg";}s:30:"et-portfolio-medium-page-thumb";a:4:{s:4:"file";s:21:"Projeto-3-260x170.jpg";s:5:"width";i:260;s:6:"height";i:170;s:9:"mime-type";s:10:"image/jpeg";}s:39:"et-portfolio-medium-portrait-page-thumb";a:4:{s:4:"file";s:21:"Projeto-3-260x315.jpg";s:5:"width";i:260;s:6:"height";i:315;s:9:"mime-type";s:10:"image/jpeg";}s:29:"et-portfolio-small-page-thumb";a:4:{s:4:"file";s:20:"Projeto-3-140x94.jpg";s:5:"width";i:140;s:6:"height";i:94;s:9:"mime-type";s:10:"image/jpeg";}s:38:"et-portfolio-small-portrait-page-thumb";a:4:{s:4:"file";s:21:"Projeto-3-140x170.jpg";s:5:"width";i:140;s:6:"height";i:170;s:9:"mime-type";s:10:"image/jpeg";}s:29:"et-portfolio-large-page-thumb";a:4:{s:4:"file";s:21:"Projeto-3-430x283.jpg";s:5:"width";i:430;s:6:"height";i:283;s:9:"mime-type";s:10:"image/jpeg";}s:38:"et-portfolio-large-portrait-page-thumb";a:4:{s:4:"file";s:21:"Projeto-3-430x720.jpg";s:5:"width";i:430;s:6:"height";i:720;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(155, 51, '_wp_attached_file', '2014/11/projeto-4.jpg'),
+(156, 51, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:960;s:6:"height";i:720;s:4:"file";s:21:"2014/11/projeto-4.jpg";s:5:"sizes";a:17:{s:9:"thumbnail";a:4:{s:4:"file";s:21:"projeto-4-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:21:"projeto-4-300x225.jpg";s:5:"width";i:300;s:6:"height";i:225;s:9:"mime-type";s:10:"image/jpeg";}s:22:"wysija-newsletters-max";a:4:{s:4:"file";s:21:"projeto-4-600x450.jpg";s:5:"width";i:600;s:6:"height";i:450;s:9:"mime-type";s:10:"image/jpeg";}s:16:"et-project-thumb";a:4:{s:4:"file";s:21:"projeto-4-240x240.jpg";s:5:"width";i:240;s:6:"height";i:240;s:9:"mime-type";s:10:"image/jpeg";}s:24:"et-featured-slider-image";a:4:{s:4:"file";s:21:"projeto-4-539x480.jpg";s:5:"width";i:539;s:6:"height";i:480;s:9:"mime-type";s:10:"image/jpeg";}s:20:"et-testimonial-image";a:4:{s:4:"file";s:19:"projeto-4-96x96.jpg";s:5:"width";i:96;s:6:"height";i:96;s:9:"mime-type";s:10:"image/jpeg";}s:15:"et-member-image";a:4:{s:4:"file";s:21:"projeto-4-121x121.jpg";s:5:"width";i:121;s:6:"height";i:121;s:9:"mime-type";s:10:"image/jpeg";}s:14:"et-entry-image";a:4:{s:4:"file";s:21:"projeto-4-640x280.jpg";s:5:"width";i:640;s:6:"height";i:280;s:9:"mime-type";s:10:"image/jpeg";}s:21:"et-member-image-small";a:4:{s:4:"file";s:19:"projeto-4-60x60.jpg";s:5:"width";i:60;s:6:"height";i:60;s:9:"mime-type";s:10:"image/jpeg";}s:18:"et-blog-page-thumb";a:4:{s:4:"file";s:21:"projeto-4-184x184.jpg";s:5:"width";i:184;s:6:"height";i:184;s:9:"mime-type";s:10:"image/jpeg";}s:21:"et-gallery-page-thumb";a:4:{s:4:"file";s:21:"projeto-4-207x136.jpg";s:5:"width";i:207;s:6:"height";i:136;s:9:"mime-type";s:10:"image/jpeg";}s:30:"et-portfolio-medium-page-thumb";a:4:{s:4:"file";s:21:"projeto-4-260x170.jpg";s:5:"width";i:260;s:6:"height";i:170;s:9:"mime-type";s:10:"image/jpeg";}s:39:"et-portfolio-medium-portrait-page-thumb";a:4:{s:4:"file";s:21:"projeto-4-260x315.jpg";s:5:"width";i:260;s:6:"height";i:315;s:9:"mime-type";s:10:"image/jpeg";}s:29:"et-portfolio-small-page-thumb";a:4:{s:4:"file";s:20:"projeto-4-140x94.jpg";s:5:"width";i:140;s:6:"height";i:94;s:9:"mime-type";s:10:"image/jpeg";}s:38:"et-portfolio-small-portrait-page-thumb";a:4:{s:4:"file";s:21:"projeto-4-140x170.jpg";s:5:"width";i:140;s:6:"height";i:170;s:9:"mime-type";s:10:"image/jpeg";}s:29:"et-portfolio-large-page-thumb";a:4:{s:4:"file";s:21:"projeto-4-430x283.jpg";s:5:"width";i:430;s:6:"height";i:283;s:9:"mime-type";s:10:"image/jpeg";}s:38:"et-portfolio-large-portrait-page-thumb";a:4:{s:4:"file";s:21:"projeto-4-430x720.jpg";s:5:"width";i:430;s:6:"height";i:720;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(157, 52, '_wp_attached_file', '2014/11/projeto-5.jpg'),
+(158, 52, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:960;s:6:"height";i:720;s:4:"file";s:21:"2014/11/projeto-5.jpg";s:5:"sizes";a:17:{s:9:"thumbnail";a:4:{s:4:"file";s:21:"projeto-5-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:21:"projeto-5-300x225.jpg";s:5:"width";i:300;s:6:"height";i:225;s:9:"mime-type";s:10:"image/jpeg";}s:22:"wysija-newsletters-max";a:4:{s:4:"file";s:21:"projeto-5-600x450.jpg";s:5:"width";i:600;s:6:"height";i:450;s:9:"mime-type";s:10:"image/jpeg";}s:16:"et-project-thumb";a:4:{s:4:"file";s:21:"projeto-5-240x240.jpg";s:5:"width";i:240;s:6:"height";i:240;s:9:"mime-type";s:10:"image/jpeg";}s:24:"et-featured-slider-image";a:4:{s:4:"file";s:21:"projeto-5-539x480.jpg";s:5:"width";i:539;s:6:"height";i:480;s:9:"mime-type";s:10:"image/jpeg";}s:20:"et-testimonial-image";a:4:{s:4:"file";s:19:"projeto-5-96x96.jpg";s:5:"width";i:96;s:6:"height";i:96;s:9:"mime-type";s:10:"image/jpeg";}s:15:"et-member-image";a:4:{s:4:"file";s:21:"projeto-5-121x121.jpg";s:5:"width";i:121;s:6:"height";i:121;s:9:"mime-type";s:10:"image/jpeg";}s:14:"et-entry-image";a:4:{s:4:"file";s:21:"projeto-5-640x280.jpg";s:5:"width";i:640;s:6:"height";i:280;s:9:"mime-type";s:10:"image/jpeg";}s:21:"et-member-image-small";a:4:{s:4:"file";s:19:"projeto-5-60x60.jpg";s:5:"width";i:60;s:6:"height";i:60;s:9:"mime-type";s:10:"image/jpeg";}s:18:"et-blog-page-thumb";a:4:{s:4:"file";s:21:"projeto-5-184x184.jpg";s:5:"width";i:184;s:6:"height";i:184;s:9:"mime-type";s:10:"image/jpeg";}s:21:"et-gallery-page-thumb";a:4:{s:4:"file";s:21:"projeto-5-207x136.jpg";s:5:"width";i:207;s:6:"height";i:136;s:9:"mime-type";s:10:"image/jpeg";}s:30:"et-portfolio-medium-page-thumb";a:4:{s:4:"file";s:21:"projeto-5-260x170.jpg";s:5:"width";i:260;s:6:"height";i:170;s:9:"mime-type";s:10:"image/jpeg";}s:39:"et-portfolio-medium-portrait-page-thumb";a:4:{s:4:"file";s:21:"projeto-5-260x315.jpg";s:5:"width";i:260;s:6:"height";i:315;s:9:"mime-type";s:10:"image/jpeg";}s:29:"et-portfolio-small-page-thumb";a:4:{s:4:"file";s:20:"projeto-5-140x94.jpg";s:5:"width";i:140;s:6:"height";i:94;s:9:"mime-type";s:10:"image/jpeg";}s:38:"et-portfolio-small-portrait-page-thumb";a:4:{s:4:"file";s:21:"projeto-5-140x170.jpg";s:5:"width";i:140;s:6:"height";i:170;s:9:"mime-type";s:10:"image/jpeg";}s:29:"et-portfolio-large-page-thumb";a:4:{s:4:"file";s:21:"projeto-5-430x283.jpg";s:5:"width";i:430;s:6:"height";i:283;s:9:"mime-type";s:10:"image/jpeg";}s:38:"et-portfolio-large-portrait-page-thumb";a:4:{s:4:"file";s:21:"projeto-5-430x720.jpg";s:5:"width";i:430;s:6:"height";i:720;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(159, 66, '_edit_last', '1'),
+(160, 66, '_wp_page_template', 'default'),
+(161, 66, '_et_single_bg_image', ''),
+(162, 66, '_edit_lock', '1417025315:1'),
+(163, 66, '_wp_trash_meta_status', 'publish'),
+(164, 66, '_wp_trash_meta_time', '1417025469');
 
 -- --------------------------------------------------------
 
@@ -578,7 +566,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 --
 
 CREATE TABLE IF NOT EXISTS `wp_posts` (
-  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+`ID` bigint(20) unsigned NOT NULL,
   `post_author` bigint(20) unsigned NOT NULL DEFAULT '0',
   `post_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `post_date_gmt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -600,13 +588,8 @@ CREATE TABLE IF NOT EXISTS `wp_posts` (
   `menu_order` int(11) NOT NULL DEFAULT '0',
   `post_type` varchar(20) NOT NULL DEFAULT 'post',
   `post_mime_type` varchar(100) NOT NULL DEFAULT '',
-  `comment_count` bigint(20) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`),
-  KEY `post_name` (`post_name`),
-  KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
-  KEY `post_parent` (`post_parent`),
-  KEY `post_author` (`post_author`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
+  `comment_count` bigint(20) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `wp_posts`
@@ -614,22 +597,22 @@ CREATE TABLE IF NOT EXISTS `wp_posts` (
 
 INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post_content`, `post_title`, `post_excerpt`, `post_status`, `comment_status`, `ping_status`, `post_password`, `post_name`, `to_ping`, `pinged`, `post_modified`, `post_modified_gmt`, `post_content_filtered`, `post_parent`, `guid`, `menu_order`, `post_type`, `post_mime_type`, `comment_count`) VALUES
 (1, 1, '2014-11-19 12:06:25', '2014-11-19 12:06:25', 'Bem-vindo ao WordPress. Esse é o seu primeiro post. Edite-o ou exclua-o, e então comece a publicar!', 'Olá, mundo!', '', 'publish', 'open', 'open', '', 'ola-mundo', '', '', '2014-11-19 12:06:25', '2014-11-19 12:06:25', '', 0, 'http://localhost/Harpia/?p=1', 0, 'post', '', 1),
-(2, 1, '2014-11-19 12:06:25', '2014-11-19 12:06:25', '<strong>Inscrição do Processo Seletivo</strong>\r\n\r\n[contact-form-7 id="35" title="Inscrição Processo Seletivo"]', 'Inscrição', '', 'publish', 'open', 'open', '', 'pagina-exemplo', '', '', '2014-11-26 17:03:28', '2014-11-26 17:03:28', '', 0, 'http://localhost/Harpia/?page_id=2', 0, 'page', '', 0),
+(2, 1, '2014-11-19 12:06:25', '2014-11-19 12:06:25', '[contact-form-7 id="35" title="Inscrição Processo Seletivo"]', 'Inscrição', '', 'publish', 'open', 'open', '', 'pagina-exemplo', '', '', '2014-11-26 14:49:01', '2014-11-26 14:49:01', '', 0, 'http://localhost/Harpia/?page_id=2', 0, 'page', '', 0),
 (3, 1, '2014-11-19 12:07:09', '0000-00-00 00:00:00', '', 'Rascunho automático', '', 'auto-draft', 'open', 'open', '', '', '', '', '2014-11-19 12:07:09', '0000-00-00 00:00:00', '', 0, 'http://localhost/Harpia/?p=3', 0, 'post', '', 0),
 (4, 1, '2014-11-19 13:21:31', '2014-11-19 13:21:31', '', 'Inscrição', '', 'inherit', 'open', 'open', '', '2-revision-v1', '', '', '2014-11-19 13:21:31', '2014-11-19 13:21:31', '', 2, 'http://localhost/Harpia/?p=4', 0, 'revision', '', 0),
 (5, 1, '2014-11-19 13:21:45', '0000-00-00 00:00:00', '', 'Rascunho automático', '', 'auto-draft', 'open', 'open', '', '', '', '', '2014-11-19 13:21:45', '0000-00-00 00:00:00', '', 0, 'http://localhost/Harpia/?page_id=5', 0, 'page', '', 0),
-(6, 1, '2014-11-19 13:23:22', '2014-11-19 13:23:22', '', 'logo harpia com desenho antigo horizontal', '', 'inherit', 'open', 'open', '', 'logo-harpia-com-desenho-antigo-horizontal', '', '', '2014-11-19 13:23:22', '2014-11-19 13:23:22', '', 0, 'http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal.png', 0, 'attachment', 'image/png', 0),
+(6, 1, '2014-11-19 13:23:22', '2014-11-19 13:23:22', '', 'logo harpia com desenho antigo horizontal', '', 'inherit', 'open', 'open', '', 'logo-harpia-com-desenho-antigo-horizontal', '', '', '2014-11-26 16:05:33', '2014-11-26 16:05:33', '', 15, 'http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal.png', 0, 'attachment', 'image/png', 0),
 (7, 1, '2014-11-19 13:23:48', '2014-11-19 13:23:48', '', 'Logo Harpia Horizontal', '', 'inherit', 'open', 'open', '', 'logo-harpia-com-desenho-antigo-horizontal-2', '', '', '2014-11-19 13:24:30', '2014-11-19 13:24:30', '', 0, 'http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal1.png', 0, 'attachment', 'image/png', 0),
 (8, 1, '2014-11-19 13:54:09', '2014-11-19 13:54:09', '', 'favicon', '', 'inherit', 'open', 'open', '', 'favicon', '', '', '2014-11-19 13:54:09', '2014-11-19 13:54:09', '', 0, 'http://localhost/Harpia/wp-content/uploads/2014/11/favicon.ico', 0, 'attachment', 'image/x-icon', 0),
 (9, 1, '2014-11-19 13:54:27', '2014-11-19 13:54:27', '', 'favicon', '', 'inherit', 'open', 'open', '', 'favicon-2', '', '', '2014-11-19 13:54:27', '2014-11-19 13:54:27', '', 0, 'http://localhost/Harpia/wp-content/uploads/2014/11/favicon1.ico', 0, 'attachment', 'image/x-icon', 0),
 (10, 1, '2014-11-19 13:57:53', '2014-11-19 13:57:53', '', 'favi', '', 'inherit', 'open', 'open', '', 'favi', '', '', '2014-11-19 13:57:53', '2014-11-19 13:57:53', '', 0, 'http://localhost/Harpia/wp-content/uploads/2014/11/favi.png', 0, 'attachment', 'image/png', 0),
-(11, 1, '2014-11-19 13:59:32', '2014-11-19 13:59:32', '[contact-form-7 id="40" title="Contato"]                                                                         ', 'Contato', '', 'publish', 'open', 'open', '', 'contato', '', '', '2014-11-26 17:13:41', '2014-11-26 17:13:41', '', 0, 'http://localhost/Harpia/?page_id=11', 0, 'page', '', 0),
+(11, 1, '2014-11-19 13:59:32', '2014-11-19 13:59:32', '', 'Contato', '', 'publish', 'open', 'open', '', 'contato', '', '', '2014-11-19 16:14:43', '2014-11-19 16:14:43', '', 0, 'http://localhost/Harpia/?page_id=11', 0, 'page', '', 0),
 (12, 1, '2014-11-19 13:59:32', '2014-11-19 13:59:32', '', 'Contato', '', 'inherit', 'open', 'open', '', '11-revision-v1', '', '', '2014-11-19 13:59:32', '2014-11-19 13:59:32', '', 11, 'http://localhost/Harpia/?p=12', 0, 'revision', '', 0),
-(13, 1, '2014-11-19 14:00:00', '2014-11-19 14:00:00', '', 'Serviços', '', 'publish', 'open', 'open', '', 'servicos', '', '', '2014-11-19 14:00:00', '2014-11-19 14:00:00', '', 0, 'http://localhost/Harpia/?page_id=13', 0, 'page', '', 0),
+(13, 1, '2014-11-19 14:00:00', '2014-11-19 14:00:00', '<strong> </strong>\r\n\r\n&nbsp;\r\n<h4 style="text-align: center;">Levantamento de fauna e flora e elaboração de inventários.</h4>\r\n<strong> </strong>\r\n<p style="text-align: center;"><strong> <a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1.jpg"><img class="alignnone  wp-image-48" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1-300x225.jpg" alt="projeto 1" width="450" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"><strong> </strong></h4>\r\n<h4 style="text-align: center;"><strong> </strong></h4>\r\n<h4 style="text-align: center;">Educação ambiental em escolas de ensino fundamental e médio do ensino público e privado do estado do Ceará.</h4>\r\n<strong> </strong>\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2.jpg"><img class="alignnone  wp-image-49" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2-300x225.jpg" alt="projeto 2" width="451" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"><strong> </strong></h4>\r\n<h4 style="text-align: center;">Formação, organização e estruturação de trilhas ecológicas e treinamento de guias para excursões científicas e projetos envolvendo Ecoturismo.</h4>\r\n&nbsp;\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3.jpg"><img class="alignnone  wp-image-50" src="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3-300x225.jpg" alt="Projeto 3" width="451" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"><strong> </strong></h4>\r\n<h4 style="text-align: center;">Organização de eventos acadêmicos e treinamentos da área de Ciências Biológicas e áreas afins.</h4>\r\n<strong> </strong>\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4.jpg"><img class="alignnone  wp-image-51" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4-300x225.jpg" alt="projeto 4" width="451" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"><strong> </strong></h4>\r\n<h4 style="text-align: center;">Elaboração de materiais didáticos e informativos envolvendo os mais variados temas de Ciências Biológicas e Meio Ambiente.</h4>\r\n&nbsp;\r\n\r\n<strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5.jpg"><img class="alignnone  wp-image-52 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5-300x225.jpg" alt="projeto 5" width="451" height="338" /></a></strong>', 'Serviços', '', 'publish', 'open', 'open', '', 'servicos', '', '', '2014-11-26 17:05:11', '2014-11-26 17:05:11', '', 0, 'http://localhost/Harpia/?page_id=13', 0, 'page', '', 0),
 (14, 1, '2014-11-19 14:00:00', '2014-11-19 14:00:00', '', 'Serviços', '', 'inherit', 'open', 'open', '', '13-revision-v1', '', '', '2014-11-19 14:00:00', '2014-11-19 14:00:00', '', 13, 'http://localhost/Harpia/?p=14', 0, 'revision', '', 0),
-(15, 1, '2014-11-19 14:00:12', '2014-11-19 14:00:12', '', 'Sobre', '', 'publish', 'open', 'open', '', 'sobre', '', '', '2014-11-19 14:00:12', '2014-11-19 14:00:12', '', 0, 'http://localhost/Harpia/?page_id=15', 0, 'page', '', 0),
+(15, 1, '2014-11-19 14:00:12', '2014-11-19 14:00:12', '<h2><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal.png"><img class="size-medium wp-image-6 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal-300x138.png" alt="logo harpia com desenho antigo horizontal" width="300" height="138" /></a></strong></h2>\r\n<h2><strong>Sobre</strong></h2>\r\n<strong> </strong>\r\n\r\nA HARPIA – Empresa Júnior de Biologia da Universidade Estadual do Ceará (UECE) é uma associação civil sem fins lucrativos, constituída por alunos de graduação, orientada por professores do curso de Ciências Biológicas da UECE que têm por finalidades estabelecer um contato mais efetivo entre os estudantes e o mercado de trabalho, proporcionar aos estudantes a aplicação prática dos conhecimentos teóricos adquiridos na universidade e fomentar em seus membros a prática empreendedora.\r\n\r\nA HARPIA foi criada no ano de 2009 por alunos que sentiram a necessidade de trazer o empreendedorismo para dentro do curso de Ciências Biológicas da UECE. A empresa tem como sede a Área Experimental do Laboratório de Ecologia, espaço cedido pelo professor Dr. Oriel Herrera Bonilla, que é nosso professor orientador.\r\n\r\n&nbsp;\r\n<h2><strong>Missão, Visão e Valores</strong></h2>\r\n<strong> </strong>\r\n<h3><strong>Missão:</strong></h3>\r\n&nbsp;\r\n\r\nFormar profissionais capacitados realizando projetos técnicos e serviços acadêmicos em Ciências Biológicas.\r\n\r\n&nbsp;\r\n<h3><strong>Visão:</strong></h3>\r\n&nbsp;\r\n\r\nSer a Empresa Júnior de Biologia mais renomada da Região Nordeste na formação de profissionais da área, capacitando seus membros para desenvolver projetos de excelência na área de Ciências Biológicas.\r\n\r\n&nbsp;\r\n<h3><strong>Valores:</strong></h3>\r\n&nbsp;\r\n\r\nExcelência;\r\n\r\nÉtica;\r\n\r\nColetividade;\r\n\r\nResponsabilidade socioambiental;\r\n\r\nComprometimento.\r\n\r\n&nbsp;\r\n<h2><strong>Equipe</strong></h2>\r\n<strong> </strong>\r\n\r\nA HARPIA é organizada em cinco diretorias: Diretoria de Presidência, Diretoria Administrativo-Financeiro, Diretor de Recursos Humanos, Diretoria de Projetos e Diretoria de Marketing. Essas diretorias compõem a Diretoria Executiva da empresa, através de um modelo de gestão administrativa participativa sob a coordenação do Diretor Presidente. Atualmente, a empresa conta com 9 membros, sendo distribuídos nos seguintes cargos:\r\n\r\n&nbsp;\r\n\r\n<strong>Diretoria de Presidência</strong>\r\n\r\n&nbsp;\r\n\r\n<em>Diretor Presidente: Italo Diego</em>\r\n\r\n<em>Diretor Vice-Presidente: Elias Teles</em>\r\n\r\n<em>Assessora de Qualidade: Marcia Dayane</em>\r\n\r\n&nbsp;\r\n\r\n<strong>Diretoria Administrativo-Financeiro</strong>\r\n\r\n&nbsp;\r\n\r\n<em>Diretora Administrativo-Financeiro: Josiany Costa</em>\r\n\r\n&nbsp;\r\n\r\n<strong>Diretoria de Projetos</strong>\r\n\r\n&nbsp;\r\n\r\n<em>Diretor de Projetos: Sávio Victor</em>\r\n\r\n<em>Consultor de Projetos: Eduardo Fernandes</em>\r\n\r\n&nbsp;\r\n\r\n<strong>Diretoria de Recursos Humanos</strong>\r\n\r\n&nbsp;\r\n\r\n<em>Diretora de Recursos Humanos: Leticia Souza</em>\r\n\r\n&nbsp;\r\n\r\n<strong>Diretoria de Marketing</strong>\r\n\r\n&nbsp;\r\n\r\n<em>Diretor de Marketing: Natanael Feitosa</em>\r\n\r\n<em>Consultor de Marketing: Henrique Santos</em>', 'Sobre', '', 'publish', 'open', 'open', '', 'sobre', '', '', '2014-11-26 16:18:11', '2014-11-26 16:18:11', '', 0, 'http://localhost/Harpia/?page_id=15', 0, 'page', '', 0),
 (16, 1, '2014-11-19 14:00:12', '2014-11-19 14:00:12', '', 'Sobre', '', 'inherit', 'open', 'open', '', '15-revision-v1', '', '', '2014-11-19 14:00:12', '2014-11-19 14:00:12', '', 15, 'http://localhost/Harpia/?p=16', 0, 'revision', '', 0),
-(17, 1, '2014-11-19 14:01:28', '2014-11-19 14:01:28', '', 'MEJ', '', 'publish', 'open', 'open', '', 'mej', '', '', '2014-11-19 14:01:28', '2014-11-19 14:01:28', '', 0, 'http://localhost/Harpia/?page_id=17', 0, 'page', '', 0),
+(17, 1, '2014-11-19 14:01:28', '2014-11-19 14:01:28', '<h1 style="text-align: center;"><strong>MEJ (Movimento Empresa Júnior)</strong></h1>\r\n&nbsp;\r\n\r\nAs empresas juniores são constituídas pela união de alunos matriculados em cursos de graduação em instituições de ensino superior, organizados em uma associação civil com o intuito de realizar projetos e serviços que contribuam para o desenvolvimento do país e de formar profissionais capacitados e comprometidos com esse objetivo.\r\n\r\n&nbsp;\r\n\r\nO objetivo primeiro das empresas juniores é desenvolver pessoal e profissionalmente os seus membros por meio da vivência empresarial, realizando projetos e serviços na área de atuação do(s) curso(s) de graduação ao(s) qual(is) a empresa júnior for vinculada. Por esse objetivo entende-se fomentar o crescimento pessoal e profissional do aluno membro, por meio do oferecimento de serviços de qualidade e a baixo custo ao mercado. Dessa forma, além de atingir seu próprio objetivo, as EJs contribuem para o desenvolvimento do empreendedorismo em sua região. Em alta escala, o Movimento das Empresas Juniores (MEJ) contribui com uma importante parcela no desenvolvimento empresarial e econômico do país.\r\n\r\n&nbsp;\r\n\r\nEm 1967, alunos da ESSEC – L’École Supérieure des Sciences Economiques et Commerciales, em Paris, sentiram a necessidade de ter conhecimento das ferramentas utilizadas no mercado em que eles trabalhariam num futuro próximo. Assim, foi fundada a Junior ESSEC Conseil, uma associação de estudantes que colocaria em prática os conhecimentos acadêmicos com clientes do mercado. . O conceito depois se espalhou entre as escolas de engenharia e administração da França, em seguida pelas escolas de comunicação, agronomia e outras universidades. Em 1969 foi criada a primeira confederação, a Confederação Francesa de Empresas Juniores que já reunia mais de 20 empresas na época. No Brasil há mais de 700 empresas juniores, contando com mais de 22.000 empresários em todas as regiões do país.\r\n\r\n&nbsp;\r\n\r\n<strong>Fonte:</strong>\r\n\r\nCNEJ –<em> Conceito Nacional de Empresa Júnior</em>\r\n\r\nDNA JR.', 'MEJ', '', 'publish', 'open', 'open', '', 'mej', '', '', '2014-11-26 16:23:37', '2014-11-26 16:23:37', '', 0, 'http://localhost/Harpia/?page_id=17', 0, 'page', '', 0),
 (18, 1, '2014-11-19 14:01:28', '2014-11-19 14:01:28', '', 'MEJ', '', 'inherit', 'open', 'open', '', '17-revision-v1', '', '', '2014-11-19 14:01:28', '2014-11-19 14:01:28', '', 17, 'http://localhost/Harpia/?p=18', 0, 'revision', '', 0),
 (19, 1, '2014-11-19 14:06:11', '2014-11-19 14:06:11', '[wysija_page]', 'Confirmação de assinatura', '', 'publish', 'open', 'open', '', 'subscriptions', '', '', '2014-11-19 14:06:11', '2014-11-19 14:06:11', '', 0, 'http://localhost/Harpia/?wysijap=subscriptions', 0, 'wysijap', '', 0),
 (22, 1, '2014-11-19 16:28:50', '0000-00-00 00:00:00', '', 'Home', '', 'draft', 'open', 'open', '', '', '', '', '2014-11-19 16:28:50', '0000-00-00 00:00:00', '', 0, 'http://localhost/Harpia/?p=22', 1, 'nav_menu_item', '', 0),
@@ -645,13 +628,40 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (32, 1, '2014-11-20 13:27:20', '0000-00-00 00:00:00', ' ', '', '', 'draft', 'open', 'open', '', '', '', '', '2014-11-20 13:27:20', '0000-00-00 00:00:00', '', 0, 'http://localhost/Harpia/?p=32', 1, 'nav_menu_item', '', 0),
 (33, 1, '2014-11-20 13:27:21', '0000-00-00 00:00:00', ' ', '', '', 'draft', 'open', 'open', '', '', '', '', '2014-11-20 13:27:21', '0000-00-00 00:00:00', '', 0, 'http://localhost/Harpia/?p=33', 1, 'nav_menu_item', '', 0),
 (34, 1, '2014-11-20 13:27:21', '0000-00-00 00:00:00', ' ', '', '', 'draft', 'open', 'open', '', '', '', '', '2014-11-20 13:27:21', '0000-00-00 00:00:00', '', 0, 'http://localhost/Harpia/?p=34', 1, 'nav_menu_item', '', 0),
-(35, 1, '2014-11-26 14:14:11', '2014-11-26 14:14:11', '<p>Nome Completo<br />\r\n    [text* your-name] </p>\r\n\r\n<p>Endereço<br />\r\n    [text* Endereco] </p>\r\n\r\n<p>RG<br />\r\n    [tel RG /13] </p>\r\n\r\n<p>CPF<br />\r\n    [tel CPF /11] </p>\r\n\r\n<p>Semestre atual<br />\r\n    [number Semestre min:1 max:7 "1"] </p>\r\n\r\n<p>Telefone fixo/celular<br />\r\n    [tel telefone /11] </p>\r\n\r\n<p>Seu e-mail<br />\r\n    [email* your-email] </p>\r\n\r\n<p>Declaração de matrícula<br />\r\n    [file* matricula filetypes:.pdf] </p>\r\n\r\n<p>Currículo Lattes<br />\r\n    [file* lattes filetypes:.pdf] </p>\r\n\r\n<p>Carta de intenção e interesse pessoal<br />\r\n    [file* carta filetypes:.pdf] </p>\r\n\r\n<p>[submit "Enviar"]</p>\n[your-subject]\n[your-name] <marketing@acens.com.br>\nDe: [your-name] <[your-email]>\r\nAssunto: Inscrição processo seletivo\r\n\r\nCorpo da mensagem:\r\n[Endereco]\r\n[CPF]\r\n[RG]\r\n[matricula]\r\n[lattes]\r\n[carta]\r\n[telefone]\r\n--\r\nEste e-mail foi enviado de um formulário de contato em Harpia (http://localhost/Harpia)\nejharpia@gmail.com\nReply-To: [your-email]\n\n\n\n\n[your-subject]\nHarpia <marketing@acens.com.br>\nCorpo da mensagem:\r\n[your-message]\r\n\r\n--\r\nEste e-mail foi enviado de um formulário de contato em Harpia (http://localhost/Harpia)\n[your-email]\nReply-To: marketing@acens.com.br\n\n\n\nSua mensagem foi enviada com sucesso. Obrigado.\nNão foi possível enviar a sua mensagem. Por favor, tente mais tarde ou contate o administrador por outro método.\nOcorreram erros de validação. Por favor confira os dados e envie novamente.\nNão foi possível enviar a sua mensagem. Por favor, tente mais tarde ou contate o administrador por outro método.\nPor favor aceite os termos para prosseguir.\nPor favor preencha este campo obrigatório.\nO código digitado está incorreto.\nFormato de número parece inválido.\nEste número é muito pequeno.\nEste número é muito grande.\nO endereço de e-mail parece inválido.\nURL parece inválido.\nTelefone parece inválido.\nSua resposta está incorreta.\nFormato da data parece inválido.\nEsta data é demasiado primeira.\nEsta data é demasiado tarde.\nFalha no upload do arquivo.\nEste tipo de arquivo não é permitido.\nEste arquivo é grande demais.\nFalha no upload do arquivo.', 'Inscrição Processo Seletivo', '', 'publish', 'open', 'open', '', 'formulario-de-contato-1', '', '', '2014-11-26 17:02:25', '2014-11-26 17:02:25', '', 0, 'http://localhost/Harpia/?post_type=wpcf7_contact_form&#038;p=35', 0, 'wpcf7_contact_form', '', 0),
+(35, 1, '2014-11-26 14:14:11', '2014-11-26 14:14:11', '<p>Nome Completo<br />\r\n    [text* your-name] </p>\r\n\r\n<p>Endereço<br />\r\n    [text* Endereco] </p>\r\n\r\n<p>CPF<br />\r\n    [range CPF min:1 max:11] </p>\r\n\r\n<p>RG<br />\r\n    [email* your-email] </p>\r\n\r\n<p>Semestre atual<br />\r\n    [number Semestre min:1 max:7 "1"] </p>\r\n\r\n<p>Seu e-mail<br />\r\n    [email* your-email] </p>\r\n\r\n<p>Assunto<br />\r\n    [text your-subject] </p>\r\n\r\n<p>Sua mensagem<br />\r\n    [textarea your-message] </p>\r\n\r\n<p>[submit "Enviar"]</p>\n[your-subject]\n[your-name] <marketing@acens.com.br>\nDe: [your-name] <[your-email]>\r\nAssunto: [your-subject]\r\n\r\nCorpo da mensagem:\r\n[your-message]\r\n[Endereco]\r\n[CPF]\r\n--\r\nEste e-mail foi enviado de um formulário de contato em Harpia (http://localhost/Harpia)\nmarketing@acens.com.br\nReply-To: [your-email]\n\n\n\n\n[your-subject]\nHarpia <marketing@acens.com.br>\nCorpo da mensagem:\r\n[your-message]\r\n\r\n--\r\nEste e-mail foi enviado de um formulário de contato em Harpia (http://localhost/Harpia)\n[your-email]\nReply-To: marketing@acens.com.br\n\n\n\nSua mensagem foi enviada com sucesso. Obrigado.\nNão foi possível enviar a sua mensagem. Por favor, tente mais tarde ou contate o administrador por outro método.\nOcorreram erros de validação. Por favor confira os dados e envie novamente.\nNão foi possível enviar a sua mensagem. Por favor, tente mais tarde ou contate o administrador por outro método.\nPor favor aceite os termos para prosseguir.\nPor favor preencha este campo obrigatório.\nO código digitado está incorreto.\nFormato de número parece inválido.\nEste número é muito pequeno.\nEste número é muito grande.\nO endereço de e-mail parece inválido.\nURL parece inválido.\nTelefone parece inválido.\nSua resposta está incorreta.\nFormato da data parece inválido.\nEsta data é demasiado primeira.\nEsta data é demasiado tarde.\nFalha no upload do arquivo.\nEste tipo de arquivo não é permitido.\nEste arquivo é grande demais.\nFalha no upload do arquivo.', 'Inscrição Processo Seletivo', '', 'publish', 'open', 'open', '', 'formulario-de-contato-1', '', '', '2014-11-26 14:55:04', '2014-11-26 14:55:04', '', 0, 'http://localhost/Harpia/?post_type=wpcf7_contact_form&#038;p=35', 0, 'wpcf7_contact_form', '', 0),
 (36, 1, '2014-11-26 14:49:01', '2014-11-26 14:49:01', '[contact-form-7 id="35" title="Inscrição Processo Seletivo"]', 'Inscrição', '', 'inherit', 'open', 'open', '', '2-revision-v1', '', '', '2014-11-26 14:49:01', '2014-11-26 14:49:01', '', 2, 'http://localhost/Harpia/?p=36', 0, 'revision', '', 0),
-(37, 1, '2014-11-26 16:38:04', '2014-11-26 16:38:04', '', 'logo harpia com desenho antigo horizontal', '', 'inherit', 'open', 'open', '', 'logo-harpia-com-desenho-antigo-horizontal-3', '', '', '2014-11-26 16:38:04', '2014-11-26 16:38:04', '', 0, 'http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal2.png', 0, 'attachment', 'image/png', 0),
-(38, 1, '2014-11-26 17:03:06', '2014-11-26 17:03:06', 'Inscrição do Processo Seletivo\r\n\r\n[contact-form-7 id="35" title="Inscrição Processo Seletivo"]', 'Inscrição', '', 'inherit', 'open', 'open', '', '2-revision-v1', '', '', '2014-11-26 17:03:06', '2014-11-26 17:03:06', '', 2, 'http://localhost/Harpia/?p=38', 0, 'revision', '', 0),
-(39, 1, '2014-11-26 17:03:28', '2014-11-26 17:03:28', '<strong>Inscrição do Processo Seletivo</strong>\r\n\r\n[contact-form-7 id="35" title="Inscrição Processo Seletivo"]', 'Inscrição', '', 'inherit', 'open', 'open', '', '2-revision-v1', '', '', '2014-11-26 17:03:28', '2014-11-26 17:03:28', '', 2, 'http://localhost/Harpia/?p=39', 0, 'revision', '', 0),
-(40, 1, '2014-11-26 17:12:08', '2014-11-26 17:12:08', '<p>Nome*<br />\r\n    [text* your-name] </p>\r\n\r\n<p>Seu e-mail*<br />\r\n    [email* your-email] </p>\r\n\r\n<p>Assunto*<br />\r\n    [text* your-subject] </p>\r\n\r\n<p>Sua mensagem*<br />\r\n    [textarea* your-message] </p>\r\n\r\n<p>[submit "Enviar"]</p>\n[your-subject]\n[your-name] <marketing@acens.com.br>\nDe: [your-name] <[your-email]>\r\nAssunto: [your-subject]\r\n\r\nCorpo da mensagem:\r\n[your-message]\r\n\r\n--\r\nEste e-mail foi enviado de um formulário de contato em Harpia (http://localhost/Harpia)\nejharpia@gmail.com\nReply-To: [your-email]\n\n\n\n\n[your-subject]\nHarpia <marketing@acens.com.br>\nCorpo da mensagem:\r\n[your-message]\r\n\r\n--\r\nEste e-mail foi enviado de um formulário de contato em Harpia (http://localhost/Harpia)\n[your-email]\nReply-To: marketing@acens.com.br\n\n\n\nSua mensagem foi enviada com sucesso. Obrigado.\nNão foi possível enviar a sua mensagem. Por favor, tente mais tarde ou contate o administrador por outro método.\nOcorreram erros de validação. Por favor confira os dados e envie novamente.\nNão foi possível enviar a sua mensagem. Por favor, tente mais tarde ou contate o administrador por outro método.\nPor favor aceite os termos para prosseguir.\nPor favor preencha este campo obrigatório.\nO código digitado está incorreto.\nFormato de número parece inválido.\nEste número é muito pequeno.\nEste número é muito grande.\nO endereço de e-mail parece inválido.\nURL parece inválido.\nTelefone parece inválido.\nSua resposta está incorreta.\nFormato da data parece inválido.\nEsta data é demasiado primeira.\nEsta data é demasiado tarde.\nFalha no upload do arquivo.\nEste tipo de arquivo não é permitido.\nEste arquivo é grande demais.\nFalha no upload do arquivo.', 'Contato', '', 'publish', 'open', 'open', '', 'contato', '', '', '2014-11-26 17:12:08', '2014-11-26 17:12:08', '', 0, 'http://localhost/Harpia/?post_type=wpcf7_contact_form&p=40', 0, 'wpcf7_contact_form', '', 0),
-(41, 1, '2014-11-26 17:13:41', '2014-11-26 17:13:41', '[contact-form-7 id="40" title="Contato"]                                                                         ', 'Contato', '', 'inherit', 'open', 'open', '', '11-revision-v1', '', '', '2014-11-26 17:13:41', '2014-11-26 17:13:41', '', 11, 'http://localhost/Harpia/?p=41', 0, 'revision', '', 0);
+(37, 1, '2014-11-26 16:15:10', '2014-11-26 16:15:10', '<h2><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal.png"><img class="size-medium wp-image-6 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal-300x138.png" alt="logo harpia com desenho antigo horizontal" width="300" height="138" /></a></strong></h2>\n<h2><strong>Sobre</strong></h2>\n<strong> </strong>\n\nA HARPIA – Empresa Júnior de Biologia da Universidade Estadual do Ceará (UECE) é uma associação civil sem fins lucrativos, constituída por alunos de graduação, orientada por professores do curso de Ciências Biológicas da UECE que têm por finalidades estabelecer um contato mais efetivo entre os estudantes e o mercado de trabalho, proporcionar aos estudantes a aplicação prática dos conhecimentos teóricos adquiridos na universidade e fomentar em seus membros a prática empreendedora.\n\nA HARPIA foi criada no ano de 2009 por alunos que sentiram a necessidade de trazer o empreendedorismo para dentro do curso de Ciências Biológicas da UECE. A empresa tem como sede a Área Experimental do Laboratório de Ecologia, espaço cedido pelo professor Dr. Oriel Herrera Bonilla, que é nosso professor orientador.\n\n&nbsp;\n<h2><strong>Missão, Visão e Valores</strong></h2>\n<strong> </strong>\n<h3><strong>Missão:</strong></h3>\n&nbsp;\n\nFormar profissionais capacitados realizando projetos técnicos e serviços acadêmicos em Ciências Biológicas.\n\n&nbsp;\n<h3><strong>Visão:</strong></h3>\n&nbsp;\n\nSer a Empresa Júnior de Biologia mais renomada da Região Nordeste na formação de profissionais da área, capacitando seus membros para desenvolver projetos de excelência na área de Ciências Biológicas.\n\n&nbsp;\n<h3><strong>Valores:</strong></h3>\n&nbsp;\n\nExcelência;\n\nÉtica;\n\nColetividade;\n\nResponsabilidade socioambiental;\n\nComprometimento.\n\n&nbsp;\n<h2><strong>Equipe</strong></h2>\n<strong> </strong>\n\nA HARPIA é organizada em cinco diretorias: Diretoria de Presidência, Diretoria Administrativo-Financeiro, Diretor de Recursos Humanos, Diretoria de Projetos e Diretoria de Marketing. Essas diretorias compõem a Diretoria Executiva da empresa, através de um modelo de gestão administrativa participativa sob a coordenação do Diretor Presidente. Atualmente, a empresa conta com 9 membros, sendo distribuídos nos seguintes cargos:\n\n&nbsp;\n\n<strong>Diretoria de Presidência</strong>\n\n&nbsp;\n\nDiretor Presidente: Italo Diego\n\nDiretor Vice-Presidente: Elias Teles\n\nAssessora de Qualidade: Marcia Dayane\n\n&nbsp;\n\n<strong>Diretoria Administrativo-Financeiro</strong>\n\n&nbsp;\n\nDiretora Administrativo-Financeiro: Josiany Costa\n\n&nbsp;\n\n<strong>Diretoria de Projetos</strong>\n\n&nbsp;\n\nDiretor de Projetos: Sávio Victor\n\nConsultor de Projetos: Eduardo Fernandes\n\n&nbsp;\n\n<strong>Diretoria de Recursos Humanos</strong>\n\n&nbsp;\n\nDiretora de Recursos Humanos: Leticia Souza\n\n&nbsp;\n\n<strong>Diretoria de Marketing</strong>\n\n&nbsp;\n\nDiretor de Marketing: Natanael Feitosa\n\nConsultor de Marketing: Henrique Santos', 'Sobre', '', 'inherit', 'open', 'open', '', '15-autosave-v1', '', '', '2014-11-26 16:15:10', '2014-11-26 16:15:10', '', 15, 'http://localhost/Harpia/?p=37', 0, 'revision', '', 0),
+(38, 1, '2014-11-26 16:02:50', '2014-11-26 16:02:50', '<strong>Sobre</strong>\r\n\r\n<strong> </strong>\r\n\r\nA HARPIA – Empresa Júnior de Biologia da Universidade Estadual do Ceará (UECE) é uma associação civil sem fins lucrativos, constituída por alunos de graduação, orientada por professores do curso de Ciências Biológicas da UECE que têm por finalidades estabelecer um contato mais efetivo entre os estudantes e o mercado de trabalho, proporcionar aos estudantes a aplicação prática dos conhecimentos teóricos adquiridos na universidade e fomentar em seus membros a prática empreendedora.\r\n\r\nA HARPIA foi criada no ano de 2009 por alunos que sentiram a necessidade de trazer o empreendedorismo para dentro do curso de Ciências Biológicas da UECE. A empresa tem como sede a Área Experimental do Laboratório de Ecologia, espaço cedido pelo professor Dr. Oriel Herrera Bonilla, que é nosso professor orientador.', 'Sobre', '', 'inherit', 'open', 'open', '', '15-revision-v1', '', '', '2014-11-26 16:02:50', '2014-11-26 16:02:50', '', 15, 'http://localhost/Harpia/?p=38', 0, 'revision', '', 0),
+(39, 1, '2014-11-26 16:04:05', '2014-11-26 16:04:05', '<h2><strong>Sobre</strong></h2>\r\n\r\n<strong> </strong>\r\n\r\nA HARPIA – Empresa Júnior de Biologia da Universidade Estadual do Ceará (UECE) é uma associação civil sem fins lucrativos, constituída por alunos de graduação, orientada por professores do curso de Ciências Biológicas da UECE que têm por finalidades estabelecer um contato mais efetivo entre os estudantes e o mercado de trabalho, proporcionar aos estudantes a aplicação prática dos conhecimentos teóricos adquiridos na universidade e fomentar em seus membros a prática empreendedora.\r\n\r\nA HARPIA foi criada no ano de 2009 por alunos que sentiram a necessidade de trazer o empreendedorismo para dentro do curso de Ciências Biológicas da UECE. A empresa tem como sede a Área Experimental do Laboratório de Ecologia, espaço cedido pelo professor Dr. Oriel Herrera Bonilla, que é nosso professor orientador.', 'Sobre', '', 'inherit', 'open', 'open', '', '15-revision-v1', '', '', '2014-11-26 16:04:05', '2014-11-26 16:04:05', '', 15, 'http://localhost/Harpia/?p=39', 0, 'revision', '', 0),
+(40, 1, '2014-11-26 16:06:09', '2014-11-26 16:06:09', '<h2><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal.png"><img class="size-medium wp-image-6 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal-300x138.png" alt="logo harpia com desenho antigo horizontal" width="300" height="138" /></a></strong></h2>\r\n<h2><strong>Sobre</strong></h2>\r\n<strong> </strong>\r\n\r\nA HARPIA – Empresa Júnior de Biologia da Universidade Estadual do Ceará (UECE) é uma associação civil sem fins lucrativos, constituída por alunos de graduação, orientada por professores do curso de Ciências Biológicas da UECE que têm por finalidades estabelecer um contato mais efetivo entre os estudantes e o mercado de trabalho, proporcionar aos estudantes a aplicação prática dos conhecimentos teóricos adquiridos na universidade e fomentar em seus membros a prática empreendedora.\r\n\r\nA HARPIA foi criada no ano de 2009 por alunos que sentiram a necessidade de trazer o empreendedorismo para dentro do curso de Ciências Biológicas da UECE. A empresa tem como sede a Área Experimental do Laboratório de Ecologia, espaço cedido pelo professor Dr. Oriel Herrera Bonilla, que é nosso professor orientador.', 'Sobre', '', 'inherit', 'open', 'open', '', '15-revision-v1', '', '', '2014-11-26 16:06:09', '2014-11-26 16:06:09', '', 15, 'http://localhost/Harpia/?p=40', 0, 'revision', '', 0),
+(41, 1, '2014-11-26 16:12:28', '2014-11-26 16:12:28', '<h2><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal.png"><img class="size-medium wp-image-6 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal-300x138.png" alt="logo harpia com desenho antigo horizontal" width="300" height="138" /></a></strong></h2>\r\n<h2><strong>Sobre</strong></h2>\r\n<strong> </strong>\r\n\r\nA HARPIA – Empresa Júnior de Biologia da Universidade Estadual do Ceará (UECE) é uma associação civil sem fins lucrativos, constituída por alunos de graduação, orientada por professores do curso de Ciências Biológicas da UECE que têm por finalidades estabelecer um contato mais efetivo entre os estudantes e o mercado de trabalho, proporcionar aos estudantes a aplicação prática dos conhecimentos teóricos adquiridos na universidade e fomentar em seus membros a prática empreendedora.\r\n\r\nA HARPIA foi criada no ano de 2009 por alunos que sentiram a necessidade de trazer o empreendedorismo para dentro do curso de Ciências Biológicas da UECE. A empresa tem como sede a Área Experimental do Laboratório de Ecologia, espaço cedido pelo professor Dr. Oriel Herrera Bonilla, que é nosso professor orientador.\r\n\r\n&nbsp;\r\n<h2><strong>Missão, Visão e Valores</strong></h2>\r\n<strong> </strong>\r\n<h3><strong>Missão:</strong></h3>\r\nFormar profissionais capacitados realizando projetos técnicos e serviços acadêmicos em Ciências Biológicas.\r\n<h3><strong>Visão:</strong></h3>\r\nSer a Empresa Júnior de Biologia mais renomada da Região Nordeste na formação de profissionais da área, capacitando seus membros para desenvolver projetos de excelência na área de Ciências Biológicas.\r\n<h3><strong>Valores:</strong></h3>\r\nExcelência;\r\n\r\nÉtica;\r\n\r\nColetividade;\r\n\r\nResponsabilidade socioambiental;\r\n\r\nComprometimento.\r\n\r\n&nbsp;\r\n\r\n<h2><strong>Equipe</strong></h2>\r\n\r\n<strong> </strong>\r\n\r\nA HARPIA é organizada em cinco diretorias: Diretoria de Presidência, Diretoria Administrativo-Financeiro, Diretor de Recursos Humanos, Diretoria de Projetos e Diretoria de Marketing. Essas diretorias compõem a Diretoria Executiva da empresa, através de um modelo de gestão administrativa participativa sob a coordenação do Diretor Presidente. Atualmente, a empresa conta com 9 membros, sendo distribuídos nos seguintes cargos:\r\n\r\n&nbsp;\r\n\r\n<strong>Diretoria de Presidência</strong>\r\n\r\nDiretor Presidente: Italo Diego\r\n\r\nDiretor Vice-Presidente: Elias Teles\r\n\r\nAssessora de Qualidade: Marcia Dayane\r\n\r\n<strong>Diretoria Administrativo-Financeiro</strong>\r\n\r\nDiretora Administrativo-Financeiro: Josiany Costa\r\n\r\n<strong>Diretoria de Projetos</strong>\r\n\r\nDiretor de Projetos: Sávio Victor\r\n\r\nConsultor de Projetos: Eduardo Fernandes\r\n\r\n<strong>Diretoria de Recursos Humanos</strong>\r\n\r\nDiretora de Recursos Humanos: Leticia Souza\r\n\r\n<strong>Diretoria de Marketing</strong>\r\n\r\nDiretor de Marketing: Natanael Feitosa\r\n\r\nConsultor de Marketing: Henrique Santos', 'Sobre', '', 'inherit', 'open', 'open', '', '15-revision-v1', '', '', '2014-11-26 16:12:28', '2014-11-26 16:12:28', '', 15, 'http://localhost/Harpia/?p=41', 0, 'revision', '', 0),
+(42, 1, '2014-11-26 16:14:04', '2014-11-26 16:14:04', '<h2><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal.png"><img class="size-medium wp-image-6 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal-300x138.png" alt="logo harpia com desenho antigo horizontal" width="300" height="138" /></a></strong></h2>\r\n<h2><strong>Sobre</strong></h2>\r\n<strong> </strong>\r\n\r\nA HARPIA – Empresa Júnior de Biologia da Universidade Estadual do Ceará (UECE) é uma associação civil sem fins lucrativos, constituída por alunos de graduação, orientada por professores do curso de Ciências Biológicas da UECE que têm por finalidades estabelecer um contato mais efetivo entre os estudantes e o mercado de trabalho, proporcionar aos estudantes a aplicação prática dos conhecimentos teóricos adquiridos na universidade e fomentar em seus membros a prática empreendedora.\r\n\r\nA HARPIA foi criada no ano de 2009 por alunos que sentiram a necessidade de trazer o empreendedorismo para dentro do curso de Ciências Biológicas da UECE. A empresa tem como sede a Área Experimental do Laboratório de Ecologia, espaço cedido pelo professor Dr. Oriel Herrera Bonilla, que é nosso professor orientador.\r\n\r\n&nbsp;\r\n<h2><strong>Missão, Visão e Valores</strong></h2>\r\n<strong> </strong>\r\n<h3><strong>Missão:</strong></h3>\r\n&nbsp;\r\n\r\nFormar profissionais capacitados realizando projetos técnicos e serviços acadêmicos em Ciências Biológicas.\r\n<h3><strong>Visão:</strong></h3>\r\n&nbsp;\r\n\r\nSer a Empresa Júnior de Biologia mais renomada da Região Nordeste na formação de profissionais da área, capacitando seus membros para desenvolver projetos de excelência na área de Ciências Biológicas.\r\n<h3><strong>Valores:</strong></h3>\r\n&nbsp;\r\n\r\nExcelência;\r\n\r\nÉtica;\r\n\r\nColetividade;\r\n\r\nResponsabilidade socioambiental;\r\n\r\nComprometimento.\r\n\r\n&nbsp;\r\n<h2><strong>Equipe</strong></h2>\r\n<strong> </strong>\r\n\r\nA HARPIA é organizada em cinco diretorias: Diretoria de Presidência, Diretoria Administrativo-Financeiro, Diretor de Recursos Humanos, Diretoria de Projetos e Diretoria de Marketing. Essas diretorias compõem a Diretoria Executiva da empresa, através de um modelo de gestão administrativa participativa sob a coordenação do Diretor Presidente. Atualmente, a empresa conta com 9 membros, sendo distribuídos nos seguintes cargos:\r\n\r\n&nbsp;\r\n\r\n<strong>Diretoria de Presidência</strong>\r\n\r\n&nbsp;\r\n\r\nDiretor Presidente: Italo Diego\r\n\r\nDiretor Vice-Presidente: Elias Teles\r\n\r\nAssessora de Qualidade: Marcia Dayane\r\n\r\n<strong>Diretoria Administrativo-Financeiro</strong>\r\n\r\n&nbsp;\r\n\r\nDiretora Administrativo-Financeiro: Josiany Costa\r\n\r\n<strong>Diretoria de Projetos</strong>\r\n\r\n&nbsp;\r\n\r\nDiretor de Projetos: Sávio Victor\r\n\r\nConsultor de Projetos: Eduardo Fernandes\r\n\r\n<strong>Diretoria de Recursos Humanos</strong>\r\n\r\n&nbsp;\r\n\r\nDiretora de Recursos Humanos: Leticia Souza\r\n\r\n<strong>Diretoria de Marketing</strong>\r\n\r\n&nbsp;\r\n\r\nDiretor de Marketing: Natanael Feitosa\r\n\r\nConsultor de Marketing: Henrique Santos', 'Sobre', '', 'inherit', 'open', 'open', '', '15-revision-v1', '', '', '2014-11-26 16:14:04', '2014-11-26 16:14:04', '', 15, 'http://localhost/Harpia/?p=42', 0, 'revision', '', 0),
+(43, 1, '2014-11-26 16:15:58', '2014-11-26 16:15:58', '<h2><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal.png"><img class="size-medium wp-image-6 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal-300x138.png" alt="logo harpia com desenho antigo horizontal" width="300" height="138" /></a></strong></h2>\r\n<h2><strong>Sobre</strong></h2>\r\n<strong> </strong>\r\n\r\nA HARPIA – Empresa Júnior de Biologia da Universidade Estadual do Ceará (UECE) é uma associação civil sem fins lucrativos, constituída por alunos de graduação, orientada por professores do curso de Ciências Biológicas da UECE que têm por finalidades estabelecer um contato mais efetivo entre os estudantes e o mercado de trabalho, proporcionar aos estudantes a aplicação prática dos conhecimentos teóricos adquiridos na universidade e fomentar em seus membros a prática empreendedora.\r\n\r\nA HARPIA foi criada no ano de 2009 por alunos que sentiram a necessidade de trazer o empreendedorismo para dentro do curso de Ciências Biológicas da UECE. A empresa tem como sede a Área Experimental do Laboratório de Ecologia, espaço cedido pelo professor Dr. Oriel Herrera Bonilla, que é nosso professor orientador.\r\n\r\n&nbsp;\r\n<h2><strong>Missão, Visão e Valores</strong></h2>\r\n<strong> </strong>\r\n<h3><strong>Missão:</strong></h3>\r\n&nbsp;\r\n\r\nFormar profissionais capacitados realizando projetos técnicos e serviços acadêmicos em Ciências Biológicas.\r\n\r\n&nbsp;\r\n<h3><strong>Visão:</strong></h3>\r\n&nbsp;\r\n\r\nSer a Empresa Júnior de Biologia mais renomada da Região Nordeste na formação de profissionais da área, capacitando seus membros para desenvolver projetos de excelência na área de Ciências Biológicas.\r\n\r\n&nbsp;\r\n<h3><strong>Valores:</strong></h3>\r\n&nbsp;\r\n\r\nExcelência;\r\n\r\nÉtica;\r\n\r\nColetividade;\r\n\r\nResponsabilidade socioambiental;\r\n\r\nComprometimento.\r\n\r\n&nbsp;\r\n<h2><strong>Equipe</strong></h2>\r\n<strong> </strong>\r\n\r\nA HARPIA é organizada em cinco diretorias: Diretoria de Presidência, Diretoria Administrativo-Financeiro, Diretor de Recursos Humanos, Diretoria de Projetos e Diretoria de Marketing. Essas diretorias compõem a Diretoria Executiva da empresa, através de um modelo de gestão administrativa participativa sob a coordenação do Diretor Presidente. Atualmente, a empresa conta com 9 membros, sendo distribuídos nos seguintes cargos:\r\n\r\n&nbsp;\r\n\r\n<strong>Diretoria de Presidência</strong>\r\n\r\n&nbsp;\r\n\r\n<em>Diretor Presidente: Italo Diego</em>\r\n\r\n<em>Diretor Vice-Presidente: Elias Teles</em>\r\n\r\n<em>Assessora de Qualidade: Marcia Dayane</em>\r\n\r\n&nbsp;\r\n\r\n<strong>Diretoria Administrativo-Financeiro</strong>\r\n\r\n&nbsp;\r\n\r\n<em>Diretora Administrativo-Financeiro: Josiany Costa</em>\r\n\r\n&nbsp;\r\n\r\n<strong>Diretoria de Projetos</strong>\r\n\r\n&nbsp;\r\n\r\n<em>Diretor de Projetos: Sávio Victor</em>\r\n\r\n<em>Consultor de Projetos: Eduardo Fernandes</em>\r\n\r\n&nbsp;\r\n\r\n<strong>Diretoria de Recursos Humanos</strong>\r\n\r\n&nbsp;\r\n\r\n<em>Diretora de Recursos Humanos: Leticia Souza</em>\r\n\r\n&nbsp;\r\n\r\n<strong>Diretoria de Marketing</strong>\r\n\r\n&nbsp;\r\n\r\n<em>Diretor de Marketing: Natanael Feitosa</em>\r\n\r\n<em>Consultor de Marketing: Henrique Santos</em>', 'Sobre', '', 'inherit', 'open', 'open', '', '15-revision-v1', '', '', '2014-11-26 16:15:58', '2014-11-26 16:15:58', '', 15, 'http://localhost/Harpia/?p=43', 0, 'revision', '', 0),
+(44, 1, '2014-11-26 16:23:33', '2014-11-26 16:23:33', '<h1 style="text-align: center;"><strong>MEJ (Movimento Empresa Júnior)</strong></h1>\n&nbsp;\n\nAs empresas juniores são constituídas pela união de alunos matriculados em cursos de graduação em instituições de ensino superior, organizados em uma associação civil com o intuito de realizar projetos e serviços que contribuam para o desenvolvimento do país e de formar profissionais capacitados e comprometidos com esse objetivo.\n\n&nbsp;\n\nO objetivo primeiro das empresas juniores é desenvolver pessoal e profissionalmente os seus membros por meio da vivência empresarial, realizando projetos e serviços na área de atuação do(s) curso(s) de graduação ao(s) qual(is) a empresa júnior for vinculada. Por esse objetivo entende-se fomentar o crescimento pessoal e profissional do aluno membro, por meio do oferecimento de serviços de qualidade e a baixo custo ao mercado. Dessa forma, além de atingir seu próprio objetivo, as EJs contribuem para o desenvolvimento do empreendedorismo em sua região. Em alta escala, o Movimento das Empresas Juniores (MEJ) contribui com uma importante parcela no desenvolvimento empresarial e econômico do país.\n\n&nbsp;\n\nEm 1967, alunos da ESSEC – L’École Supérieure des Sciences Economiques et Commerciales, em Paris, sentiram a necessidade de ter conhecimento das ferramentas utilizadas no mercado em que eles trabalhariam num futuro próximo. Assim, foi fundada a Junior ESSEC Conseil, uma associação de estudantes que colocaria em prática os conhecimentos acadêmicos com clientes do mercado. . O conceito depois se espalhou entre as escolas de engenharia e administração da França, em seguida pelas escolas de comunicação, agronomia e outras universidades. Em 1969 foi criada a primeira confederação, a Confederação Francesa de Empresas Juniores que já reunia mais de 20 empresas na época. No Brasil há mais de 700 empresas juniores, contando com mais de 22.000 empresários em todas as regiões do país.\n\n&nbsp;\n\n<strong>Fonte:</strong>\n\nCNEJ –<em> Conceito Nacional de Empresa Júnior</em>\n\nDNA JR.', 'MEJ', '', 'inherit', 'open', 'open', '', '17-autosave-v1', '', '', '2014-11-26 16:23:33', '2014-11-26 16:23:33', '', 17, 'http://localhost/Harpia/?p=44', 0, 'revision', '', 0),
+(45, 1, '2014-11-26 16:20:59', '2014-11-26 16:20:59', '<h2><strong>MEJ (Movimento Empresa Júnior)</strong></h2>\r\nAs empresas juniores são constituídas pela união de alunos matriculados em cursos de graduação em instituições de ensino superior, organizados em uma associação civil com o intuito de realizar projetos e serviços que contribuam para o desenvolvimento do país e de formar profissionais capacitados e comprometidos com esse objetivo.\r\n\r\nO objetivo primeiro das empresas juniores é desenvolver pessoal e profissionalmente os seus membros por meio da vivência empresarial, realizando projetos e serviços na área de atuação do(s) curso(s) de graduação ao(s) qual(is) a empresa júnior for vinculada. Por esse objetivo entende-se fomentar o crescimento pessoal e profissional do aluno membro, por meio do oferecimento de serviços de qualidade e a baixo custo ao mercado. Dessa forma, além de atingir seu próprio objetivo, as EJs contribuem para o desenvolvimento do empreendedorismo em sua região. Em alta escala, o Movimento das Empresas Juniores (MEJ) contribui com uma importante parcela no desenvolvimento empresarial e econômico do país.\r\n\r\nEm 1967, alunos da ESSEC – L’École Supérieure des Sciences Economiques et Commerciales, em Paris, sentiram a necessidade de ter conhecimento das ferramentas utilizadas no mercado em que eles trabalhariam num futuro próximo. Assim, foi fundada a Junior ESSEC Conseil, uma associação de estudantes que colocaria em prática os conhecimentos acadêmicos com clientes do mercado. . O conceito depois se espalhou entre as escolas de engenharia e administração da França, em seguida pelas escolas de comunicação, agronomia e outras universidades. Em 1969 foi criada a primeira confederação, a Confederação Francesa de Empresas Juniores que já reunia mais de 20 empresas na época. No Brasil há mais de 700 empresas juniores, contando com mais de 22.000 empresários em todas as regiões do país.\r\n\r\n&nbsp;\r\n\r\nFonte:\r\n\r\nCNEJ – Conceito Nacional de Empresa Júnior\r\n\r\nDNA JR.', 'MEJ', '', 'inherit', 'open', 'open', '', '17-revision-v1', '', '', '2014-11-26 16:20:59', '2014-11-26 16:20:59', '', 17, 'http://localhost/Harpia/?p=45', 0, 'revision', '', 0),
+(46, 1, '2014-11-26 16:22:28', '2014-11-26 16:22:28', '<h2 style="text-align: center;"><strong>MEJ (Movimento Empresa Júnior)</strong></h2>\r\n&nbsp;\r\n\r\nAs empresas juniores são constituídas pela união de alunos matriculados em cursos de graduação em instituições de ensino superior, organizados em uma associação civil com o intuito de realizar projetos e serviços que contribuam para o desenvolvimento do país e de formar profissionais capacitados e comprometidos com esse objetivo.\r\n\r\nO objetivo primeiro das empresas juniores é desenvolver pessoal e profissionalmente os seus membros por meio da vivência empresarial, realizando projetos e serviços na área de atuação do(s) curso(s) de graduação ao(s) qual(is) a empresa júnior for vinculada. Por esse objetivo entende-se fomentar o crescimento pessoal e profissional do aluno membro, por meio do oferecimento de serviços de qualidade e a baixo custo ao mercado. Dessa forma, além de atingir seu próprio objetivo, as EJs contribuem para o desenvolvimento do empreendedorismo em sua região. Em alta escala, o Movimento das Empresas Juniores (MEJ) contribui com uma importante parcela no desenvolvimento empresarial e econômico do país.\r\n\r\nEm 1967, alunos da ESSEC – L’École Supérieure des Sciences Economiques et Commerciales, em Paris, sentiram a necessidade de ter conhecimento das ferramentas utilizadas no mercado em que eles trabalhariam num futuro próximo. Assim, foi fundada a Junior ESSEC Conseil, uma associação de estudantes que colocaria em prática os conhecimentos acadêmicos com clientes do mercado. . O conceito depois se espalhou entre as escolas de engenharia e administração da França, em seguida pelas escolas de comunicação, agronomia e outras universidades. Em 1969 foi criada a primeira confederação, a Confederação Francesa de Empresas Juniores que já reunia mais de 20 empresas na época. No Brasil há mais de 700 empresas juniores, contando com mais de 22.000 empresários em todas as regiões do país.\r\n\r\n&nbsp;\r\n\r\n<strong>Fonte:</strong>\r\n\r\nCNEJ –<em> Conceito Nacional de Empresa Júnior</em>\r\n\r\nDNA JR.', 'MEJ', '', 'inherit', 'open', 'open', '', '17-revision-v1', '', '', '2014-11-26 16:22:28', '2014-11-26 16:22:28', '', 17, 'http://localhost/Harpia/?p=46', 0, 'revision', '', 0),
+(47, 1, '2014-11-26 16:23:37', '2014-11-26 16:23:37', '<h1 style="text-align: center;"><strong>MEJ (Movimento Empresa Júnior)</strong></h1>\r\n&nbsp;\r\n\r\nAs empresas juniores são constituídas pela união de alunos matriculados em cursos de graduação em instituições de ensino superior, organizados em uma associação civil com o intuito de realizar projetos e serviços que contribuam para o desenvolvimento do país e de formar profissionais capacitados e comprometidos com esse objetivo.\r\n\r\n&nbsp;\r\n\r\nO objetivo primeiro das empresas juniores é desenvolver pessoal e profissionalmente os seus membros por meio da vivência empresarial, realizando projetos e serviços na área de atuação do(s) curso(s) de graduação ao(s) qual(is) a empresa júnior for vinculada. Por esse objetivo entende-se fomentar o crescimento pessoal e profissional do aluno membro, por meio do oferecimento de serviços de qualidade e a baixo custo ao mercado. Dessa forma, além de atingir seu próprio objetivo, as EJs contribuem para o desenvolvimento do empreendedorismo em sua região. Em alta escala, o Movimento das Empresas Juniores (MEJ) contribui com uma importante parcela no desenvolvimento empresarial e econômico do país.\r\n\r\n&nbsp;\r\n\r\nEm 1967, alunos da ESSEC – L’École Supérieure des Sciences Economiques et Commerciales, em Paris, sentiram a necessidade de ter conhecimento das ferramentas utilizadas no mercado em que eles trabalhariam num futuro próximo. Assim, foi fundada a Junior ESSEC Conseil, uma associação de estudantes que colocaria em prática os conhecimentos acadêmicos com clientes do mercado. . O conceito depois se espalhou entre as escolas de engenharia e administração da França, em seguida pelas escolas de comunicação, agronomia e outras universidades. Em 1969 foi criada a primeira confederação, a Confederação Francesa de Empresas Juniores que já reunia mais de 20 empresas na época. No Brasil há mais de 700 empresas juniores, contando com mais de 22.000 empresários em todas as regiões do país.\r\n\r\n&nbsp;\r\n\r\n<strong>Fonte:</strong>\r\n\r\nCNEJ –<em> Conceito Nacional de Empresa Júnior</em>\r\n\r\nDNA JR.', 'MEJ', '', 'inherit', 'open', 'open', '', '17-revision-v1', '', '', '2014-11-26 16:23:37', '2014-11-26 16:23:37', '', 17, 'http://localhost/Harpia/?p=47', 0, 'revision', '', 0),
+(48, 1, '2014-11-26 16:29:52', '2014-11-26 16:29:52', '', 'projeto 1', '', 'inherit', 'open', 'open', '', 'projeto-1', '', '', '2014-11-26 16:29:52', '2014-11-26 16:29:52', '', 13, 'http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1.jpg', 0, 'attachment', 'image/jpeg', 0),
+(49, 1, '2014-11-26 16:29:56', '2014-11-26 16:29:56', '', 'projeto 2', '', 'inherit', 'open', 'open', '', 'projeto-2', '', '', '2014-11-26 16:29:56', '2014-11-26 16:29:56', '', 13, 'http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2.jpg', 0, 'attachment', 'image/jpeg', 0),
+(50, 1, '2014-11-26 16:30:01', '2014-11-26 16:30:01', '', 'Projeto 3', '', 'inherit', 'open', 'open', '', 'projeto-3', '', '', '2014-11-26 16:30:01', '2014-11-26 16:30:01', '', 13, 'http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3.jpg', 0, 'attachment', 'image/jpeg', 0),
+(51, 1, '2014-11-26 16:30:05', '2014-11-26 16:30:05', '', 'projeto 4', '', 'inherit', 'open', 'open', '', 'projeto-4', '', '', '2014-11-26 16:30:05', '2014-11-26 16:30:05', '', 13, 'http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4.jpg', 0, 'attachment', 'image/jpeg', 0),
+(52, 1, '2014-11-26 16:30:09', '2014-11-26 16:30:09', '', 'projeto 5', '', 'inherit', 'open', 'open', '', 'projeto-5', '', '', '2014-11-26 16:30:09', '2014-11-26 16:30:09', '', 13, 'http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5.jpg', 0, 'attachment', 'image/jpeg', 0);
+INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post_content`, `post_title`, `post_excerpt`, `post_status`, `comment_status`, `ping_status`, `post_password`, `post_name`, `to_ping`, `pinged`, `post_modified`, `post_modified_gmt`, `post_content_filtered`, `post_parent`, `guid`, `menu_order`, `post_type`, `post_mime_type`, `comment_count`) VALUES
+(53, 1, '2014-11-26 17:03:33', '2014-11-26 17:03:33', '<strong> </strong>\n\n&nbsp;\n<h4 style="text-align: center;"><strong>Levantamento de fauna e flora e elaboração de inventários.</strong></h4>\n<strong> </strong>\n<p style="text-align: center;"><strong> <a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1.jpg"><img class="alignnone  wp-image-48" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1-300x225.jpg" alt="projeto 1" width="450" height="338" /></a></strong></p>\n\n<h4 style="text-align: center;"><strong> </strong></h4>\n<h4 style="text-align: center;"><strong> </strong></h4>\n<h4 style="text-align: center;"><strong>Educação ambiental em escolas de ensino fundamental e médio do ensino público e privado do estado do Ceará.</strong></h4>\n<strong> </strong>\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2.jpg"><img class="alignnone  wp-image-49" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2-300x225.jpg" alt="projeto 2" width="451" height="338" /></a></strong></p>\n\n<h4 style="text-align: center;"><strong> </strong></h4>\n<h4 style="text-align: center;"><strong>Formação, organização e estruturação de trilhas ecológicas e treinamento de guias para excursões científicas e projetos envolvendo Ecoturismo.</strong></h4>\n<strong> </strong>\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3.jpg"><img class="alignnone  wp-image-50" src="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3-300x225.jpg" alt="Projeto 3" width="451" height="338" /></a></strong></p>\n\n<h4 style="text-align: center;"><strong> </strong></h4>\n<h4 style="text-align: center;"><strong>Organização de eventos acadêmicos e treinamentos da área de Ciências Biológicas e áreas afins.</strong></h4>\n<strong> </strong>\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4.jpg"><img class="alignnone  wp-image-51" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4-300x225.jpg" alt="projeto 4" width="451" height="338" /></a></strong></p>\n\n<h4 style="text-align: center;"><strong> </strong></h4>\n<h4 style="text-align: center;"><strong>Elaboração de materiais didáticos e informativos envolvendo os mais variados temas de Ciências Biológicas e Meio Ambiente.</strong></h4>\n<strong> </strong>\n\n<strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5.jpg"><img class="alignnone  wp-image-52 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5-300x225.jpg" alt="projeto 5" width="451" height="338" /></a></strong>', 'Serviços', '', 'inherit', 'open', 'open', '', '13-autosave-v1', '', '', '2014-11-26 17:03:33', '2014-11-26 17:03:33', '', 13, 'http://localhost/Harpia/?p=53', 0, 'revision', '', 0),
+(54, 1, '2014-11-26 16:36:22', '2014-11-26 16:36:22', '&nbsp;\r\n<p style="text-align: center;">Levantamento de fauna e flora e elaboração de inventários.</p>\r\n<p style="text-align: center;"> <a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1.jpg"><img class="alignnone size-medium wp-image-48" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1-300x225.jpg" alt="projeto 1" width="300" height="225" /></a></p>\r\n<p style="text-align: center;"></p>\r\n<p style="text-align: center;">Educação ambiental em escolas de ensino fundamental e médio do ensino público e privado do estado do Ceará.</p>\r\n<p style="text-align: center;"><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2.jpg"><img class="alignnone size-medium wp-image-49" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2-300x225.jpg" alt="projeto 2" width="300" height="225" /></a></p>\r\n<p style="text-align: center;">Formação, organização e estruturação de trilhas ecológicas e treinamento de guias para excursões científicas e projetos envolvendo Ecoturismo.</p>\r\n<p style="text-align: center;"><a href="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3.jpg"><img class="alignnone size-medium wp-image-50" src="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3-300x225.jpg" alt="Projeto 3" width="300" height="225" /></a></p>\r\n<p style="text-align: center;">Organização de eventos acadêmicos e treinamentos da área de Ciências Biológicas e áreas afins.</p>\r\n<p style="text-align: center;"><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4.jpg"><img class="alignnone size-medium wp-image-51" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4-300x225.jpg" alt="projeto 4" width="300" height="225" /></a></p>\r\n<p style="text-align: center;">Elaboração de materiais didáticos e informativos envolvendo os mais variados temas de Ciências Biológicas e Meio Ambiente.</p>\r\n<a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5.jpg"><img class="alignnone size-medium wp-image-52 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5-300x225.jpg" alt="projeto 5" width="300" height="225" /></a>', 'Serviços', '', 'inherit', 'open', 'open', '', '13-revision-v1', '', '', '2014-11-26 16:36:22', '2014-11-26 16:36:22', '', 13, 'http://localhost/Harpia/?p=54', 0, 'revision', '', 0),
+(55, 1, '2014-11-26 16:37:31', '2014-11-26 16:37:31', '&nbsp;\r\n<p style="text-align: center;">Levantamento de fauna e flora e elaboração de inventários.</p>\r\n<p style="text-align: center;"> <a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1.jpg"><img class="alignnone size-medium wp-image-48" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1-300x225.jpg" alt="projeto 1" width="300" height="225" /></a></p>\r\n<p style="text-align: center;">Educação ambiental em escolas de ensino fundamental e médio do ensino público e privado do estado do Ceará.</p>\r\n<p style="text-align: center;"><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2.jpg"><img class="alignnone size-medium wp-image-49" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2-300x225.jpg" alt="projeto 2" width="300" height="225" /></a></p>\r\n<p style="text-align: center;">Formação, organização e estruturação de trilhas ecológicas e treinamento de guias para excursões científicas e projetos envolvendo Ecoturismo.</p>\r\n<p style="text-align: center;"><a href="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3.jpg"><img class="alignnone size-medium wp-image-50" src="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3-300x225.jpg" alt="Projeto 3" width="300" height="225" /></a></p>\r\n<p style="text-align: center;">Organização de eventos acadêmicos e treinamentos da área de Ciências Biológicas e áreas afins.</p>\r\n<p style="text-align: center;"><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4.jpg"><img class="alignnone size-medium wp-image-51" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4-300x225.jpg" alt="projeto 4" width="300" height="225" /></a></p>\r\n<p style="text-align: center;">Elaboração de materiais didáticos e informativos envolvendo os mais variados temas de Ciências Biológicas e Meio Ambiente.</p>\r\n<a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5.jpg"><img class="alignnone size-medium wp-image-52 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5-300x225.jpg" alt="projeto 5" width="300" height="225" /></a>', 'Serviços', '', 'inherit', 'open', 'open', '', '13-revision-v1', '', '', '2014-11-26 16:37:31', '2014-11-26 16:37:31', '', 13, 'http://localhost/Harpia/?p=55', 0, 'revision', '', 0),
+(56, 1, '2014-11-26 16:44:05', '2014-11-26 16:44:05', '&nbsp;\r\n<p style="text-align: center;">Levantamento de fauna e flora e elaboração de inventários.</p>\r\n<p style="text-align: center;"></p>\r\n<p style="text-align: center;"> <a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1.jpg"><img class="alignnone size-medium wp-image-48" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1-300x225.jpg" alt="projeto 1" width="300" height="225" /></a></p>\r\n<p style="text-align: center;">Educação ambiental em escolas de ensino fundamental e médio do ensino público e privado do estado do Ceará.</p>\r\n<p style="text-align: center;"><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2.jpg"><img class="alignnone size-medium wp-image-49" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2-300x225.jpg" alt="projeto 2" width="300" height="225" /></a></p>\r\n<p style="text-align: center;">Formação, organização e estruturação de trilhas ecológicas e treinamento de guias para excursões científicas e projetos envolvendo Ecoturismo.</p>\r\n<p style="text-align: center;"><a href="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3.jpg"><img class="alignnone size-medium wp-image-50" src="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3-300x225.jpg" alt="Projeto 3" width="300" height="225" /></a></p>\r\n<p style="text-align: center;">Organização de eventos acadêmicos e treinamentos da área de Ciências Biológicas e áreas afins.</p>\r\n<p style="text-align: center;"><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4.jpg"><img class="alignnone size-medium wp-image-51" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4-300x225.jpg" alt="projeto 4" width="300" height="225" /></a></p>\r\n<p style="text-align: center;">Elaboração de materiais didáticos e informativos envolvendo os mais variados temas de Ciências Biológicas e Meio Ambiente.</p>\r\n<a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5.jpg"><img class="alignnone size-medium wp-image-52 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5-300x225.jpg" alt="projeto 5" width="300" height="225" /></a>', 'Serviços', '', 'inherit', 'open', 'open', '', '13-revision-v1', '', '', '2014-11-26 16:44:05', '2014-11-26 16:44:05', '', 13, 'http://localhost/Harpia/?p=56', 0, 'revision', '', 0),
+(57, 1, '2014-11-26 16:45:19', '2014-11-26 16:45:19', '&nbsp;\r\n<p style="text-align: center;">Levantamento de fauna e flora e elaboração de inventários.</p>\r\n<p style="text-align: center;"></p>\r\n<p style="text-align: center;"> <a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1.jpg"><img class="alignnone size-medium wp-image-48" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1-300x225.jpg" alt="projeto 1" width="300" height="225" /></a></p>\r\n<p style="text-align: center;"></p>\r\n<p style="text-align: center;">Educação ambiental em escolas de ensino fundamental e médio do ensino público e privado do estado do Ceará.</p>\r\n<p style="text-align: center;"></p>\r\n<p style="text-align: center;"><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2.jpg"><img class="alignnone size-medium wp-image-49" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2-300x225.jpg" alt="projeto 2" width="300" height="225" /></a></p>\r\n<p style="text-align: center;"></p>\r\n<p style="text-align: center;">Formação, organização e estruturação de trilhas ecológicas e treinamento de guias para excursões científicas e projetos envolvendo Ecoturismo.</p>\r\n<p style="text-align: center;"></p>\r\n<p style="text-align: center;"><a href="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3.jpg"><img class="alignnone size-medium wp-image-50" src="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3-300x225.jpg" alt="Projeto 3" width="300" height="225" /></a></p>\r\n<p style="text-align: center;"></p>\r\n<p style="text-align: center;">Organização de eventos acadêmicos e treinamentos da área de Ciências Biológicas e áreas afins.</p>\r\n<p style="text-align: center;"></p>\r\n<p style="text-align: center;"><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4.jpg"><img class="alignnone size-medium wp-image-51" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4-300x225.jpg" alt="projeto 4" width="300" height="225" /></a></p>\r\n<p style="text-align: center;"></p>\r\n<p style="text-align: center;">Elaboração de materiais didáticos e informativos envolvendo os mais variados temas de Ciências Biológicas e Meio Ambiente.</p>\r\n<p style="text-align: center;"></p>\r\n<a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5.jpg"><img class="alignnone size-medium wp-image-52 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5-300x225.jpg" alt="projeto 5" width="300" height="225" /></a>', 'Serviços', '', 'inherit', 'open', 'open', '', '13-revision-v1', '', '', '2014-11-26 16:45:19', '2014-11-26 16:45:19', '', 13, 'http://localhost/Harpia/?p=57', 0, 'revision', '', 0),
+(58, 1, '2014-11-26 16:50:35', '2014-11-26 16:50:35', '<strong> </strong>\r\n<h2 style="text-align: center;"><strong>Levantamento de fauna e flora e elaboração de inventários.</strong></h2>\r\n<p style="text-align: center;"><strong> <a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1.jpg"><img class="alignnone size-medium wp-image-48" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1-300x225.jpg" alt="projeto 1" width="300" height="225" /></a></strong></p>\r\n<h2 style="text-align: center;"><strong>Educação ambiental em escolas de ensino fundamental e médio do ensino público e privado do estado do Ceará.</strong></h2>\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2.jpg"><img class="alignnone size-medium wp-image-49" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2-300x225.jpg" alt="projeto 2" width="300" height="225" /></a></strong></p>\r\n<h2 style="text-align: center;"><strong>Formação, organização e estruturação de trilhas ecológicas e treinamento de guias para excursões científicas e projetos envolvendo Ecoturismo.</strong></h2>\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3.jpg"><img class="alignnone size-medium wp-image-50" src="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3-300x225.jpg" alt="Projeto 3" width="300" height="225" /></a></strong></p>\r\n<h2 style="text-align: center;"><strong>Organização de eventos acadêmicos e treinamentos da área de Ciências Biológicas e áreas afins.</strong></h2>\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4.jpg"><img class="alignnone size-medium wp-image-51" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4-300x225.jpg" alt="projeto 4" width="300" height="225" /></a></strong></p>\r\n<h2 style="text-align: center;"><strong>Elaboração de materiais didáticos e informativos envolvendo os mais variados temas de Ciências Biológicas e Meio Ambiente.</strong></h2>\r\n<strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5.jpg"><img class="alignnone size-medium wp-image-52 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5-300x225.jpg" alt="projeto 5" width="300" height="225" /></a></strong>', 'Serviços', '', 'inherit', 'open', 'open', '', '13-revision-v1', '', '', '2014-11-26 16:50:35', '2014-11-26 16:50:35', '', 13, 'http://localhost/Harpia/?p=58', 0, 'revision', '', 0),
+(59, 1, '2014-11-26 16:51:49', '2014-11-26 16:51:49', '<strong> </strong>\r\n<h4 style="text-align: center;"><strong>Levantamento de fauna e flora e elaboração de inventários.</strong></h4>\r\n<p style="text-align: center;"><strong> <a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1.jpg"><img class="alignnone size-medium wp-image-48" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1-300x225.jpg" alt="projeto 1" width="300" height="225" /></a></strong></p>\r\n<h2 style="text-align: center;"><strong>Educação ambiental em escolas de ensino fundamental e médio do ensino público e privado do estado do Ceará.</strong></h2>\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2.jpg"><img class="alignnone size-medium wp-image-49" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2-300x225.jpg" alt="projeto 2" width="300" height="225" /></a></strong></p>\r\n<h2 style="text-align: center;"><strong>Formação, organização e estruturação de trilhas ecológicas e treinamento de guias para excursões científicas e projetos envolvendo Ecoturismo.</strong></h2>\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3.jpg"><img class="alignnone size-medium wp-image-50" src="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3-300x225.jpg" alt="Projeto 3" width="300" height="225" /></a></strong></p>\r\n<h2 style="text-align: center;"><strong>Organização de eventos acadêmicos e treinamentos da área de Ciências Biológicas e áreas afins.</strong></h2>\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4.jpg"><img class="alignnone size-medium wp-image-51" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4-300x225.jpg" alt="projeto 4" width="300" height="225" /></a></strong></p>\r\n<h2 style="text-align: center;"><strong>Elaboração de materiais didáticos e informativos envolvendo os mais variados temas de Ciências Biológicas e Meio Ambiente.</strong></h2>\r\n<strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5.jpg"><img class="alignnone size-medium wp-image-52 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5-300x225.jpg" alt="projeto 5" width="300" height="225" /></a></strong>', 'Serviços', '', 'inherit', 'open', 'open', '', '13-revision-v1', '', '', '2014-11-26 16:51:49', '2014-11-26 16:51:49', '', 13, 'http://localhost/Harpia/?p=59', 0, 'revision', '', 0),
+(60, 1, '2014-11-26 16:53:31', '2014-11-26 16:53:31', '<strong> </strong>\r\n<h4 style="text-align: center;"><strong>Levantamento de fauna e flora e elaboração de inventários.</strong></h4>\r\n<p style="text-align: center;"><strong> <a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1.jpg"><img class="alignnone size-medium wp-image-48" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1-300x225.jpg" alt="projeto 1" width="300" height="225" /></a></strong></p>\r\n<h4 style="text-align: center;"><strong>Educação ambiental em escolas de ensino fundamental e médio do ensino público e privado do estado do Ceará.</strong></h4>\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2.jpg"><img class="alignnone size-medium wp-image-49" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2-300x225.jpg" alt="projeto 2" width="300" height="225" /></a></strong></p>\r\n<h4 style="text-align: center;"><strong>Formação, organização e estruturação de trilhas ecológicas e treinamento de guias para excursões científicas e projetos envolvendo Ecoturismo.</strong></h4>\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3.jpg"><img class="alignnone size-medium wp-image-50" src="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3-300x225.jpg" alt="Projeto 3" width="300" height="225" /></a></strong></p>\r\n<h4 style="text-align: center;"><strong>Organização de eventos acadêmicos e treinamentos da área de Ciências Biológicas e áreas afins.</strong></h4>\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4.jpg"><img class="alignnone size-medium wp-image-51" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4-300x225.jpg" alt="projeto 4" width="300" height="225" /></a></strong></p>\r\n<h4 style="text-align: center;"><strong>Elaboração de materiais didáticos e informativos envolvendo os mais variados temas de Ciências Biológicas e Meio Ambiente.</strong></h4>\r\n<strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5.jpg"><img class="alignnone size-medium wp-image-52 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5-300x225.jpg" alt="projeto 5" width="300" height="225" /></a></strong>', 'Serviços', '', 'inherit', 'open', 'open', '', '13-revision-v1', '', '', '2014-11-26 16:53:31', '2014-11-26 16:53:31', '', 13, 'http://localhost/Harpia/?p=60', 0, 'revision', '', 0),
+(61, 1, '2014-11-26 16:56:32', '2014-11-26 16:56:32', '<strong> </strong>\r\n<h4 style="text-align: center;"><strong>Levantamento de fauna e flora e elaboração de inventários.</strong></h4>\r\n<p style="text-align: center;"><strong> <a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1.jpg"><img class="alignnone  wp-image-48" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1-300x225.jpg" alt="projeto 1" width="450" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"><strong>Educação ambiental em escolas de ensino fundamental e médio do ensino público e privado do estado do Ceará.</strong></h4>\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2.jpg"><img class="alignnone  wp-image-49" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2-300x225.jpg" alt="projeto 2" width="451" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"><strong>Formação, organização e estruturação de trilhas ecológicas e treinamento de guias para excursões científicas e projetos envolvendo Ecoturismo.</strong></h4>\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3.jpg"><img class="alignnone  wp-image-50" src="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3-300x225.jpg" alt="Projeto 3" width="451" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"><strong>Organização de eventos acadêmicos e treinamentos da área de Ciências Biológicas e áreas afins.</strong></h4>\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4.jpg"><img class="alignnone  wp-image-51" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4-300x225.jpg" alt="projeto 4" width="451" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"><strong>Elaboração de materiais didáticos e informativos envolvendo os mais variados temas de Ciências Biológicas e Meio Ambiente.</strong></h4>\r\n<strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5.jpg"><img class="alignnone  wp-image-52 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5-300x225.jpg" alt="projeto 5" width="451" height="338" /></a></strong>', 'Serviços', '', 'inherit', 'open', 'open', '', '13-revision-v1', '', '', '2014-11-26 16:56:32', '2014-11-26 16:56:32', '', 13, 'http://localhost/Harpia/?p=61', 0, 'revision', '', 0),
+(62, 1, '2014-11-26 16:59:00', '2014-11-26 16:59:00', '<strong> </strong>\r\n<h4 style="text-align: center;"><strong>Levantamento de fauna e flora e elaboração de inventários.</strong></h4>\r\n&nbsp;\r\n<p style="text-align: center;"><strong> <a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1.jpg"><img class="alignnone  wp-image-48" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1-300x225.jpg" alt="projeto 1" width="450" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"></h4>\r\n<h4 style="text-align: center;"><strong>Educação ambiental em escolas de ensino fundamental e médio do ensino público e privado do estado do Ceará.</strong></h4>\r\n&nbsp;\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2.jpg"><img class="alignnone  wp-image-49" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2-300x225.jpg" alt="projeto 2" width="451" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"></h4>\r\n<h4 style="text-align: center;"><strong>Formação, organização e estruturação de trilhas ecológicas e treinamento de guias para excursões científicas e projetos envolvendo Ecoturismo.</strong></h4>\r\n&nbsp;\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3.jpg"><img class="alignnone  wp-image-50" src="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3-300x225.jpg" alt="Projeto 3" width="451" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"></h4>\r\n<h4 style="text-align: center;"><strong>Organização de eventos acadêmicos e treinamentos da área de Ciências Biológicas e áreas afins.</strong></h4>\r\n&nbsp;\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4.jpg"><img class="alignnone  wp-image-51" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4-300x225.jpg" alt="projeto 4" width="451" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"></h4>\r\n<h4 style="text-align: center;"><strong>Elaboração de materiais didáticos e informativos envolvendo os mais variados temas de Ciências Biológicas e Meio Ambiente.</strong></h4>\r\n&nbsp;\r\n\r\n<strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5.jpg"><img class="alignnone  wp-image-52 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5-300x225.jpg" alt="projeto 5" width="451" height="338" /></a></strong>', 'Serviços', '', 'inherit', 'open', 'open', '', '13-revision-v1', '', '', '2014-11-26 16:59:00', '2014-11-26 16:59:00', '', 13, 'http://localhost/Harpia/?p=62', 0, 'revision', '', 0),
+(63, 1, '2014-11-26 16:59:44', '2014-11-26 16:59:44', '<strong> </strong>\r\n<h4 style="text-align: center;"><strong>Levantamento de fauna e flora e elaboração de inventários.</strong></h4>\r\n&nbsp;\r\n<p style="text-align: center;"><strong> <a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1.jpg"><img class="alignnone  wp-image-48" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1-300x225.jpg" alt="projeto 1" width="450" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"></h4>\r\n<h4 style="text-align: center;"></h4>\r\n<h4 style="text-align: center;"><strong>Educação ambiental em escolas de ensino fundamental e médio do ensino público e privado do estado do Ceará.</strong></h4>\r\n&nbsp;\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2.jpg"><img class="alignnone  wp-image-49" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2-300x225.jpg" alt="projeto 2" width="451" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"></h4>\r\n<h4 style="text-align: center;"><strong>Formação, organização e estruturação de trilhas ecológicas e treinamento de guias para excursões científicas e projetos envolvendo Ecoturismo.</strong></h4>\r\n&nbsp;\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3.jpg"><img class="alignnone  wp-image-50" src="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3-300x225.jpg" alt="Projeto 3" width="451" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"></h4>\r\n<h4 style="text-align: center;"><strong>Organização de eventos acadêmicos e treinamentos da área de Ciências Biológicas e áreas afins.</strong></h4>\r\n&nbsp;\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4.jpg"><img class="alignnone  wp-image-51" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4-300x225.jpg" alt="projeto 4" width="451" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"></h4>\r\n<h4 style="text-align: center;"><strong>Elaboração de materiais didáticos e informativos envolvendo os mais variados temas de Ciências Biológicas e Meio Ambiente.</strong></h4>\r\n&nbsp;\r\n\r\n<strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5.jpg"><img class="alignnone  wp-image-52 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5-300x225.jpg" alt="projeto 5" width="451" height="338" /></a></strong>', 'Serviços', '', 'inherit', 'open', 'open', '', '13-revision-v1', '', '', '2014-11-26 16:59:44', '2014-11-26 16:59:44', '', 13, 'http://localhost/Harpia/?p=63', 0, 'revision', '', 0),
+(64, 1, '2014-11-26 17:04:21', '2014-11-26 17:04:21', '<strong> </strong>\r\n\r\n&nbsp;\r\n<h4 style="text-align: center;">Levantamento de fauna e flora e elaboração de inventários.</h4>\r\n<strong> </strong>\r\n<p style="text-align: center;"><strong> <a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1.jpg"><img class="alignnone  wp-image-48" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1-300x225.jpg" alt="projeto 1" width="450" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"><strong> </strong></h4>\r\n<h4 style="text-align: center;"><strong> </strong></h4>\r\n<h4 style="text-align: center;">Educação ambiental em escolas de ensino fundamental e médio do ensino público e privado do estado do Ceará.</h4>\r\n<strong> </strong>\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2.jpg"><img class="alignnone  wp-image-49" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2-300x225.jpg" alt="projeto 2" width="451" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"><strong> </strong></h4>\r\n<h4 style="text-align: center;">Formação, organização e estruturação de trilhas ecológicas e treinamento de guias para excursões científicas e projetos envolvendo Ecoturismo.</h4>\r\n&nbsp;\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3.jpg"><img class="alignnone  wp-image-50" src="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3-300x225.jpg" alt="Projeto 3" width="451" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"><strong> </strong></h4>\r\n<h4 style="text-align: center;"><strong>Organização de eventos acadêmicos e treinamentos da área de Ciências Biológicas e áreas afins.</strong></h4>\r\n<strong> </strong>\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4.jpg"><img class="alignnone  wp-image-51" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4-300x225.jpg" alt="projeto 4" width="451" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"><strong> </strong></h4>\r\n<h4 style="text-align: center;">Elaboração de materiais didáticos e informativos envolvendo os mais variados temas de Ciências Biológicas e Meio Ambiente.</h4>\r\n&nbsp;\r\n\r\n<strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5.jpg"><img class="alignnone  wp-image-52 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5-300x225.jpg" alt="projeto 5" width="451" height="338" /></a></strong>', 'Serviços', '', 'inherit', 'open', 'open', '', '13-revision-v1', '', '', '2014-11-26 17:04:21', '2014-11-26 17:04:21', '', 13, 'http://localhost/Harpia/?p=64', 0, 'revision', '', 0),
+(65, 1, '2014-11-26 17:05:11', '2014-11-26 17:05:11', '<strong> </strong>\r\n\r\n&nbsp;\r\n<h4 style="text-align: center;">Levantamento de fauna e flora e elaboração de inventários.</h4>\r\n<strong> </strong>\r\n<p style="text-align: center;"><strong> <a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1.jpg"><img class="alignnone  wp-image-48" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-1-300x225.jpg" alt="projeto 1" width="450" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"><strong> </strong></h4>\r\n<h4 style="text-align: center;"><strong> </strong></h4>\r\n<h4 style="text-align: center;">Educação ambiental em escolas de ensino fundamental e médio do ensino público e privado do estado do Ceará.</h4>\r\n<strong> </strong>\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2.jpg"><img class="alignnone  wp-image-49" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-2-300x225.jpg" alt="projeto 2" width="451" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"><strong> </strong></h4>\r\n<h4 style="text-align: center;">Formação, organização e estruturação de trilhas ecológicas e treinamento de guias para excursões científicas e projetos envolvendo Ecoturismo.</h4>\r\n&nbsp;\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3.jpg"><img class="alignnone  wp-image-50" src="http://localhost/Harpia/wp-content/uploads/2014/11/Projeto-3-300x225.jpg" alt="Projeto 3" width="451" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"><strong> </strong></h4>\r\n<h4 style="text-align: center;">Organização de eventos acadêmicos e treinamentos da área de Ciências Biológicas e áreas afins.</h4>\r\n<strong> </strong>\r\n<p style="text-align: center;"><strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4.jpg"><img class="alignnone  wp-image-51" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-4-300x225.jpg" alt="projeto 4" width="451" height="338" /></a></strong></p>\r\n\r\n<h4 style="text-align: center;"><strong> </strong></h4>\r\n<h4 style="text-align: center;">Elaboração de materiais didáticos e informativos envolvendo os mais variados temas de Ciências Biológicas e Meio Ambiente.</h4>\r\n&nbsp;\r\n\r\n<strong><a href="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5.jpg"><img class="alignnone  wp-image-52 aligncenter" src="http://localhost/Harpia/wp-content/uploads/2014/11/projeto-5-300x225.jpg" alt="projeto 5" width="451" height="338" /></a></strong>', 'Serviços', '', 'inherit', 'open', 'open', '', '13-revision-v1', '', '', '2014-11-26 17:05:11', '2014-11-26 17:05:11', '', 13, 'http://localhost/Harpia/?p=65', 0, 'revision', '', 0),
+(66, 1, '2014-11-26 15:09:43', '2014-11-26 18:09:43', '', 'Home', '', 'trash', 'open', 'open', '', 'home', '', '', '2014-11-26 15:11:09', '2014-11-26 18:11:09', '', 0, 'http://localhost/Harpia/?page_id=66', 0, 'page', '', 0),
+(67, 1, '2014-11-26 15:09:43', '2014-11-26 18:09:43', '', 'Home', '', 'inherit', 'open', 'open', '', '66-revision-v1', '', '', '2014-11-26 15:09:43', '2014-11-26 18:09:43', '', 66, 'http://localhost/Harpia/?p=67', 0, 'revision', '', 0);
 
 -- --------------------------------------------------------
 
@@ -660,14 +670,11 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 --
 
 CREATE TABLE IF NOT EXISTS `wp_terms` (
-  `term_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+`term_id` bigint(20) unsigned NOT NULL,
   `name` varchar(200) NOT NULL DEFAULT '',
   `slug` varchar(200) NOT NULL DEFAULT '',
-  `term_group` bigint(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`term_id`),
-  UNIQUE KEY `slug` (`slug`),
-  KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `term_group` bigint(10) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `wp_terms`
@@ -685,9 +692,7 @@ INSERT INTO `wp_terms` (`term_id`, `name`, `slug`, `term_group`) VALUES
 CREATE TABLE IF NOT EXISTS `wp_term_relationships` (
   `object_id` bigint(20) unsigned NOT NULL DEFAULT '0',
   `term_taxonomy_id` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `term_order` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`object_id`,`term_taxonomy_id`),
-  KEY `term_taxonomy_id` (`term_taxonomy_id`)
+  `term_order` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -704,16 +709,13 @@ INSERT INTO `wp_term_relationships` (`object_id`, `term_taxonomy_id`, `term_orde
 --
 
 CREATE TABLE IF NOT EXISTS `wp_term_taxonomy` (
-  `term_taxonomy_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+`term_taxonomy_id` bigint(20) unsigned NOT NULL,
   `term_id` bigint(20) unsigned NOT NULL DEFAULT '0',
   `taxonomy` varchar(32) NOT NULL DEFAULT '',
   `description` longtext NOT NULL,
   `parent` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `count` bigint(20) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`term_taxonomy_id`),
-  UNIQUE KEY `term_id_taxonomy` (`term_id`,`taxonomy`),
-  KEY `taxonomy` (`taxonomy`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `count` bigint(20) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `wp_term_taxonomy`
@@ -729,14 +731,11 @@ INSERT INTO `wp_term_taxonomy` (`term_taxonomy_id`, `term_id`, `taxonomy`, `desc
 --
 
 CREATE TABLE IF NOT EXISTS `wp_usermeta` (
-  `umeta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+`umeta_id` bigint(20) unsigned NOT NULL,
   `user_id` bigint(20) unsigned NOT NULL DEFAULT '0',
   `meta_key` varchar(255) DEFAULT NULL,
-  `meta_value` longtext,
-  PRIMARY KEY (`umeta_id`),
-  KEY `user_id` (`user_id`),
-  KEY `meta_key` (`meta_key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+  `meta_value` longtext
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `wp_usermeta`
@@ -756,11 +755,11 @@ INSERT INTO `wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALU
 (11, 1, 'wp_user_level', '10'),
 (12, 1, 'dismissed_wp_pointers', 'wp350_media,wp360_revisions,wp360_locks,wp390_widgets'),
 (13, 1, 'show_welcome_panel', '1'),
-(14, 1, 'session_tokens', 'a:1:{s:64:"69198ca55c607431a6b9212c908f1634defa25e4f38e929594d3fc706d77e462";i:1417182979;}'),
+(14, 1, 'session_tokens', 'a:2:{s:64:"69198ca55c607431a6b9212c908f1634defa25e4f38e929594d3fc706d77e462";i:1417182979;s:64:"e4e85917a09942b80bba5743eb2ab711815ec53a85c9883e5214263d5fe3594d";i:1417188245;}'),
 (15, 1, 'wp_dashboard_quick_press_last_post_id', '3'),
 (16, 1, 'wysija_pref', 'YTowOnt9'),
-(17, 1, 'wp_user-settings', 'editor=html&libraryContent=browse'),
-(18, 1, 'wp_user-settings-time', '1416413585'),
+(17, 1, 'wp_user-settings', 'editor=tinymce&libraryContent=browse'),
+(18, 1, 'wp_user-settings-time', '1417020989'),
 (19, 1, 'closedpostboxes_page', 'a:1:{i:0;s:17:"et_ptemplate_meta";}'),
 (20, 1, 'metaboxhidden_page', 'a:4:{i:0;s:16:"commentstatusdiv";i:1;s:11:"commentsdiv";i:2;s:7:"slugdiv";i:3;s:9:"authordiv";}'),
 (21, 1, 'managenav-menuscolumnshidden', 'a:4:{i:0;s:11:"link-target";i:1;s:11:"css-classes";i:2;s:3:"xfn";i:3;s:11:"description";}'),
@@ -773,7 +772,7 @@ INSERT INTO `wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALU
 --
 
 CREATE TABLE IF NOT EXISTS `wp_users` (
-  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+`ID` bigint(20) unsigned NOT NULL,
   `user_login` varchar(60) NOT NULL DEFAULT '',
   `user_pass` varchar(64) NOT NULL DEFAULT '',
   `user_nicename` varchar(50) NOT NULL DEFAULT '',
@@ -782,11 +781,8 @@ CREATE TABLE IF NOT EXISTS `wp_users` (
   `user_registered` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `user_activation_key` varchar(60) NOT NULL DEFAULT '',
   `user_status` int(11) NOT NULL DEFAULT '0',
-  `display_name` varchar(250) NOT NULL DEFAULT '',
-  PRIMARY KEY (`ID`),
-  KEY `user_login_key` (`user_login`),
-  KEY `user_nicename` (`user_nicename`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `display_name` varchar(250) NOT NULL DEFAULT ''
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `wp_users`
@@ -802,11 +798,10 @@ INSERT INTO `wp_users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_
 --
 
 CREATE TABLE IF NOT EXISTS `wp_wysija_campaign` (
-  `campaign_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`campaign_id` int(10) unsigned NOT NULL,
   `name` varchar(250) DEFAULT NULL,
-  `description` text,
-  PRIMARY KEY (`campaign_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `description` text
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `wp_wysija_campaign`
@@ -824,8 +819,7 @@ INSERT INTO `wp_wysija_campaign` (`campaign_id`, `name`, `description`) VALUES
 CREATE TABLE IF NOT EXISTS `wp_wysija_campaign_list` (
   `list_id` int(10) unsigned NOT NULL,
   `campaign_id` int(10) unsigned NOT NULL,
-  `filter` text,
-  PRIMARY KEY (`list_id`,`campaign_id`)
+  `filter` text
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -835,13 +829,12 @@ CREATE TABLE IF NOT EXISTS `wp_wysija_campaign_list` (
 --
 
 CREATE TABLE IF NOT EXISTS `wp_wysija_custom_field` (
-  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+`id` mediumint(9) NOT NULL,
   `name` tinytext NOT NULL,
   `type` tinytext NOT NULL,
   `required` tinyint(1) NOT NULL DEFAULT '0',
-  `settings` text,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `settings` text
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -850,7 +843,7 @@ CREATE TABLE IF NOT EXISTS `wp_wysija_custom_field` (
 --
 
 CREATE TABLE IF NOT EXISTS `wp_wysija_email` (
-  `email_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`email_id` int(10) unsigned NOT NULL,
   `campaign_id` int(10) unsigned NOT NULL DEFAULT '0',
   `subject` varchar(250) NOT NULL DEFAULT '',
   `body` longtext,
@@ -872,9 +865,8 @@ CREATE TABLE IF NOT EXISTS `wp_wysija_email` (
   `number_forward` int(10) unsigned NOT NULL DEFAULT '0',
   `params` text,
   `wj_data` longtext,
-  `wj_styles` longtext,
-  PRIMARY KEY (`email_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `wj_styles` longtext
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `wp_wysija_email`
@@ -895,8 +887,7 @@ CREATE TABLE IF NOT EXISTS `wp_wysija_email_user_stat` (
   `email_id` int(10) unsigned NOT NULL,
   `sent_at` int(10) unsigned NOT NULL,
   `opened_at` int(10) unsigned DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`user_id`,`email_id`)
+  `status` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -910,8 +901,7 @@ CREATE TABLE IF NOT EXISTS `wp_wysija_email_user_url` (
   `user_id` int(10) unsigned NOT NULL,
   `url_id` int(10) unsigned NOT NULL,
   `clicked_at` int(10) unsigned DEFAULT NULL,
-  `number_clicked` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`user_id`,`email_id`,`url_id`)
+  `number_clicked` int(10) unsigned NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -921,13 +911,12 @@ CREATE TABLE IF NOT EXISTS `wp_wysija_email_user_url` (
 --
 
 CREATE TABLE IF NOT EXISTS `wp_wysija_form` (
-  `form_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`form_id` int(10) unsigned NOT NULL,
   `name` tinytext CHARACTER SET utf8 COLLATE utf8_bin,
   `data` longtext CHARACTER SET utf8 COLLATE utf8_bin,
   `styles` longtext CHARACTER SET utf8 COLLATE utf8_bin,
-  `subscribed` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`form_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `subscribed` int(10) unsigned NOT NULL DEFAULT '0'
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `wp_wysija_form`
@@ -943,7 +932,7 @@ INSERT INTO `wp_wysija_form` (`form_id`, `name`, `data`, `styles`, `subscribed`)
 --
 
 CREATE TABLE IF NOT EXISTS `wp_wysija_list` (
-  `list_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`list_id` int(10) unsigned NOT NULL,
   `name` varchar(250) DEFAULT NULL,
   `namekey` varchar(255) DEFAULT NULL,
   `description` text,
@@ -952,9 +941,8 @@ CREATE TABLE IF NOT EXISTS `wp_wysija_list` (
   `is_enabled` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `is_public` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `created_at` int(10) unsigned DEFAULT NULL,
-  `ordering` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`list_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `ordering` int(10) unsigned NOT NULL DEFAULT '0'
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `wp_wysija_list`
@@ -975,9 +963,7 @@ CREATE TABLE IF NOT EXISTS `wp_wysija_queue` (
   `email_id` int(10) unsigned NOT NULL,
   `send_at` int(10) unsigned NOT NULL DEFAULT '0',
   `priority` tinyint(4) NOT NULL DEFAULT '0',
-  `number_try` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`user_id`,`email_id`),
-  KEY `SENT_AT_INDEX` (`send_at`)
+  `number_try` tinyint(3) unsigned NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -987,11 +973,10 @@ CREATE TABLE IF NOT EXISTS `wp_wysija_queue` (
 --
 
 CREATE TABLE IF NOT EXISTS `wp_wysija_url` (
-  `url_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`url_id` int(10) unsigned NOT NULL,
   `name` varchar(250) DEFAULT NULL,
-  `url` text,
-  PRIMARY KEY (`url_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `url` text
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1000,12 +985,11 @@ CREATE TABLE IF NOT EXISTS `wp_wysija_url` (
 --
 
 CREATE TABLE IF NOT EXISTS `wp_wysija_url_mail` (
-  `email_id` int(11) NOT NULL AUTO_INCREMENT,
+`email_id` int(11) NOT NULL,
   `url_id` int(10) unsigned NOT NULL,
   `unique_clicked` int(10) unsigned NOT NULL DEFAULT '0',
-  `total_clicked` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`email_id`,`url_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `total_clicked` int(10) unsigned NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1014,7 +998,7 @@ CREATE TABLE IF NOT EXISTS `wp_wysija_url_mail` (
 --
 
 CREATE TABLE IF NOT EXISTS `wp_wysija_user` (
-  `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`user_id` int(10) unsigned NOT NULL,
   `wpuser_id` int(10) unsigned NOT NULL DEFAULT '0',
   `email` varchar(255) NOT NULL,
   `firstname` varchar(255) NOT NULL DEFAULT '',
@@ -1027,10 +1011,8 @@ CREATE TABLE IF NOT EXISTS `wp_wysija_user` (
   `keyuser` varchar(255) NOT NULL DEFAULT '',
   `created_at` int(10) unsigned DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '0',
-  `domain` varchar(255) DEFAULT '',
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `EMAIL_UNIQUE` (`email`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `domain` varchar(255) DEFAULT ''
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `wp_wysija_user`
@@ -1046,16 +1028,15 @@ INSERT INTO `wp_wysija_user` (`user_id`, `wpuser_id`, `email`, `firstname`, `las
 --
 
 CREATE TABLE IF NOT EXISTS `wp_wysija_user_field` (
-  `field_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`field_id` int(10) unsigned NOT NULL,
   `name` varchar(250) DEFAULT NULL,
   `column_name` varchar(250) NOT NULL DEFAULT '',
   `type` tinyint(3) unsigned DEFAULT '0',
   `values` text,
   `default` varchar(250) NOT NULL DEFAULT '',
   `is_required` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `error_message` varchar(250) NOT NULL DEFAULT '',
-  PRIMARY KEY (`field_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `error_message` varchar(250) NOT NULL DEFAULT ''
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `wp_wysija_user_field`
@@ -1072,16 +1053,15 @@ INSERT INTO `wp_wysija_user_field` (`field_id`, `name`, `column_name`, `type`, `
 --
 
 CREATE TABLE IF NOT EXISTS `wp_wysija_user_history` (
-  `history_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`history_id` int(10) unsigned NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
   `email_id` int(10) unsigned DEFAULT '0',
   `type` varchar(250) NOT NULL DEFAULT '',
   `details` text,
   `executed_at` int(10) unsigned DEFAULT NULL,
   `executed_by` int(10) unsigned DEFAULT NULL,
-  `source` text,
-  PRIMARY KEY (`history_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `source` text
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1093,8 +1073,7 @@ CREATE TABLE IF NOT EXISTS `wp_wysija_user_list` (
   `list_id` int(10) unsigned NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
   `sub_date` int(10) unsigned DEFAULT '0',
-  `unsub_date` int(10) unsigned DEFAULT '0',
-  PRIMARY KEY (`list_id`,`user_id`)
+  `unsub_date` int(10) unsigned DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1105,6 +1084,314 @@ INSERT INTO `wp_wysija_user_list` (`list_id`, `user_id`, `sub_date`, `unsub_date
 (1, 1, 1416405970, 0),
 (2, 1, 1416405971, 0);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `wp_cntctfrm_field`
+--
+ALTER TABLE `wp_cntctfrm_field`
+ ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `wp_commentmeta`
+--
+ALTER TABLE `wp_commentmeta`
+ ADD PRIMARY KEY (`meta_id`), ADD KEY `comment_id` (`comment_id`), ADD KEY `meta_key` (`meta_key`);
+
+--
+-- Indexes for table `wp_comments`
+--
+ALTER TABLE `wp_comments`
+ ADD PRIMARY KEY (`comment_ID`), ADD KEY `comment_post_ID` (`comment_post_ID`), ADD KEY `comment_approved_date_gmt` (`comment_approved`,`comment_date_gmt`), ADD KEY `comment_date_gmt` (`comment_date_gmt`), ADD KEY `comment_parent` (`comment_parent`), ADD KEY `comment_author_email` (`comment_author_email`(10));
+
+--
+-- Indexes for table `wp_create_map`
+--
+ALTER TABLE `wp_create_map`
+ ADD PRIMARY KEY (`map_id`);
+
+--
+-- Indexes for table `wp_group_map`
+--
+ALTER TABLE `wp_group_map`
+ ADD PRIMARY KEY (`group_map_id`);
+
+--
+-- Indexes for table `wp_links`
+--
+ALTER TABLE `wp_links`
+ ADD PRIMARY KEY (`link_id`), ADD KEY `link_visible` (`link_visible`);
+
+--
+-- Indexes for table `wp_map_locations`
+--
+ALTER TABLE `wp_map_locations`
+ ADD PRIMARY KEY (`location_id`);
+
+--
+-- Indexes for table `wp_options`
+--
+ALTER TABLE `wp_options`
+ ADD PRIMARY KEY (`option_id`), ADD UNIQUE KEY `option_name` (`option_name`);
+
+--
+-- Indexes for table `wp_postmeta`
+--
+ALTER TABLE `wp_postmeta`
+ ADD PRIMARY KEY (`meta_id`), ADD KEY `post_id` (`post_id`), ADD KEY `meta_key` (`meta_key`);
+
+--
+-- Indexes for table `wp_posts`
+--
+ALTER TABLE `wp_posts`
+ ADD PRIMARY KEY (`ID`), ADD KEY `post_name` (`post_name`), ADD KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`), ADD KEY `post_parent` (`post_parent`), ADD KEY `post_author` (`post_author`);
+
+--
+-- Indexes for table `wp_terms`
+--
+ALTER TABLE `wp_terms`
+ ADD PRIMARY KEY (`term_id`), ADD UNIQUE KEY `slug` (`slug`), ADD KEY `name` (`name`);
+
+--
+-- Indexes for table `wp_term_relationships`
+--
+ALTER TABLE `wp_term_relationships`
+ ADD PRIMARY KEY (`object_id`,`term_taxonomy_id`), ADD KEY `term_taxonomy_id` (`term_taxonomy_id`);
+
+--
+-- Indexes for table `wp_term_taxonomy`
+--
+ALTER TABLE `wp_term_taxonomy`
+ ADD PRIMARY KEY (`term_taxonomy_id`), ADD UNIQUE KEY `term_id_taxonomy` (`term_id`,`taxonomy`), ADD KEY `taxonomy` (`taxonomy`);
+
+--
+-- Indexes for table `wp_usermeta`
+--
+ALTER TABLE `wp_usermeta`
+ ADD PRIMARY KEY (`umeta_id`), ADD KEY `user_id` (`user_id`), ADD KEY `meta_key` (`meta_key`);
+
+--
+-- Indexes for table `wp_users`
+--
+ALTER TABLE `wp_users`
+ ADD PRIMARY KEY (`ID`), ADD KEY `user_login_key` (`user_login`), ADD KEY `user_nicename` (`user_nicename`);
+
+--
+-- Indexes for table `wp_wysija_campaign`
+--
+ALTER TABLE `wp_wysija_campaign`
+ ADD PRIMARY KEY (`campaign_id`);
+
+--
+-- Indexes for table `wp_wysija_campaign_list`
+--
+ALTER TABLE `wp_wysija_campaign_list`
+ ADD PRIMARY KEY (`list_id`,`campaign_id`);
+
+--
+-- Indexes for table `wp_wysija_custom_field`
+--
+ALTER TABLE `wp_wysija_custom_field`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `wp_wysija_email`
+--
+ALTER TABLE `wp_wysija_email`
+ ADD PRIMARY KEY (`email_id`);
+
+--
+-- Indexes for table `wp_wysija_email_user_stat`
+--
+ALTER TABLE `wp_wysija_email_user_stat`
+ ADD PRIMARY KEY (`user_id`,`email_id`);
+
+--
+-- Indexes for table `wp_wysija_email_user_url`
+--
+ALTER TABLE `wp_wysija_email_user_url`
+ ADD PRIMARY KEY (`user_id`,`email_id`,`url_id`);
+
+--
+-- Indexes for table `wp_wysija_form`
+--
+ALTER TABLE `wp_wysija_form`
+ ADD PRIMARY KEY (`form_id`);
+
+--
+-- Indexes for table `wp_wysija_list`
+--
+ALTER TABLE `wp_wysija_list`
+ ADD PRIMARY KEY (`list_id`);
+
+--
+-- Indexes for table `wp_wysija_queue`
+--
+ALTER TABLE `wp_wysija_queue`
+ ADD PRIMARY KEY (`user_id`,`email_id`), ADD KEY `SENT_AT_INDEX` (`send_at`);
+
+--
+-- Indexes for table `wp_wysija_url`
+--
+ALTER TABLE `wp_wysija_url`
+ ADD PRIMARY KEY (`url_id`);
+
+--
+-- Indexes for table `wp_wysija_url_mail`
+--
+ALTER TABLE `wp_wysija_url_mail`
+ ADD PRIMARY KEY (`email_id`,`url_id`);
+
+--
+-- Indexes for table `wp_wysija_user`
+--
+ALTER TABLE `wp_wysija_user`
+ ADD PRIMARY KEY (`user_id`), ADD UNIQUE KEY `EMAIL_UNIQUE` (`email`);
+
+--
+-- Indexes for table `wp_wysija_user_field`
+--
+ALTER TABLE `wp_wysija_user_field`
+ ADD PRIMARY KEY (`field_id`);
+
+--
+-- Indexes for table `wp_wysija_user_history`
+--
+ALTER TABLE `wp_wysija_user_history`
+ ADD PRIMARY KEY (`history_id`);
+
+--
+-- Indexes for table `wp_wysija_user_list`
+--
+ALTER TABLE `wp_wysija_user_list`
+ ADD PRIMARY KEY (`list_id`,`user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `wp_cntctfrm_field`
+--
+ALTER TABLE `wp_cntctfrm_field`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT for table `wp_commentmeta`
+--
+ALTER TABLE `wp_commentmeta`
+MODIFY `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `wp_comments`
+--
+ALTER TABLE `wp_comments`
+MODIFY `comment_ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `wp_create_map`
+--
+ALTER TABLE `wp_create_map`
+MODIFY `map_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `wp_group_map`
+--
+ALTER TABLE `wp_group_map`
+MODIFY `group_map_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `wp_links`
+--
+ALTER TABLE `wp_links`
+MODIFY `link_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `wp_map_locations`
+--
+ALTER TABLE `wp_map_locations`
+MODIFY `location_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `wp_options`
+--
+ALTER TABLE `wp_options`
+MODIFY `option_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=267;
+--
+-- AUTO_INCREMENT for table `wp_postmeta`
+--
+ALTER TABLE `wp_postmeta`
+MODIFY `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=165;
+--
+-- AUTO_INCREMENT for table `wp_posts`
+--
+ALTER TABLE `wp_posts`
+MODIFY `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=68;
+--
+-- AUTO_INCREMENT for table `wp_terms`
+--
+ALTER TABLE `wp_terms`
+MODIFY `term_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `wp_term_taxonomy`
+--
+ALTER TABLE `wp_term_taxonomy`
+MODIFY `term_taxonomy_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `wp_usermeta`
+--
+ALTER TABLE `wp_usermeta`
+MODIFY `umeta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+--
+-- AUTO_INCREMENT for table `wp_users`
+--
+ALTER TABLE `wp_users`
+MODIFY `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `wp_wysija_campaign`
+--
+ALTER TABLE `wp_wysija_campaign`
+MODIFY `campaign_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `wp_wysija_custom_field`
+--
+ALTER TABLE `wp_wysija_custom_field`
+MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `wp_wysija_email`
+--
+ALTER TABLE `wp_wysija_email`
+MODIFY `email_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `wp_wysija_form`
+--
+ALTER TABLE `wp_wysija_form`
+MODIFY `form_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `wp_wysija_list`
+--
+ALTER TABLE `wp_wysija_list`
+MODIFY `list_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `wp_wysija_url`
+--
+ALTER TABLE `wp_wysija_url`
+MODIFY `url_id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `wp_wysija_url_mail`
+--
+ALTER TABLE `wp_wysija_url_mail`
+MODIFY `email_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `wp_wysija_user`
+--
+ALTER TABLE `wp_wysija_user`
+MODIFY `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `wp_wysija_user_field`
+--
+ALTER TABLE `wp_wysija_user_field`
+MODIFY `field_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `wp_wysija_user_history`
+--
+ALTER TABLE `wp_wysija_user_history`
+MODIFY `history_id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
