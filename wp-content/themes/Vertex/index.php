@@ -3,6 +3,9 @@
 <div id="content-area">
 	<div class="container clearfix">
 		<div id="main-area">
+<?php 
+    echo do_shortcode("[metaslider id=75]"); 
+?>
 <?php
 if ( have_posts() ) :
 	while ( have_posts() ) : the_post();
