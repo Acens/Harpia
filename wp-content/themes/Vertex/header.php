@@ -140,11 +140,11 @@ if ( 'on' === et_get_option( 'vertex_use_site_name', 'on' ) ) {
 	}
 ?>
 			<?php if ( '' !== $heading ) : ?>
-				<h1<?php if ( ! is_home() ) echo ' class="title"'; ?>><?php echo $heading; ?></h1>
+				<img src="http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal1.png" width="400" height="150">
 			<?php endif; ?>
 
 			<?php if ( '' !== $tagline ) : ?>
-				<p class="tagline"><?php echo $tagline; ?></p>
+				
 			<?php endif; ?>
 
 				<br />

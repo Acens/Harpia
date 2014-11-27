@@ -782,3 +782,6 @@ body.home #top-menu nav, .et-fixed nav { padding-top: 0; }
 	.footer-text{
 	text-align: right;
 }
+	.tamanho-footer{
+	height = 400;
+}
