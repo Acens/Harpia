@@ -140,7 +140,7 @@ if ( 'on' === et_get_option( 'vertex_use_site_name', 'on' ) ) {
 	}
 ?>
 			<?php if ( '' !== $heading ) : ?>
-				<img src="http://localhost/Harpia/wp-content/uploads/2014/11/logo-harpia-com-desenho-antigo-horizontal1.png" width="400" height="150">
+				<img src="http://localhost/Harpia/wp-content/uploads/2014/12/logo-harpia-com-desenho-antigo-vertical.png" width="380" height="150">
 			<?php endif; ?>
 
 			<?php if ( '' !== $tagline ) : ?>

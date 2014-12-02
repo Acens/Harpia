@@ -6,6 +6,7 @@
 <?php 
     echo do_shortcode("[metaslider id=75]"); 
 ?>
+
 <?php
 if ( have_posts() ) :
 	while ( have_posts() ) : the_post();
@@ -63,7 +64,7 @@ endif;
 ?>
 		</div> <!-- #main-area -->
 
-		<?php get_sidebar(); ?>
+		
 	</div> <!-- .container -->
 </div> <!-- #content-area -->
 
