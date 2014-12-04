@@ -450,7 +450,7 @@ body.home #top-area { padding: 130px 0 141px; }
 /*------------------------------------------------*/
 
 
-#main-footer { padding: 117px 0 80px; }
+#main-footer { padding: 0px 0 80px; }
 	#main-footer a { color: #fff; text-decoration: none; }
 	#main-footer a:hover { color: rgba(255,255,255,0.9); }
 	.footer-widget { float: left; width: 277px; margin-right: 64px; color: #fff; }
