@@ -30,7 +30,6 @@
 	<script type="text/javascript">
 		document.documentElement.className = 'js';
 	</script>
-
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
@@ -55,14 +54,16 @@ if ( 'on' === et_get_option( 'vertex_use_site_name', 'on' ) ) {
 }
 ?>
 				<div id="et-logo">
-				<?php
+				<div class="menu-logo-nome"><img src="http://localhost/Harpia/wp-content/uploads/2014/12/logo-branca-harpia10.png" width="60" height="60"></div>
+				<div class="menu-logo-nome"><?php
 					printf( '<a href="%s">%s</a>',
 						esc_url( home_url( '/' ) ),
 						$site_logo
 					);
-				?>
+				?></div>
 				</div>
 
+					
 				<nav>
 				<?php
 					$menuClass = 'nav';
@@ -87,7 +88,6 @@ if ( 'on' === et_get_option( 'vertex_use_site_name', 'on' ) ) {
 					endif;
 				?>
 				</nav>
-
 				<?php do_action( 'et_header_top' ); ?>
 			</div> <!-- .container -->
 		</div> <!-- #top-menu -->
