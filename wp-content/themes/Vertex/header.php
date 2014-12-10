@@ -64,7 +64,7 @@ if ( 'on' === et_get_option( 'vertex_use_site_name', 'on' ) ) {
 				</div>
 
 					
-				<nav>
+				<nav class="menu">
 				<?php
 					$menuClass = 'nav';
 					if ( 'on' == et_get_option( 'vertex_disable_toptier' ) ) $menuClass .= ' et_disable_top_tier';

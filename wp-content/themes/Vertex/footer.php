@@ -13,10 +13,16 @@
 			<?php get_sidebar( 'footer' ); ?>
 			
 
-                        <div>
+                        <div >
 				<?php if ( function_exists('cn_social_icon') ) echo cn_social_icon(); ?>
-				<p class="footer-text menu-logo-nome-r">Desenvolvido por <img src="http://localhost/Harpia/wp-content/uploads/2014/12/acensbranco-footer.png"></p>
-			
+				<div class="menu-logo-nome-r box-footer">
+					
+						<p class="menu-logo-nome">Desenvolvido por</p>
+					
+					<div class="footer-nome">
+					<img src="http://localhost/Harpia/wp-content/uploads/2014/12/acensbranco-footer.png">
+					</div>
+				</div>
 		</div> <!-- .container -->
 </div>
 	</footer> <!-- #main-footer -->

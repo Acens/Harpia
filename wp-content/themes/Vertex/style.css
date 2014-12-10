@@ -271,8 +271,8 @@ body.home #top-area { padding: 130px 0 141px; }
 				.member-image.small { left: -33px; bottom: 10px; top: auto; padding: 4px; border: none; -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); }
 				.member-image.small:before { width: 60px; height: 60px; -moz-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5); -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5); box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5); }
 			.entry p { color: #333; }
-			.entry blockquote { border-left: 7px solid #C24C4C; margin: 16px 0 36px; }
-				blockquote p { font-size: 28px; padding-left: 30px; font-weight: 100; }
+			.entry blockquote { border-left: 7px solid #00B050; margin: 16px 0 36px; }
+				blockquote p { font-size: 20px; padding-left: 30px; font-weight: 100; }
 			.entry .read-more { float: right; text-decoration: none; color: #333; font-weight: 800; padding-top: 15px; }
 			.entry .read-more:hover { color: #959494; }
 
@@ -788,6 +788,23 @@ body.home #top-menu nav, .et-fixed nav { padding-top: 0; }
 	.menu-logo-nome{
 	float: left;
 }
+	.footer-nome{
+	float: left;
+	border-top: 5px;
+}
         .menu-logo-nome-r{
 	float: right;
+}
+	.text{
+	float: left;
+	border-top: 5px;
+}
+	.box-footer{
+	 width: 245px;
+}
+	.menu > ul > li :hover{
+        background-color: #00b050;
+}
+	.menu > ul > li {
+	font-size: 18px;
 }
